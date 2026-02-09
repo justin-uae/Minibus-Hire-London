@@ -265,12 +265,23 @@ export async function fetchTaxiProducts(): Promise<TaxiOption[]> {
 
     const products = result.data?.products?.edges || [];
 
-    // Filter out products with productType = "Parking Fee"
+    // Filter out products with productType = "Parking Fee" AND blog-related products
     const filteredProducts = products.filter((edge: any) => {
       const productType = edge.node?.productType || '';
+      const tags = edge.node?.tags || [];
+      const title = edge.node?.title || '';
 
       // Exclude parking fee products
-      return productType !== 'Parking Fee';
+      if (productType === 'Parking Fee') {
+        return false;
+      }
+
+      const isBlogPost =
+        productType === 'Blog' ||
+        tags.includes('blog') ||
+        title.toLowerCase().includes('blog:')
+
+      return !isBlogPost;
     });
 
     return filteredProducts.map((edge: any) => transformProduct(edge.node));
@@ -279,7 +290,6 @@ export async function fetchTaxiProducts(): Promise<TaxiOption[]> {
     throw error;
   }
 }
-
 /**
  * Fetch single product by ID
  */
@@ -362,7 +372,263 @@ export async function fetchProductById(productId: string): Promise<TaxiOption | 
   }
 }
 
+
+const GET_BLOG_POSTS_QUERY = `
+  query GetBlogPosts($first: Int!, $query: String!) {
+    products(first: $first, query: $query) {
+      edges {
+        node {
+          id
+          title
+          description
+          descriptionHtml
+          tags
+          createdAt
+          images(first: 1) {
+            edges {
+              node {
+                url
+                altText
+              }
+            }
+          }
+          metafields(
+            identifiers: [
+              { namespace: "blog", key: "author" }
+              { namespace: "blog", key: "excerpt" }
+              { namespace: "blog", key: "read_time" }
+              { namespace: "blog", key: "category" }
+              { namespace: "blog", key: "featured" }
+            ]
+          ) {
+            namespace
+            key
+            value
+            type
+          }
+        }
+      }
+    }
+  }
+`;
+
+// GraphQL query to fetch single blog post
+const GET_BLOG_POST_QUERY = `
+  query GetBlogPost($id: ID!) {
+    product(id: $id) {
+      id
+      title
+      description
+      descriptionHtml
+      tags
+      createdAt
+      images(first: 5) {
+        edges {
+          node {
+            url
+            altText
+          }
+        }
+      }
+      metafields(
+        identifiers: [
+          { namespace: "blog", key: "author" }
+          { namespace: "blog", key: "excerpt" }
+          { namespace: "blog", key: "read_time" }
+          { namespace: "blog", key: "category" }
+          { namespace: "blog", key: "featured" }
+          { namespace: "blog", key: "author_bio" }
+          { namespace: "blog", key: "author_image" }
+        ]
+      ) {
+        namespace
+        key
+        value
+        type
+      }
+    }
+  }
+`;
+
+export interface BlogPost {
+  id: string;
+  shopifyId: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  contentHtml: string;
+  image: string;
+  author: string;
+  authorBio?: string;
+  authorImage?: string;
+  date: string;
+  readTime: string;
+  category: string;
+  tags: string[];
+  featured: boolean;
+  images: string[];
+}
+
+/**
+ * Transform Shopify product to BlogPost
+ */
+function transformToBlogPost(product: any): BlogPost {
+  const metafields = product.metafields || [];
+  const imageEdges = product.images?.edges || [];
+  const mainImage = imageEdges[0]?.node?.url || '';
+  const allImages = imageEdges.map((edge: any) => edge.node.url);
+
+  // Extract numeric ID
+  const numericId = product.id.split('/').pop() || '0';
+
+  // Get metafield values
+  const author = getMetafieldValue(metafields, 'blog', 'author', 'Admin');
+  const authorBio = getMetafieldValue(metafields, 'blog', 'author_bio', '');
+  const authorImage = getMetafieldValue(metafields, 'blog', 'author_image', '');
+  const excerpt = getMetafieldValue(
+    metafields,
+    'blog',
+    'excerpt',
+    product.description?.substring(0, 150) + '...' || ''
+  );
+  const readTime = getMetafieldValue(metafields, 'blog', 'read_time', '5 min read');
+  const category = getMetafieldValue(metafields, 'blog', 'category', 'General');
+  const featured = getMetafieldValue(metafields, 'blog', 'featured', false);
+
+  // Format date
+  const date = new Date(product.createdAt).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  return {
+    id: numericId,
+    shopifyId: product.id,
+    title: product.title,
+    excerpt: excerpt,
+    content: product.description || '',
+    contentHtml: product.descriptionHtml || '',
+    image: mainImage,
+    author: author,
+    authorBio: authorBio,
+    authorImage: authorImage,
+    date: date,
+    readTime: readTime,
+    category: category,
+    tags: product.tags || [],
+    featured: featured,
+    images: allImages,
+  };
+}
+
+/**
+ * Fetch all blog posts from Shopify
+ * Fetches products with tag "blog" or productType "Blog"
+ */
+export async function fetchBlogPosts(): Promise<BlogPost[]> {
+  try {
+    const response = await fetch(SHOPIFY_GRAPHQL_URL, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        query: GET_BLOG_POSTS_QUERY,
+        variables: {
+          first: 50,
+          query: 'tag:blog OR product_type:Blog',
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.errors) {
+      console.error('GraphQL Errors:', result.errors);
+      throw new Error(result.errors[0]?.message || 'GraphQL query failed');
+    }
+
+    const products = result.data?.products?.edges || [];
+
+    return products.map((edge: any) => transformToBlogPost(edge.node));
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    throw error;
+  }
+}
+
+/**
+ * Fetch single blog post by ID
+ */
+export async function fetchBlogPostById(blogId: string): Promise<BlogPost | null> {
+  try {
+    // Ensure ID has proper Shopify GID format
+    const shopifyId = blogId.startsWith('gid://')
+      ? blogId
+      : `gid://shopify/Product/${blogId}`;
+
+    const response = await fetch(SHOPIFY_GRAPHQL_URL, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        query: GET_BLOG_POST_QUERY,
+        variables: { id: shopifyId },
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.errors) {
+      console.error('GraphQL Errors:', result.errors);
+      return null;
+    }
+
+    const product = result.data?.product;
+    return product ? transformToBlogPost(product) : null;
+  } catch (error) {
+    console.error('Error fetching blog post:', error);
+    return null;
+  }
+}
+
+/**
+ * Fetch featured blog posts
+ */
+export async function fetchFeaturedBlogPosts(): Promise<BlogPost[]> {
+  try {
+    const allPosts = await fetchBlogPosts();
+    return allPosts.filter((post) => post.featured).slice(0, 3);
+  } catch (error) {
+    console.error('Error fetching featured blog posts:', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch blog posts by category
+ */
+export async function fetchBlogPostsByCategory(category: string): Promise<BlogPost[]> {
+  try {
+    const allPosts = await fetchBlogPosts();
+    return allPosts.filter((post) => post.category.toLowerCase() === category.toLowerCase());
+  } catch (error) {
+    console.error('Error fetching blog posts by category:', error);
+    return [];
+  }
+}
+
 export default {
   fetchTaxiProducts,
-  fetchProductById
+  fetchProductById,
+  fetchBlogPosts,
+  fetchBlogPostById,
+  fetchFeaturedBlogPosts,
+  fetchBlogPostsByCategory,
 };

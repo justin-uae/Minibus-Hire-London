@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, Users, Bus, Clock, Shield, TrendingUp, CheckCircle, Star, Heart, Zap, Target, MapPin } from 'lucide-react';
 import Banner from '../assets/Banner6.png';
+import { Link } from 'react-router-dom';
 
 const AboutUs: React.FC = () => {
     const stats = [
@@ -128,7 +129,7 @@ const AboutUs: React.FC = () => {
                             </h2>
                             <div className="space-y-4 text-gray-700 leading-relaxed">
                                 <p>
-                                    Minibus Hire London was founded with a clear mission: to provide quality, affordable minibus and coach hire services that get you where you need to be in comfort and style. Whether it's a ride to the airport, transportation to a wedding, or a group trip to a sporting event, we've built our reputation on reliability and professionalism.
+                                    Minibus Hire London was founded with a clear mission: to provide quality, affordable minibus and coach hire services that get you where you need to be in comfort and style. Whether it's a Transport to the airport, transportation to a wedding, or a group trip to a sporting event, we've built our reputation on reliability and professionalism.
                                 </p>
                                 <p>
                                     Our experienced drivers are all CRB checked and know London's famous attractions - from the Tower of London to Buckingham Palace - as well as off-the-beaten-path pubs, shows, theaters, and museums. With our insured and bonded drivers who undergo thorough background checks, you get complete peace of mind.
@@ -305,18 +306,18 @@ const AboutUs: React.FC = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
 
-                            <a href="/"
+                            <Link to="/"
                                 className="bg-white text-blue-600 font-bold py-4 px-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2"
                             >
                                 <Bus className="h-5 w-5" />
                                 Book a Transfer Now
-                            </a>
+                            </Link>
 
-                            <a href="/contact"
+                            <Link to="/contact"
                                 className="bg-blue-800 text-white font-bold py-4 px-8 rounded-xl hover:bg-blue-900 hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2 border-2 border-white/20"
                             >
                                 Contact Us
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

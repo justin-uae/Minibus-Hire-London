@@ -15,6 +15,10 @@ import ScrollToTop from './Components/ScrollToTop';
 import OurFleet from './Pages/OurFleet';
 import CarRentalDetails from './Pages/CarRentalDetails';
 import CarRentalOptions from './Pages/CarRentalOptions';
+import CoachHireServices from './Pages/CoachHireServices';
+import MinibusHireServices from './Pages/MinibusHireServices';
+import BlogListing from './Pages/BlogListing';
+import BlogDetail from './Pages/BlogDetail';
 
 function App() {
   return (
@@ -29,10 +33,14 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             {/* <Route path="/login" element={<Login />} /> */}
             {/* <Route path="/register" element={<Register />} /> */}
-            <Route path="/fleet" element={<OurFleet />} />
+            <Route path="/vehicles" element={<OurFleet />} />
             <Route path="/transport-options" element={<TaxiOptions />} />
             <Route path="/car-rental-options" element={<CarRentalOptions />} />
             <Route path="/car-rental/:carId" element={<CarRentalDetails />} />
+            <Route path="/coachhire" element={<CoachHireServices />} />
+            <Route path="/minibus" element={<MinibusHireServices />} />
+            <Route path="/blogs" element={<BlogListing />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="/payment" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

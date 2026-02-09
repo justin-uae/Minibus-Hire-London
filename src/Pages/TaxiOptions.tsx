@@ -239,7 +239,7 @@ const TaxiOptions: React.FC = () => {
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                 <div className="text-center">
                     <RefreshCw className="h-12 w-12 text-blue-600 animate-spin mx-auto mb-4" />
-                    <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Available Rides</h2>
+                    <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Available Transport</h2>
                     <p className="text-gray-600">Please wait while we fetch the latest options...</p>
                 </div>
             </div>
@@ -395,7 +395,7 @@ const TaxiOptions: React.FC = () => {
                         {/* Header */}
                         <div className="mb-4">
                             <h1 className="text-xl font-bold text-gray-900 mb-1">
-                                Available Rides ({filteredAndSortedTaxiOptions.length})
+                                Available Transport ({filteredAndSortedTaxiOptions.length})
                             </h1>
                             <p className="text-gray-600 text-sm">
                                 Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} km range
@@ -436,7 +436,7 @@ const TaxiOptions: React.FC = () => {
                             {/* Header */}
                             <div className="mb-6">
                                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-                                    Available Rides <span className="text-blue-600">({filteredAndSortedTaxiOptions.length})</span>
+                                    Available Transport <span className="text-blue-600">({filteredAndSortedTaxiOptions.length})</span>
                                 </h1>
                                 <p className="text-gray-600 mb-4">
                                     Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} km distance range
@@ -606,13 +606,13 @@ const TaxiOptions: React.FC = () => {
                                                             <div className="flex justify-between">
                                                                 <span className="text-gray-600">Pickup Trip ({distance.toFixed(1)} km)</span>
                                                                 <span className="font-semibold text-gray-900">
-                                                                    AED {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
+                                                                    GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
                                                                 </span>
                                                             </div>
                                                             <div className="flex justify-between">
                                                                 <span className="text-gray-600">Return Trip ({distance.toFixed(1)} km)</span>
                                                                 <span className="font-semibold text-gray-900">
-                                                                    AED {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
+                                                                    GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
                                                                 </span>
                                                             </div>
                                                             {!isAirportTrip && (
@@ -625,7 +625,7 @@ const TaxiOptions: React.FC = () => {
                                                             <div className="flex justify-between pt-2 border-t border-gray-200">
                                                                 <span className="font-bold text-gray-900">Total Amount</span>
                                                                 <span className="text-xl font-bold text-blue-600">
-                                                                    AED {calculatePrice(selectedTaxiData, distance, 'return')}
+                                                                    GBP {calculatePrice(selectedTaxiData, distance, 'return')}
                                                                 </span>
                                                             </div>
                                                         </>
@@ -634,7 +634,7 @@ const TaxiOptions: React.FC = () => {
                                                             <div className="flex justify-between">
                                                                 <span className="font-bold text-gray-900">Total Amount</span>
                                                                 <span className="text-xl font-bold text-blue-600">
-                                                                    AED {calculatePrice(selectedTaxiData, distance, 'one-way')}
+                                                                    GBP {calculatePrice(selectedTaxiData, distance, 'one-way')}
                                                                 </span>
                                                             </div>
                                                             {!isAirportTrip && (
@@ -720,7 +720,7 @@ const TaxiOptions: React.FC = () => {
                                 <p className="font-bold text-gray-900 truncate text-sm">{selectedTaxiData.name}</p>
                                 <p className="text-sm text-gray-600">
                                     <span className="font-bold text-blue-600">
-                                        AED {calculatePrice(selectedTaxiData, distance, searchDetails.tripType)}
+                                        GBP {calculatePrice(selectedTaxiData, distance, searchDetails.tripType)}
                                     </span>
                                 </p>
                             </div>

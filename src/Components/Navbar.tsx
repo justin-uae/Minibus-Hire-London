@@ -60,14 +60,50 @@ const Navbar: React.FC = () => {
                                 )}
                             </Link>
                             <Link
-                                to="/fleet"
-                                className={`font-medium transition-colors relative py-1 ${isActive('/fleet')
+                                to="/vehicles"
+                                className={`font-medium transition-colors relative py-1 ${isActive('/vehicles')
                                     ? 'text-blue-600'
                                     : 'text-gray-700 hover:text-blue-600'
                                     }`}
                             >
-                                Our Fleet
-                                {isActive('/fleet') && (
+                                Vehicles
+                                {isActive('/vehicles') && (
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                )}
+                            </Link>
+                            <Link
+                                to="/coachhire"
+                                className={`font-medium transition-colors relative py-1 ${isActive('/coachhire')
+                                    ? 'text-blue-600'
+                                    : 'text-gray-700 hover:text-blue-600'
+                                    }`}
+                            >
+                                Coach Hire
+                                {isActive('/coachhire') && (
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                )}
+                            </Link>
+                            <Link
+                                to="/minibus"
+                                className={`font-medium transition-colors relative py-1 ${isActive('/minibus')
+                                    ? 'text-blue-600'
+                                    : 'text-gray-700 hover:text-blue-600'
+                                    }`}
+                            >
+                                Minibus Hire
+                                {isActive('/minibus') && (
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                )}
+                            </Link>
+                            <Link
+                                to="/blogs"
+                                className={`font-medium transition-colors relative py-1 ${isActive('/blogs')
+                                    ? 'text-blue-600'
+                                    : 'text-gray-700 hover:text-blue-600'
+                                    }`}
+                            >
+                                Blog
+                                {isActive('/blogs') && (
                                     <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
                                 )}
                             </Link>
@@ -132,14 +168,44 @@ const Navbar: React.FC = () => {
                                     Home
                                 </Link>
                                 <Link
-                                    to="/fleet"
+                                    to="/vehicles"
                                     onClick={handleLinkClick}
-                                    className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/fleet')
+                                    className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/vehicles')
                                         ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
                                         : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
                                         }`}
                                 >
-                                    Our Fleet
+                                    Vehicles
+                                </Link>
+                                <Link
+                                    to="/coachhire"
+                                    onClick={handleLinkClick}
+                                    className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/coachhire')
+                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
+                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        }`}
+                                >
+                                    Coach Hire
+                                </Link>
+                                <Link
+                                    to="/minibus"
+                                    onClick={handleLinkClick}
+                                    className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/minibus')
+                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
+                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        }`}
+                                >
+                                    Minibus Hire
+                                </Link>
+                                <Link
+                                    to="/blogs"
+                                    onClick={handleLinkClick}
+                                    className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/blogs')
+                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
+                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        }`}
+                                >
+                                    Blog
                                 </Link>
                                 <Link
                                     to="/about"

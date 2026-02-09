@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, MapPin, Navigation, Clock, Users, ArrowRightLeft, Locate, Car, History } from 'lucide-react';
-import Banner5 from '../assets/Banner7.png';
+import Banner5 from '../assets/Banner8.png';
 import { formatDate, formatDateWithOrdinal, generateCalendar, generateTimeSlots, isDateWithin12Hours, isPastDate, isTimeAtLeast12HoursFromNow, updateSelectedTimeToValid } from '../utils/common';
 
 declare global {
@@ -604,7 +604,7 @@ const HomePage: React.FC = () => {
                                     </div>
 
                                     <h2 className="text-lg sm:text-xl font-bold text-blue-600 mb-2">
-                                        {serviceType === 'transfers' ? 'Reserve Your Ride Now' : 'Reserve a Car for the Day'}
+                                        {serviceType === 'transfers' ? 'Reserve Your Transport Now' : 'Reserve a Car for the Day'}
                                     </h2>
                                     <p className="text-sm sm:text-base text-gray-600">
                                         {serviceType === 'transfers'
@@ -1403,7 +1403,7 @@ const HomePage: React.FC = () => {
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                                 </svg>
                                                 <span className="text-base sm:text-lg">
-                                                    {serviceType === 'transfers' ? 'Search Available Rides' : 'View Available Cars'}
+                                                    {serviceType === 'transfers' ? 'Search Available Transports' : 'View Available Cars'}
                                                 </span>
                                             </div>
                                         </button>
@@ -1438,13 +1438,13 @@ const HomePage: React.FC = () => {
                                                 Make Your
                                             </span>
                                             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600">
-                                                Ride Perfect
+                                                Transport Perfect
                                             </span>
                                         </h2>
                                     </div>
 
                                     <p className="text-xl xl:text-2xl text-white text-center leading-relaxed drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] font-semibold px-4">
-                                        <span className="block mt-2 text-white/95">Book your perfect ride in just a few clicks.</span>
+                                        <span className="block mt-2 text-white/95">Book your perfect Transport in just a few clicks.</span>
                                     </p>
 
                                     <div className="space-y-5 pt-4 flex flex-col items-start mx-auto" style={{ width: 'fit-content' }}>

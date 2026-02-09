@@ -148,28 +148,22 @@ export const isTimeAtLeast12HoursFromNow = (date: Date, time: string): boolean =
 export const getCategoryText = (type: string) => {
     const lowerType = type.toLowerCase();
 
-    if (lowerType.includes('standard sedan')) {
-        return 'Or a similar standard sedan';
-    } else if (lowerType.includes('vip luxury sedan')) {
-        return 'Or a similar VIP luxury sedan';
-    } else if (lowerType.includes('luxury sedan')) {
-        return 'Or a similar luxury sedan';
-    } else if (lowerType.includes('executive minivan')) {
-        return 'Or a similar executive minivan';
-    } else if (lowerType.includes('luxury suv')) {
-        return 'Or a similar luxury SUV';
-    } else if (lowerType.includes('luxury limousine')) {
-        return 'Or a similar luxury limousine';
-    } else if (lowerType.includes('budget group transport')) {
-        return 'Or a similar budget transport';
-    } else if (lowerType.includes('executive minibus')) {
-        return 'Or a similar executive minibus';
-    } else if (lowerType.includes('large group transport')) {
-        return 'Or a similar large transport';
-    } else if (lowerType.includes('luxury vip group transport')) {
-        return 'Or a similar VIP luxury transport';
-    } else if (lowerType.includes('luxury group transport')) {
-        return 'Or a similar luxury transport';
+    if (lowerType.includes('4 passenger')) {
+        return 'Or a similar vehicle';
+    } else if (lowerType.includes('5 passenger')) {
+        return 'Or a similar 5-seater vehicle';
+    } else if (lowerType.includes('8 passenger')) {
+        return 'Or a similar 8-seater minibus';
+    } else if (lowerType.includes('16 passenger')) {
+        return 'Or a similar 16-seater minibus';
+    } else if (lowerType.includes('24 passenger')) {
+        return 'Or a similar 24-seater minibus';
+    } else if (lowerType.includes('56 passenger')) {
+        return 'Or a similar 56-seater coach';
+    } else if (lowerType.includes('64 passenger')) {
+        return 'Or a similar 64-seater coach';
+    } else if (lowerType.includes('72 passenger')) {
+        return 'Or a similar 72-seater coach';
     } else {
         return 'Or a similar vehicle';
     }

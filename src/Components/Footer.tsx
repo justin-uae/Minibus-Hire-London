@@ -8,7 +8,10 @@ const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
 
     const quickLinks = [
-        { name: 'Our Fleets', href: '/fleet' },
+        { name: 'Our Fleets', href: '/vehicles' },
+        { name: 'Coach Hire', href: '/coachhire' },
+        { name: 'Minibus Hire', href: '/minibus' },
+        { name: 'Blog', href: '/blogs' },
         { name: 'About Us', href: '/about' },
         { name: 'Contact Us', href: '/contact' },
     ];

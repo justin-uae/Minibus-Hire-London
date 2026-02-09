@@ -15,7 +15,7 @@ const MobileBookingBar: React.FC<MobileBookingBarProps> = ({ selectedTaxi, dista
             <div className="container mx-auto">
                 <div className="flex items-center justify-between">
                     <div>
-                        <p className="text-xs text-gray-600">Selected Ride</p>
+                        <p className="text-xs text-gray-600">Selected Transport</p>
                         <p className="font-bold text-gray-900 text-sm">
                             {selectedTaxi.name}
                         </p>
@@ -24,7 +24,7 @@ const MobileBookingBar: React.FC<MobileBookingBarProps> = ({ selectedTaxi, dista
                         <div className="text-right">
                             <p className="text-xs text-gray-600">Total Fare</p>
                             <p className="font-bold text-gray-900">
-                                AED {totalPrice}
+                                GBP {totalPrice}
                             </p>
                         </div>
                         <button

@@ -20,7 +20,7 @@ const HowItWorks: React.FC = () => {
         {
             number: "03",
             icon: <Key className="h-8 w-8" />,
-            title: "Book Your Ride",
+            title: "Book Your Transport",
             description: "Complete your reservation with our secure and easy booking process",
             color: "from-green-400 to-green-500"
         },
@@ -52,7 +52,7 @@ const HowItWorks: React.FC = () => {
                         How It Works
                     </h2>
                     <p className="text-gray-300 text-base lg:text-lg max-w-2xl mx-auto">
-                        Get on the road in just 4 easy steps. Our streamlined process makes booking your chauffeur-driven ride quick and hassle-free.
+                        Get on the road in just 4 easy steps. Our streamlined process makes booking your chauffeur-driven Transport quick and hassle-free.
                     </p>
                 </div>
 

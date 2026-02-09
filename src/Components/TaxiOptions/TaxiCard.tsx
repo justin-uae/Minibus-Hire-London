@@ -111,10 +111,10 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
                                     </div>
                                     <div className="flex items-baseline gap-1.5">
                                         <span className="text-[10px] text-red-500 line-through">
-                                            AED {originalPrice}
+                                            GBP {originalPrice}
                                         </span>
                                         <span className="font-bold text-red-600 text-sm">
-                                            AED {totalPrice}
+                                            GBP {totalPrice}
                                         </span>
                                     </div>
                                 </div>
@@ -238,10 +238,10 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
                                     </div>
                                     <div className="flex items-baseline gap-3">
                                         <span className="text-lg text-red-400 line-through">
-                                            AED {originalPrice}
+                                            GBP {originalPrice}
                                         </span>
                                         <span className="text-2xl font-bold text-red-600">
-                                            AED {totalPrice}
+                                            GBP {totalPrice}
                                         </span>
                                     </div>
                                     <p className="text-xs text-gray-600 mt-1">
@@ -254,7 +254,7 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
                                         ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg'
                                         : 'bg-blue-500 hover:bg-blue-600 text-white shadow-md hover:shadow-lg'}`}
                                 >
-                                    {isSelected ? 'Ride Selected' : 'Select This Ride'}
+                                    {isSelected ? 'Transport Selected' : 'Select This Transport'}
                                 </button>
                             </div>
                         </div>
