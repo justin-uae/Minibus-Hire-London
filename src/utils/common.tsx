@@ -188,3 +188,75 @@ export const airportKeywords = [
     'leeds bradford', 'lba',
     'terminal'
 ];
+
+export const countryDialCodes = [
+    { code: '+44', name: 'UK', flag: '🇬🇧' },
+    { code: '+1', name: 'USA', flag: '🇺🇸' },
+    { code: '+91', name: 'India', flag: '🇮🇳' },
+    { code: '+61', name: 'Australia', flag: '🇦🇺' },
+    { code: '+971', name: 'UAE', flag: '🇦🇪' },
+    { code: '+49', name: 'Germany', flag: '🇩🇪' },
+    { code: '+33', name: 'France', flag: '🇫🇷' },
+    { code: '+81', name: 'Japan', flag: '🇯🇵' },
+    { code: '+86', name: 'China', flag: '🇨🇳' },
+    { code: '+7', name: 'Russia', flag: '🇷🇺' },
+    { code: '+34', name: 'Spain', flag: '🇪🇸' },
+    { code: '+39', name: 'Italy', flag: '🇮🇹' },
+    { code: '+31', name: 'Netherlands', flag: '🇳🇱' },
+    { code: '+41', name: 'Switzerland', flag: '🇨🇭' },
+    { code: '+46', name: 'Sweden', flag: '🇸🇪' },
+    { code: '+47', name: 'Norway', flag: '🇳🇴' },
+    { code: '+45', name: 'Denmark', flag: '🇩🇰' },
+    { code: '+32', name: 'Belgium', flag: '🇧🇪' },
+    { code: '+353', name: 'Ireland', flag: '🇮🇪' },
+    { code: '+64', name: 'New Zealand', flag: '🇳🇿' },
+    { code: '+52', name: 'Mexico', flag: '🇲🇽' },
+    { code: '+55', name: 'Brazil', flag: '🇧🇷' },
+    { code: '+54', name: 'Argentina', flag: '🇦🇷' },
+    { code: '+92', name: 'Pakistan', flag: '🇵🇰' },
+    { code: '+62', name: 'Indonesia', flag: '🇮🇩' },
+    { code: '+63', name: 'Philippines', flag: '🇵🇭' },
+    { code: '+60', name: 'Malaysia', flag: '🇲🇾' },
+    { code: '+65', name: 'Singapore', flag: '🇸🇬' },
+    { code: '+66', name: 'Thailand', flag: '🇹🇭' },
+    { code: '+82', name: 'South Korea', flag: '🇰🇷' },
+    { code: '+90', name: 'Turkey', flag: '🇹🇷' },
+    { code: '+27', name: 'South Africa', flag: '🇿🇦' },
+    { code: '+20', name: 'Egypt', flag: '🇪🇬' },
+    { code: '+234', name: 'Nigeria', flag: '🇳🇬' },
+    { code: '+254', name: 'Kenya', flag: '🇰🇪' },
+];
+
+// Calculate rental hours for daily rental
+export const calculateRentalHours = (pickupDate: Date, pickupTime: string, dropoffDate: Date, dropoffTime: string) => {
+    const pickupDateTime = new Date(pickupDate);
+    const [pickupHour, pickupMinute] = pickupTime.split(':').map(Number);
+    pickupDateTime.setHours(pickupHour, pickupMinute, 0, 0);
+
+    const dropoffDateTime = new Date(dropoffDate);
+    const [dropoffHour, dropoffMinute] = dropoffTime.split(':').map(Number);
+    dropoffDateTime.setHours(dropoffHour, dropoffMinute, 0, 0);
+
+    const diffMs = dropoffDateTime.getTime() - pickupDateTime.getTime();
+    const diffHours = diffMs / (1000 * 60 * 60);
+
+    return Math.max(0, diffHours);
+};
+
+export const formatTime12Hour = (time24: string) => {
+    const [hours, minutes] = time24.split(':');
+    const hour = parseInt(hours);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const hour12 = hour % 12 || 12;
+    return `${hour12}:${minutes} ${ampm}`;
+};
+
+// Calculate rental days for multi-day rental
+export const calculateRentalDays = (pickupDate: Date, dropoffDate: Date) => {
+    if (pickupDate.toDateString() === dropoffDate.toDateString()) {
+        return 1;
+    }
+    const diffTime = Math.abs(dropoffDate.getTime() - pickupDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return Math.max(1, diffDays);
+};

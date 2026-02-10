@@ -131,7 +131,7 @@ export const cartItemToLineInput = (cartItem: CartItem): ShopifyCartLineInput =>
             { key: 'Trip Type', value: isReturn ? 'Round Trip' : 'One-Way' },
             { key: 'From Location', value: cartItem.search.from },
             { key: 'To Location', value: cartItem.search.to },
-            { key: 'Distance', value: `${Math.round(cartItem.search.distance || 0)} km${isReturn ? ' (each way)' : ''}` },
+            { key: 'Distance', value: `${Math.round(cartItem.search.distance || 0)} miles${isReturn ? ' (each way)' : ''}` },
             { key: 'Duration', value: cartItem.search.duration || '' },
             { key: 'Pickup Date', value: formatDateToReadable(cartItem.search.date) },
             { key: 'Pickup Time', value: cartItem.search.time }
@@ -256,7 +256,7 @@ export const createCart = async (
             { key: 'To', value: cartItem.search.to },
             { key: 'Departure Date', value: formatDateToReadable(cartItem.search.date) },
             { key: 'Departure Time', value: cartItem.search.time },
-            { key: 'Distance', value: `${Math.round(cartItem.search.distance || 0)} km` },
+            { key: 'Distance', value: `${Math.round(cartItem.search.distance || 0)} miles` },
             { key: 'Total Amount', value: `GBP ${cartItem.totalPrice}` }
         );
 
@@ -306,7 +306,7 @@ ${isAirportTrip ? '🛫 AIRPORT LOCATION' : ''}
 
 From: ${cartItem.search.from}
 To: ${cartItem.search.to}
-Distance: ${Math.round(cartItem.search.distance || 0)} km (each way)
+Distance: ${Math.round(cartItem.search.distance || 0)} miles (each way)
 
 PICKUP TRIP:
 Date: ${formatDateToReadable(cartItem.search.date)}
@@ -317,7 +317,7 @@ Date: ${formatDateToReadable(cartItem.search.returnDate || '')}
 Time: ${cartItem.search.returnTime || 'N/A'}
 
 Fare Calculation:
-Trip Fare (${Math.round(cartItem.search.distance || 0)} km): GBP ${cartItem.totalPrice / 2}
+Trip Fare (${Math.round(cartItem.search.distance || 0)} miles): GBP ${cartItem.totalPrice / 2}
 Quantity: 2 trips (Round Trip)
 Total Fare: GBP ${cartItem.totalPrice}${isAirportTrip && parkingFeeVariantId ? `
 + Airport Parking Fee - ${cartItem.taxi.type} (see line items)` : ''}`;
@@ -328,12 +328,12 @@ ${isAirportTrip ? 'AIRPORT LOCATION' : ''}
 
 From: ${cartItem.search.from}
 To: ${cartItem.search.to}
-Distance: ${Math.round(cartItem.search.distance || 0)} km
+Distance: ${Math.round(cartItem.search.distance || 0)} miles
 Pickup: ${formatDateToReadable(cartItem.search.date)} at ${cartItem.search.time}
 
 Fare Calculation:
 Base Fare: GBP ${cartItem.taxi.baseFare}
-Distance Charge: ${Math.round(cartItem.search.distance || 0)} km × GBP ${cartItem.taxi.perKmRate}/km = GBP ${((cartItem.search.distance || 0) * cartItem.taxi.perKmRate).toFixed(2)}
+Distance Charge: ${Math.round(cartItem.search.distance || 0)} miles × GBP ${cartItem.taxi.perKmRate}/miles = GBP ${((cartItem.search.distance || 0) * cartItem.taxi.perKmRate).toFixed(2)}
 Total Fare: GBP ${cartItem.totalPrice}${isAirportTrip && parkingFeeVariantId ? `
 + Airport Parking Fee - ${cartItem.taxi.type} (see line items)` : ''}`;
     }

@@ -116,7 +116,7 @@ const TaxiOptions: React.FC = () => {
                 const matchingVariant = selectVariantByDistance(taxi.variants, distance);
 
                 if (!matchingVariant) {
-                    console.warn(`No matching variant for ${taxi.name} at ${distance} km`);
+                    console.warn(`No matching variant for ${taxi.name} at ${distance} miles`);
                     return taxi;
                 }
                 // Return taxi with the selected variant
@@ -133,7 +133,7 @@ const TaxiOptions: React.FC = () => {
     const calculatePrice = (taxi: TaxiOption & { displayPrice?: number }, distance: number, tripType?: 'one-way' | 'return') => {
         let basePrice = 0;
 
-        // If we have a variant price (from KM ranges), use it
+        // If we have a variant price (from miles ranges), use it
         if ('displayPrice' in taxi && taxi.displayPrice) {
             basePrice = taxi.displayPrice;
         } else {
@@ -398,7 +398,7 @@ const TaxiOptions: React.FC = () => {
                                 Available Transport ({filteredAndSortedTaxiOptions.length})
                             </h1>
                             <p className="text-gray-600 text-sm">
-                                Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} km range
+                                Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} miles range
                             </p>
                         </div>
 
@@ -439,7 +439,7 @@ const TaxiOptions: React.FC = () => {
                                     Available Transport <span className="text-blue-600">({filteredAndSortedTaxiOptions.length})</span>
                                 </h1>
                                 <p className="text-gray-600 mb-4">
-                                    Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} km distance range
+                                    Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} miles range
                                 </p>
 
                                 {/* Filters */}
@@ -563,7 +563,7 @@ const TaxiOptions: React.FC = () => {
                                                                 <p className="text-xs font-semibold text-blue-700 mb-1">→ Pickup</p>
                                                                 <div className="text-xs text-gray-700">
                                                                     <div> {formatDateDisplay(searchDetails.date)} at {searchDetails.time}</div>
-                                                                    <div className="text-gray-500">{distance.toFixed(1)} km</div>
+                                                                    <div className="text-gray-500">{distance.toFixed(1)} miles</div>
                                                                 </div>
                                                             </div>
 
@@ -573,7 +573,7 @@ const TaxiOptions: React.FC = () => {
                                                                     <p className="text-xs font-semibold text-green-700 mb-1">← Return</p>
                                                                     <div className="text-xs text-gray-700">
                                                                         <div>{formatDateDisplay(searchDetails.returnDate)} at {searchDetails.returnTime}</div>
-                                                                        <div className="text-gray-500">{distance.toFixed(1)} km</div>
+                                                                        <div className="text-gray-500">{distance.toFixed(1)} miles</div>
                                                                     </div>
                                                                 </div>
                                                             )}
@@ -586,7 +586,7 @@ const TaxiOptions: React.FC = () => {
                                                             </div>
                                                             <div className="flex justify-between">
                                                                 <span className="text-gray-600">Distance</span>
-                                                                <span className="font-semibold text-gray-900">{distance.toFixed(1)} km</span>
+                                                                <span className="font-semibold text-gray-900">{distance.toFixed(1)} miles</span>
                                                             </div>
                                                             <div className="flex justify-between">
                                                                 <span className="text-gray-600">Duration</span>
@@ -604,13 +604,13 @@ const TaxiOptions: React.FC = () => {
                                                     {searchDetails.tripType === 'return' ? (
                                                         <>
                                                             <div className="flex justify-between">
-                                                                <span className="text-gray-600">Pickup Trip ({distance.toFixed(1)} km)</span>
+                                                                <span className="text-gray-600">Pickup Trip ({distance.toFixed(1)} miles)</span>
                                                                 <span className="font-semibold text-gray-900">
                                                                     GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
                                                                 </span>
                                                             </div>
                                                             <div className="flex justify-between">
-                                                                <span className="text-gray-600">Return Trip ({distance.toFixed(1)} km)</span>
+                                                                <span className="text-gray-600">Return Trip ({distance.toFixed(1)} miles)</span>
                                                                 <span className="font-semibold text-gray-900">
                                                                     GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
                                                                 </span>

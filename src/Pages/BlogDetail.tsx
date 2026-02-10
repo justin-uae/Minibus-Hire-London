@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Clock, User, Tag, ChevronLeft, Share2, Bus, Loader, AlertCircle } from 'lucide-react';
-import { fetchBlogPostById, fetchBlogPosts, type BlogPost } from '../services/shopifyClient';
+import { fetchBlogPostBySlug, fetchBlogPosts, type BlogPost } from '../services/shopifyClient';
 
 export default function BlogDetail() {
-    const { id } = useParams<{ id: string }>();
+    const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
     const [blog, setBlog] = useState<BlogPost | null>(null);
     const [relatedBlogs, setRelatedBlogs] = useState<BlogPost[]>([]);
@@ -12,13 +12,12 @@ export default function BlogDetail() {
 
     useEffect(() => {
         const loadBlog = async () => {
-            if (!id) return;
+            if (!slug) return;
 
             try {
                 setLoading(true);
-                const shopifyId = `gid://shopify/Product/${id}`;
                 const [blogData, allBlogs] = await Promise.all([
-                    fetchBlogPostById(shopifyId),
+                    fetchBlogPostBySlug(slug),
                     fetchBlogPosts(),
                 ]);
 
@@ -27,7 +26,7 @@ export default function BlogDetail() {
 
                     // Get related blogs from same category
                     const related = allBlogs
-                        .filter((b) => b.category === blogData.category && b.id !== blogData.id)
+                        .filter((b) => b.category === blogData.category && b.slug !== blogData.slug)
                         .slice(0, 3);
                     setRelatedBlogs(related);
                 }
@@ -39,7 +38,7 @@ export default function BlogDetail() {
         };
 
         loadBlog();
-    }, [id]);
+    }, [slug]);
 
     const handleShare = () => {
         if (navigator.share) {
@@ -195,7 +194,7 @@ export default function BlogDetail() {
                                 <RelatedBlogCard
                                     key={relatedBlog.id}
                                     blog={relatedBlog}
-                                    onClick={() => navigate(`/blog/${relatedBlog.id}`)}
+                                    onClick={() => navigate(`/viewBlog/${relatedBlog.slug}`)}
                                 />
                             ))}
                         </div>
@@ -279,7 +278,7 @@ const NotFoundState = () => (
                 to="/blogs"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
             >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-5 w-5" />
                 Browse All Articles
             </Link>
         </div>

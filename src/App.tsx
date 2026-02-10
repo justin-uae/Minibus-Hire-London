@@ -40,7 +40,7 @@ function App() {
             <Route path="/coachhire" element={<CoachHireServices />} />
             <Route path="/minibus" element={<MinibusHireServices />} />
             <Route path="/blogs" element={<BlogListing />} />
-            <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/viewBlog/:slug" element={<BlogDetail />} />
             <Route path="/payment" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

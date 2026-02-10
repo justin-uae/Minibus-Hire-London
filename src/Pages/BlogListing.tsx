@@ -15,9 +15,7 @@ export default function BlogListing() {
         const loadBlogs = async () => {
             try {
                 setLoading(true);
-                const [allBlogs] = await Promise.all([
-                    fetchBlogPosts(),
-                ]);
+                const allBlogs = await fetchBlogPosts();
                 setBlogs(allBlogs);
             } catch (error) {
                 console.error('Error loading blogs:', error);
@@ -45,8 +43,8 @@ export default function BlogListing() {
         return matchesSearch && matchesCategory;
     });
 
-    const goToBlogDetail = (blogId: string) => {
-        navigate(`/blog/${blogId}`);
+    const goToBlogDetail = (blogSlug: string) => {
+        navigate(`/viewBlog/${blogSlug}`);
     };
 
     if (loading) {
@@ -141,7 +139,11 @@ export default function BlogListing() {
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredBlogs.map((blog) => (
-                            <BlogCard key={blog.id} blog={blog} onClick={() => goToBlogDetail(blog.id)} />
+                            <BlogCard
+                                key={blog.id}
+                                blog={blog}
+                                onClick={() => goToBlogDetail(blog.slug)} // Changed to use slug
+                            />
                         ))}
                     </div>
                 )}
@@ -201,7 +203,7 @@ export default function BlogListing() {
     );
 }
 
-// Blog Card Component
+// Blog Card Component (no changes needed, just using onClick prop)
 const BlogCard = ({ blog, onClick }: { blog: BlogPost; onClick: () => void }) => (
     <div
         onClick={onClick}
@@ -246,7 +248,7 @@ const BlogCard = ({ blog, onClick }: { blog: BlogPost; onClick: () => void }) =>
     </div>
 );
 
-// Empty State
+// Empty State and LoadingSkeleton remain the same
 const EmptyState = ({ searchQuery, onClear }: { searchQuery: string; onClear: () => void }) => (
     <div className="text-center py-20 bg-white rounded-2xl shadow-lg border-2 border-gray-200">
         <Bus className="w-32 h-32 text-gray-300 mx-auto mb-6" />
@@ -267,7 +269,6 @@ const EmptyState = ({ searchQuery, onClear }: { searchQuery: string; onClear: ()
     </div>
 );
 
-// Loading Skeleton
 const LoadingSkeleton = () => (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 h-80 animate-pulse"></div>

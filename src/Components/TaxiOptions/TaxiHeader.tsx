@@ -21,7 +21,7 @@ const TaxiHeader: React.FC<HeaderProps> = ({ searchDetails, onEditSearch, isMobi
                     <div className="flex items-center gap-2 bg-green-50 px-2 py-1 rounded-lg">
                         <Navigation className="h-3 w-3 text-green-600" />
                         <span className="text-xs font-semibold text-green-900">
-                            {distance.toFixed(1)} km
+                            {distance.toFixed(1)} miles
                         </span>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ const TaxiHeader: React.FC<HeaderProps> = ({ searchDetails, onEditSearch, isMobi
                     <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full border border-green-200">
                         <Navigation className="h-4 w-4 text-green-600" />
                         <span className="text-sm font-semibold text-green-900">
-                            {distance.toFixed(1)} km • {duration}
+                            {distance.toFixed(1)} miles • {duration}
                         </span>
                     </div>
                 </div>

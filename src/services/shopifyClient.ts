@@ -248,7 +248,7 @@ export async function fetchTaxiProducts(): Promise<TaxiOption[]> {
       headers,
       body: JSON.stringify({
         query: GET_PRODUCTS_QUERY,
-        variables: { first: 50 }
+        variables: { first: 110 }
       }),
     });
 
@@ -380,6 +380,7 @@ const GET_BLOG_POSTS_QUERY = `
         node {
           id
           title
+          handle
           description
           descriptionHtml
           tags
@@ -418,6 +419,46 @@ const GET_BLOG_POST_QUERY = `
     product(id: $id) {
       id
       title
+      handle
+      description
+      descriptionHtml
+      tags
+      createdAt
+      images(first: 5) {
+        edges {
+          node {
+            url
+            altText
+          }
+        }
+      }
+      metafields(
+        identifiers: [
+          { namespace: "blog", key: "author" }
+          { namespace: "blog", key: "excerpt" }
+          { namespace: "blog", key: "read_time" }
+          { namespace: "blog", key: "category" }
+          { namespace: "blog", key: "featured" }
+          { namespace: "blog", key: "author_bio" }
+          { namespace: "blog", key: "author_image" }
+        ]
+      ) {
+        namespace
+        key
+        value
+        type
+      }
+    }
+  }
+`;
+
+// GraphQL query to fetch blog post by handle (slug)
+const GET_BLOG_POST_BY_HANDLE_QUERY = `
+  query GetBlogPostByHandle($handle: String!) {
+    productByHandle(handle: $handle) {
+      id
+      title
+      handle
       description
       descriptionHtml
       tags
@@ -453,6 +494,7 @@ const GET_BLOG_POST_QUERY = `
 export interface BlogPost {
   id: string;
   shopifyId: string;
+  slug: string;
   title: string;
   excerpt: string;
   content: string;
@@ -481,6 +523,9 @@ function transformToBlogPost(product: any): BlogPost {
   // Extract numeric ID
   const numericId = product.id.split('/').pop() || '0';
 
+  // Get slug from Shopify handle (Shopify automatically creates SEO-friendly handles)
+  const slug = product.handle || createSlug(product.title);
+
   // Get metafield values
   const author = getMetafieldValue(metafields, 'blog', 'author', 'Admin');
   const authorBio = getMetafieldValue(metafields, 'blog', 'author_bio', '');
@@ -505,6 +550,7 @@ function transformToBlogPost(product: any): BlogPost {
   return {
     id: numericId,
     shopifyId: product.id,
+    slug: slug,
     title: product.title,
     excerpt: excerpt,
     content: product.description || '',
@@ -520,6 +566,17 @@ function transformToBlogPost(product: any): BlogPost {
     featured: featured,
     images: allImages,
   };
+}
+
+/**
+ * Helper function to create URL-friendly slugs (fallback if Shopify handle is not available)
+ */
+function createSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric with hyphens
+    .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+    .substring(0, 100); // Limit length
 }
 
 /**
@@ -594,6 +651,40 @@ export async function fetchBlogPostById(blogId: string): Promise<BlogPost | null
     return product ? transformToBlogPost(product) : null;
   } catch (error) {
     console.error('Error fetching blog post:', error);
+    return null;
+  }
+}
+
+/**
+ * Fetch single blog post by slug (handle)
+ * This is the primary method for fetching blog posts for SEO-friendly URLs
+ */
+export async function fetchBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  try {
+    const response = await fetch(SHOPIFY_GRAPHQL_URL, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        query: GET_BLOG_POST_BY_HANDLE_QUERY,
+        variables: { handle: slug },
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.errors) {
+      console.error('GraphQL Errors:', result.errors);
+      return null;
+    }
+
+    const product = result.data?.productByHandle;
+    return product ? transformToBlogPost(product) : null;
+  } catch (error) {
+    console.error('Error fetching blog post by slug:', error);
     return null;
   }
 }

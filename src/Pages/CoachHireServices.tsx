@@ -20,8 +20,8 @@ const CoachHireServices: React.FC = () => {
     const coachProducts = products
         .filter(product => {
             const passengerCount = product.passengers;
-            return passengerCount === 56 || passengerCount === 64 || passengerCount === 72;
-        })
+            return passengerCount === 35 || passengerCount === 45 || passengerCount === 56 || passengerCount === 64 || passengerCount === 72;
+        }).sort((a, b) => a.passengers - b.passengers)
 
     const stats = [
         { icon: Bus, value: '3', label: 'Coach Sizes', color: 'from-blue-500 to-blue-600' },

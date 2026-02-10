@@ -23,6 +23,11 @@ export interface SearchDetails {
     rentalHours?: number;
     flightNumber?: string;
     parkingAcknowledged?: boolean;
+
+    //contact details
+    contactName?: string;
+    contactEmail?: string;
+    contactPhone?: string;
 }
 // Daily Rental Search Details
 export interface DailyRentalSearchDetails {

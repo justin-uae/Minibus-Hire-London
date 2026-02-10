@@ -37,7 +37,7 @@ export const selectVariantByDistance = (
 
     console.warn('Distance exceeds all variants:', {
         distance: `${distance} km`,
-        highestRange: `${highestVariant.kmRangeMax} km`,
+        highestRange: `${highestVariant.kmRangeMax} miles`,
         usingVariant: highestVariant.title
     });
 
@@ -65,7 +65,7 @@ export const parseKmRange = (
         };
     }
 
-    console.warn('Could not parse KM range from title:', title);
+    console.warn('Could not parse miles range from title:', title);
     return null;
 };
 
@@ -93,7 +93,7 @@ export const sortVariantsByRange = (
  * Format variant range for display
  */
 export const formatVariantRange = (variant: TaxiVariant): string => {
-    return `${variant.kmRangeMin}-${variant.kmRangeMax} km`;
+    return `${variant.kmRangeMin}-${variant.kmRangeMax} miles`;
 };
 
 /**

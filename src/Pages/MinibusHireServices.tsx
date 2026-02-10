@@ -20,7 +20,7 @@ const MinibusHireServices: React.FC = () => {
         .filter(product => {
             const passengerCount = product.passengers;
             return passengerCount === 8 || passengerCount === 16 || passengerCount === 24;
-        })
+        }).sort((a, b) => a.passengers - b.passengers)
 
     const stats = [
         { icon: Bus, value: '3', label: 'Minibus Sizes', color: 'from-blue-500 to-blue-600' },
