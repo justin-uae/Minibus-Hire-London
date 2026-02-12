@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 const AboutUs: React.FC = () => {
     const stats = [
-        { icon: Users, value: '50K+', label: 'Happy Passengers', color: 'from-blue-500 to-blue-600' },
-        { icon: Bus, value: '150+', label: 'Vehicles in Fleet', color: 'from-blue-500 to-blue-600' },
+        { icon: Users, value: '50K+', label: 'Happy Passengers', color: 'from-orange-500 to-orange-600' },
+        { icon: Bus, value: '150+', label: 'Vehicles in Fleet', color: 'from-orange-500 to-orange-600' },
         { icon: Clock, value: '24/7', label: 'Available Service', color: 'from-green-500 to-green-600' },
         { icon: Award, value: '15+', label: 'Years Experience', color: 'from-purple-500 to-purple-600' }
     ];
@@ -34,7 +34,7 @@ const AboutUs: React.FC = () => {
             icon: Target,
             title: 'Excellence',
             description: 'We strive for excellence in every journey, from professional chauffeurs to well-maintained minibuses and coaches.',
-            color: 'bg-blue-100 text-blue-600'
+            color: 'bg-orange-100 text-orange-600'
         },
         {
             icon: MapPin,
@@ -46,7 +46,7 @@ const AboutUs: React.FC = () => {
             icon: Star,
             title: 'Quality Service',
             description: 'Consistently delivering high-quality minibus and coach hire that exceeds expectations every single time.',
-            color: 'bg-blue-100 text-blue-600'
+            color: 'bg-orange-100 text-orange-600'
         }
     ];
 
@@ -79,7 +79,7 @@ const AboutUs: React.FC = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
             {/* Hero Section */}
-            <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white py-20 md:py-28 overflow-hidden">
+            <div className="relative bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-28 overflow-hidden">
                 {/* Animated background elements */}
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
@@ -91,7 +91,7 @@ const AboutUs: React.FC = () => {
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 animate-fade-in">
                             About Minibus Hire London
                         </h1>
-                        <p className="text-xl md:text-2xl text-blue-100 mb-8 animate-fade-in-delay">
+                        <p className="text-xl md:text-2xl text-orange-100 mb-8 animate-fade-in-delay">
                             UK's Leading Minibus and Coach Hire Travel Agency
                         </p>
                         <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto animate-fade-in-delay-2">
@@ -141,7 +141,7 @@ const AboutUs: React.FC = () => {
                         </div>
 
                         <div className="relative">
-                            <div className="aspect-square bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl overflow-hidden">
+                            <div className="aspect-square bg-gradient-to-br from-orange-100 to-orange-200 rounded-3xl overflow-hidden">
                                 <div className="w-full h-full flex items-center justify-center">
                                     <img
                                         src={Banner}
@@ -168,7 +168,7 @@ const AboutUs: React.FC = () => {
                     <div className="max-w-6xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-12">
                             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                                <div className="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                                <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                                     <Target className="h-7 w-7 text-white" />
                                 </div>
                                 <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
@@ -178,7 +178,7 @@ const AboutUs: React.FC = () => {
                             </div>
 
                             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                                <div className="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                                <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                                     <MapPin className="h-7 w-7 text-white" />
                                 </div>
                                 <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
@@ -225,7 +225,7 @@ const AboutUs: React.FC = () => {
             </div>
 
             {/* Timeline */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 py-16 md:py-20">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 py-16 md:py-20">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
@@ -244,14 +244,14 @@ const AboutUs: React.FC = () => {
                                     className="flex gap-6 group"
                                 >
                                     <div className="flex flex-col items-center">
-                                        <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform">
                                             {milestone.year}
                                         </div>
                                         {index !== milestones.length - 1 && (
-                                            <div className="w-0.5 h-full bg-blue-300 mt-2"></div>
+                                            <div className="w-0.5 h-full bg-orange-300 mt-2"></div>
                                         )}
                                     </div>
-                                    <div className="flex-1 bg-white rounded-2xl p-6 shadow-md group-hover:shadow-xl transition-all border border-blue-200">
+                                    <div className="flex-1 bg-white rounded-2xl p-6 shadow-md group-hover:shadow-xl transition-all border border-orange-200">
                                         <h3 className="text-xl font-bold text-gray-900 mb-2">
                                             {milestone.title}
                                         </h3>
@@ -295,26 +295,26 @@ const AboutUs: React.FC = () => {
             </div>
 
             {/* CTA Section */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-16">
+            <div className="bg-gradient-to-r from-orange-600 to-orange-700 text-white py-16">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
                             Ready to Travel in Comfort?
                         </h2>
-                        <p className="text-xl text-blue-100 mb-8">
+                        <p className="text-xl text-orange-100 mb-8">
                             Don't waste your gas, time, or mileage. Arrive in style with minimal effort - relax, sit back, and enjoy yourself with friends and family!
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
 
                             <Link to="/"
-                                className="bg-white text-blue-600 font-bold py-4 px-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2"
+                                className="bg-white text-orange-600 font-bold py-4 px-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2"
                             >
                                 <Bus className="h-5 w-5" />
                                 Book a Transfer Now
                             </Link>
 
                             <Link to="/contact"
-                                className="bg-blue-800 text-white font-bold py-4 px-8 rounded-xl hover:bg-blue-900 hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2 border-2 border-white/20"
+                                className="bg-orange-800 text-white font-bold py-4 px-8 rounded-xl hover:bg-orange-900 hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2 border-2 border-white/20"
                             >
                                 Contact Us
                             </Link>

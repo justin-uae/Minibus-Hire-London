@@ -46,7 +46,7 @@ const PopularCars: React.FC = () => {
             <section className="py-16 lg:py-24 bg-white">
                 <div className="container mx-auto px-4 lg:px-8">
                     <div className="flex flex-col items-center justify-center py-12">
-                        <Loader className="h-12 w-12 text-blue-600 animate-spin mb-4" />
+                        <Loader className="h-12 w-12 text-orange-600 animate-spin mb-4" />
                         <p className="text-gray-600 font-medium">Loading our fleet...</p>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ const PopularCars: React.FC = () => {
                         <p className="text-gray-600 text-sm mb-4">{error}</p>
                         <button
                             onClick={() => dispatch(fetchTaxiProducts())}
-                            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                         >
                             <RefreshCw className="h-4 w-4" />
                             Try Again
@@ -89,7 +89,7 @@ const PopularCars: React.FC = () => {
             <div className="container mx-auto px-4 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12 lg:mb-16">
-                    <div className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <div className="inline-block bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                         Popular Services
                     </div>
                     <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -104,10 +104,30 @@ const PopularCars: React.FC = () => {
                 {carsToShow.length > 0 ? (
                     <>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                            {carsToShow?.sort((a, b) => a.passengers - b.passengers).map((car) => (
+                            {carsToShow?.sort((a, b) => {
+                                // First, sort by passenger count (low to high)
+                                if (a.passengers !== b.passengers) {
+                                    return a.passengers - b.passengers;
+                                }
+
+                                // If both have 16 passengers, prioritize "Minibus" over "Executive"
+                                if (a.passengers === 16 && b.passengers === 16) {
+                                    const aIsMinibus = a.name.toLowerCase().includes('minibus');
+                                    const bIsMinibus = b.name.toLowerCase().includes('minibus');
+                                    const aIsExecutive = a.name.toLowerCase().includes('executive');
+                                    const bIsExecutive = b.name.toLowerCase().includes('executive');
+
+                                    // Minibus comes before Executive
+                                    if (aIsMinibus && bIsExecutive) return -1;
+                                    if (aIsExecutive && bIsMinibus) return 1;
+                                }
+
+                                // For same passenger count (other than 16), maintain original order
+                                return 0;
+                            }).map((car) => (
                                 <div
                                     key={car?.id}
-                                    className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-200 relative"
+                                    className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-orange-200 relative"
                                 >
                                     {/* Car Image */}
                                     <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 h-65">
@@ -122,7 +142,7 @@ const PopularCars: React.FC = () => {
 
                                         {/* Badges */}
                                         {car?.popular && (
-                                            <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">
+                                            <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">
                                                 Popular
                                             </div>
                                         )}
@@ -135,7 +155,7 @@ const PopularCars: React.FC = () => {
                                     <div className="p-4">
                                         {/* Name & Rating */}
                                         <div className="mb-3">
-                                            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                                            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
                                                 {car?.name}
                                             </h3>
                                             <div
@@ -144,7 +164,7 @@ const PopularCars: React.FC = () => {
                                                 onMouseLeave={() => setHoveredCard(null)}
                                             >
                                                 <div className="flex items-center gap-1.5 text-gray-600 cursor-help">
-                                                    <Info className="h-3.5 w-3.5 text-gray-500 hover:text-blue-600 transition-colors flex-shrink-0" />
+                                                    <Info className="h-3.5 w-3.5 text-gray-500 hover:text-orange-600 transition-colors flex-shrink-0" />
                                                     <span className="text-xs font-medium italic">
                                                         {getCategoryText(car?.type)}
                                                     </span>
@@ -161,9 +181,9 @@ const PopularCars: React.FC = () => {
                                                 )}
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <div className="flex items-center gap-1 bg-blue-50 px-2.5 py-1 rounded-full">
-                                                    <Star className="h-3.5 w-3.5 fill-blue-500 text-blue-500" />
-                                                    <span className="text-xs font-bold text-blue-600">
+                                                <div className="flex items-center gap-1 bg-orange-50 px-2.5 py-1 rounded-full">
+                                                    <Star className="h-3.5 w-3.5 fill-orange-500 text-orange-500" />
+                                                    <span className="text-xs font-bold text-orange-600">
                                                         {car?.rating}
                                                     </span>
                                                 </div>
@@ -177,8 +197,8 @@ const PopularCars: React.FC = () => {
                                         <div className="space-y-2 mb-3 pb-3 border-b border-gray-100">
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-2 text-gray-700">
-                                                    <div className="p-1.5 bg-blue-50 rounded-lg">
-                                                        <Users className="h-3.5 w-3.5 text-blue-600" />
+                                                    <div className="p-1.5 bg-orange-50 rounded-lg">
+                                                        <Users className="h-3.5 w-3.5 text-orange-600" />
                                                     </div>
                                                     <span className="text-xs font-semibold">{car?.passengers} Passengers</span>
                                                 </div>
@@ -191,26 +211,17 @@ const PopularCars: React.FC = () => {
                                             </div>
 
                                             {/* Driver Included Badge */}
-                                            <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-50 to-amber-80 border-2 border-blue-200 rounded-xl py-2 px-3">
-                                                <svg className="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-50 to-amber-80 border-2 border-orange-200 rounded-xl py-2 px-3">
+                                                <svg className="h-4 w-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                                 </svg>
-                                                <span className="text-xs font-bold text-blue-700">Professional Driver Included</span>
+                                                <span className="text-xs font-bold text-orange-700">Professional Driver Included</span>
                                             </div>
                                         </div>
-
-                                        {/* Rent Button */}
-                                        {/* <button
-                                            onClick={() => handleRentClick(car?.id)}
-                                            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] flex items-center justify-center gap-2 text-sm"
-                                        >
-                                            <Calendar className="h-4 w-4" />
-                                            Rent for a Day
-                                        </button> */}
                                     </div>
                                     {/* Hover Glow Effect */}
                                     <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                                        <div className="absolute inset-0 rounded-3xl shadow-2xl shadow-blue-500/20"></div>
+                                        <div className="absolute inset-0 rounded-3xl shadow-2xl shadow-orange-500/20"></div>
                                     </div>
                                 </div>
                             ))}

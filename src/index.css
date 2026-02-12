@@ -7,7 +7,7 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-blue-50 to-blue-50 text-gray-800;
+    @apply bg-gradient-to-br from-orange-50 to-orange-50 text-gray-800;
     font-family: 'Inter', sans-serif;
   }
 }
@@ -22,11 +22,11 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
   }
 
   .btn-secondary {
-    @apply border-2 border-blue-500 text-blue-600 font-bold py-3 px-6 rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:scale-105;
+    @apply border-2 border-orange-500 text-orange-600 font-bold py-3 px-6 rounded-xl hover:bg-orange-50 transition-all duration-300 transform hover:scale-105;
   }
 }
 
@@ -43,15 +43,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-blue-50;
+  @apply bg-orange-50;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-blue-400 rounded-full;
+  @apply bg-orange-400 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-blue-500;
+  @apply bg-orange-500;
 }
 
 @keyframes float {

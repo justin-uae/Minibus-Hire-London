@@ -27,21 +27,21 @@ const Navbar: React.FC = () => {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-md border-b border-gray-200 shadow-lg">
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-800/50 shadow-lg">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         {/* Logo */}
                         <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group">
                             <div className="relative">
-                                <div className="absolute inset-0 bg-blue-500/10 rounded-xl blur-sm group-hover:bg-blue-500/20 transition-all"></div>
+                                <div className="absolute inset-0 bg-orange-500/100/10 rounded-xl blur-sm group-hover:bg-orange-500/100/20 transition-all"></div>
                                 <img
                                     src={Logo}
                                     alt="Minibus Hire London Logo"
                                     className="h-10 sm:h-14 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105 relative z-10"
                                 />
                             </div>
-                            <h1 className="text-lg sm:text-xl font-bold text-gray-900">
-                                Minibus Hire<span className="text-blue-600"> London</span>
+                            <h1 className="text-lg sm:text-xl font-bold text-white">
+                                Minibus Hire<span className="text-orange-400"> London</span>
                             </h1>
                         </Link>
 
@@ -50,92 +50,92 @@ const Navbar: React.FC = () => {
                             <Link
                                 to="/"
                                 className={`font-medium transition-colors relative py-1 ${isActive('/')
-                                    ? 'text-blue-600'
-                                    : 'text-gray-700 hover:text-blue-600'
+                                    ? 'text-orange-400'
+                                    : 'text-gray-300 hover:text-orange-400'
                                     }`}
                             >
                                 Home
                                 {isActive('/') && (
-                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-orange-400"></span>
                                 )}
                             </Link>
                             <Link
                                 to="/vehicles"
                                 className={`font-medium transition-colors relative py-1 ${isActive('/vehicles')
-                                    ? 'text-blue-600'
-                                    : 'text-gray-700 hover:text-blue-600'
+                                    ? 'text-orange-400'
+                                    : 'text-gray-300 hover:text-orange-400'
                                     }`}
                             >
                                 Vehicles
                                 {isActive('/vehicles') && (
-                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-orange-400"></span>
                                 )}
                             </Link>
                             <Link
                                 to="/coachhire"
                                 className={`font-medium transition-colors relative py-1 ${isActive('/coachhire')
-                                    ? 'text-blue-600'
-                                    : 'text-gray-700 hover:text-blue-600'
+                                    ? 'text-orange-400'
+                                    : 'text-gray-300 hover:text-orange-400'
                                     }`}
                             >
                                 Coach Hire
                                 {isActive('/coachhire') && (
-                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-orange-400"></span>
                                 )}
                             </Link>
                             <Link
                                 to="/minibus"
                                 className={`font-medium transition-colors relative py-1 ${isActive('/minibus')
-                                    ? 'text-blue-600'
-                                    : 'text-gray-700 hover:text-blue-600'
+                                    ? 'text-orange-400'
+                                    : 'text-gray-300 hover:text-orange-400'
                                     }`}
                             >
                                 Minibus Hire
                                 {isActive('/minibus') && (
-                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-orange-400"></span>
                                 )}
                             </Link>
                             <Link
                                 to="/blogs"
                                 className={`font-medium transition-colors relative py-1 ${isActive('/blogs')
-                                    ? 'text-blue-600'
-                                    : 'text-gray-700 hover:text-blue-600'
+                                    ? 'text-orange-400'
+                                    : 'text-gray-300 hover:text-orange-400'
                                     }`}
                             >
                                 Blog
                                 {isActive('/blogs') && (
-                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-orange-400"></span>
                                 )}
                             </Link>
                             <Link
                                 to="/about"
                                 className={`font-medium transition-colors relative py-1 ${isActive('/about')
-                                    ? 'text-blue-600'
-                                    : 'text-gray-700 hover:text-blue-600'
+                                    ? 'text-orange-400'
+                                    : 'text-gray-300 hover:text-orange-400'
                                     }`}
                             >
                                 About Us
                                 {isActive('/about') && (
-                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-orange-400"></span>
                                 )}
                             </Link>
 
                             <Link
                                 to="/contact"
                                 className={`font-medium transition-colors relative py-1 ${isActive('/contact')
-                                    ? 'text-blue-600'
-                                    : 'text-gray-700 hover:text-blue-600'
+                                    ? 'text-orange-400'
+                                    : 'text-gray-300 hover:text-orange-400'
                                     }`}
                             >
                                 Contact
                                 {isActive('/contact') && (
-                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-blue-600"></span>
+                                    <span className="absolute -bottom-[9px] left-0 right-0 h-0.5 bg-orange-400"></span>
                                 )}
                             </Link>
 
                             <button
                                 onClick={handleWhatsAppClick}
-                                className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-4 lg:px-6 py-2.5 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-xl text-sm"
+                                className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-300 text-white font-bold px-4 lg:px-6 py-2.5 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-xl text-sm"
                             >
                                 <FaWhatsapp className="w-4 h-4 lg:w-5 lg:h-5" />
                                 <span className="hidden lg:inline">Connect on WhatsApp</span>
@@ -145,7 +145,7 @@ const Navbar: React.FC = () => {
 
                         {/* Mobile menu button */}
                         <button
-                            className="md:hidden text-gray-700 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-gray-100"
+                            className="md:hidden text-gray-300 hover:text-orange-400 transition-colors p-2 rounded-lg hover:bg-gray-100"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             aria-label="Toggle menu"
                         >
@@ -155,14 +155,14 @@ const Navbar: React.FC = () => {
 
                     {/* Mobile Navigation */}
                     {isMenuOpen && (
-                        <div className="md:hidden pb-4 border-t border-gray-200 animate-slideDown bg-white">
+                        <div className="md:hidden pb-4 border-t border-gray-800 animate-slideDown">
                             <div className="flex flex-col space-y-1 pt-4">
                                 <Link
                                     to="/"
                                     onClick={handleLinkClick}
                                     className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/')
-                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        ? 'bg-orange-500/10 text-orange-400 border-l-4 border-orange-600'
+                                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-orange-400'
                                         }`}
                                 >
                                     Home
@@ -171,8 +171,8 @@ const Navbar: React.FC = () => {
                                     to="/vehicles"
                                     onClick={handleLinkClick}
                                     className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/vehicles')
-                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        ? 'bg-orange-500/10 text-orange-400 border-l-4 border-orange-600'
+                                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-orange-400'
                                         }`}
                                 >
                                     Vehicles
@@ -181,8 +181,8 @@ const Navbar: React.FC = () => {
                                     to="/coachhire"
                                     onClick={handleLinkClick}
                                     className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/coachhire')
-                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        ? 'bg-orange-500/10 text-orange-400 border-l-4 border-orange-600'
+                                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-orange-400'
                                         }`}
                                 >
                                     Coach Hire
@@ -191,8 +191,8 @@ const Navbar: React.FC = () => {
                                     to="/minibus"
                                     onClick={handleLinkClick}
                                     className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/minibus')
-                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        ? 'bg-orange-500/10 text-orange-400 border-l-4 border-orange-600'
+                                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-orange-400'
                                         }`}
                                 >
                                     Minibus Hire
@@ -201,8 +201,8 @@ const Navbar: React.FC = () => {
                                     to="/blogs"
                                     onClick={handleLinkClick}
                                     className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/blogs')
-                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        ? 'bg-orange-500/10 text-orange-400 border-l-4 border-orange-600'
+                                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-orange-400'
                                         }`}
                                 >
                                     Blog
@@ -211,8 +211,8 @@ const Navbar: React.FC = () => {
                                     to="/about"
                                     onClick={handleLinkClick}
                                     className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/about')
-                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        ? 'bg-orange-500/10 text-orange-400 border-l-4 border-orange-600'
+                                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-orange-400'
                                         }`}
                                 >
                                     About Us
@@ -221,8 +221,8 @@ const Navbar: React.FC = () => {
                                     to="/contact"
                                     onClick={handleLinkClick}
                                     className={`py-3 px-4 rounded-lg font-medium transition-all ${isActive('/contact')
-                                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                                        ? 'bg-orange-500/10 text-orange-400 border-l-4 border-orange-600'
+                                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-orange-400'
                                         }`}
                                 >
                                     Contact
@@ -234,7 +234,7 @@ const Navbar: React.FC = () => {
                                             handleWhatsAppClick();
                                             handleLinkClick();
                                         }}
-                                        className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-6 py-3 rounded-full transition-all shadow-lg text-sm"
+                                        className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-300 text-white font-bold px-6 py-3 rounded-full transition-all shadow-lg text-sm"
                                     >
                                         <FaWhatsapp className="w-5 h-5" />
                                         <span>Connect on WhatsApp</span>

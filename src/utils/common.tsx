@@ -190,42 +190,237 @@ export const airportKeywords = [
 ];
 
 export const countryDialCodes = [
-    { code: '+44', name: 'UK', flag: '🇬🇧' },
-    { code: '+1', name: 'USA', flag: '🇺🇸' },
-    { code: '+91', name: 'India', flag: '🇮🇳' },
-    { code: '+61', name: 'Australia', flag: '🇦🇺' },
-    { code: '+971', name: 'UAE', flag: '🇦🇪' },
-    { code: '+49', name: 'Germany', flag: '🇩🇪' },
-    { code: '+33', name: 'France', flag: '🇫🇷' },
-    { code: '+81', name: 'Japan', flag: '🇯🇵' },
-    { code: '+86', name: 'China', flag: '🇨🇳' },
-    { code: '+7', name: 'Russia', flag: '🇷🇺' },
-    { code: '+34', name: 'Spain', flag: '🇪🇸' },
-    { code: '+39', name: 'Italy', flag: '🇮🇹' },
-    { code: '+31', name: 'Netherlands', flag: '🇳🇱' },
-    { code: '+41', name: 'Switzerland', flag: '🇨🇭' },
-    { code: '+46', name: 'Sweden', flag: '🇸🇪' },
-    { code: '+47', name: 'Norway', flag: '🇳🇴' },
-    { code: '+45', name: 'Denmark', flag: '🇩🇰' },
-    { code: '+32', name: 'Belgium', flag: '🇧🇪' },
-    { code: '+353', name: 'Ireland', flag: '🇮🇪' },
-    { code: '+64', name: 'New Zealand', flag: '🇳🇿' },
-    { code: '+52', name: 'Mexico', flag: '🇲🇽' },
-    { code: '+55', name: 'Brazil', flag: '🇧🇷' },
-    { code: '+54', name: 'Argentina', flag: '🇦🇷' },
-    { code: '+92', name: 'Pakistan', flag: '🇵🇰' },
-    { code: '+62', name: 'Indonesia', flag: '🇮🇩' },
-    { code: '+63', name: 'Philippines', flag: '🇵🇭' },
-    { code: '+60', name: 'Malaysia', flag: '🇲🇾' },
-    { code: '+65', name: 'Singapore', flag: '🇸🇬' },
-    { code: '+66', name: 'Thailand', flag: '🇹🇭' },
-    { code: '+82', name: 'South Korea', flag: '🇰🇷' },
-    { code: '+90', name: 'Turkey', flag: '🇹🇷' },
-    { code: '+27', name: 'South Africa', flag: '🇿🇦' },
-    { code: '+20', name: 'Egypt', flag: '🇪🇬' },
-    { code: '+234', name: 'Nigeria', flag: '🇳🇬' },
-    { code: '+254', name: 'Kenya', flag: '🇰🇪' },
+    // United Kingdom & Territories
+    { code: '+44', name: 'United Kingdom', flag: '🇬🇧', countryCode: 'GB' },
+    { code: '+44', name: 'Jersey', flag: '🇯🇪', countryCode: 'JE' },
+    { code: '+44', name: 'Guernsey', flag: '🇬🇬', countryCode: 'GG' },
+    { code: '+44', name: 'Isle of Man', flag: '🇮🇲', countryCode: 'IM' },
+
+    // North America
+    { code: '+1', name: 'United States', flag: '🇺🇸', countryCode: 'US' },
+    { code: '+1', name: 'Canada', flag: '🇨🇦', countryCode: 'CA' },
+    { code: '+52', name: 'Mexico', flag: '🇲🇽', countryCode: 'MX' },
+
+    // Europe - Western
+    { code: '+49', name: 'Germany', flag: '🇩🇪', countryCode: 'DE' },
+    { code: '+33', name: 'France', flag: '🇫🇷', countryCode: 'FR' },
+    { code: '+39', name: 'Italy', flag: '🇮🇹', countryCode: 'IT' },
+    { code: '+34', name: 'Spain', flag: '🇪🇸', countryCode: 'ES' },
+    { code: '+351', name: 'Portugal', flag: '🇵🇹', countryCode: 'PT' },
+    { code: '+31', name: 'Netherlands', flag: '🇳🇱', countryCode: 'NL' },
+    { code: '+32', name: 'Belgium', flag: '🇧🇪', countryCode: 'BE' },
+    { code: '+41', name: 'Switzerland', flag: '🇨🇭', countryCode: 'CH' },
+    { code: '+43', name: 'Austria', flag: '🇦🇹', countryCode: 'AT' },
+    { code: '+353', name: 'Ireland', flag: '🇮🇪', countryCode: 'IE' },
+    { code: '+352', name: 'Luxembourg', flag: '🇱🇺', countryCode: 'LU' },
+
+    // Europe - Nordic
+    { code: '+46', name: 'Sweden', flag: '🇸🇪', countryCode: 'SE' },
+    { code: '+47', name: 'Norway', flag: '🇳🇴', countryCode: 'NO' },
+    { code: '+45', name: 'Denmark', flag: '🇩🇰', countryCode: 'DK' },
+    { code: '+358', name: 'Finland', flag: '🇫🇮', countryCode: 'FI' },
+    { code: '+354', name: 'Iceland', flag: '🇮🇸', countryCode: 'IS' },
+
+    // Europe - Mediterranean
+    { code: '+356', name: 'Malta', flag: '🇲🇹', countryCode: 'MT' },
+    { code: '+357', name: 'Cyprus', flag: '🇨🇾', countryCode: 'CY' },
+    { code: '+30', name: 'Greece', flag: '🇬🇷', countryCode: 'GR' },
+
+    // Europe - Central & Eastern
+    { code: '+48', name: 'Poland', flag: '🇵🇱', countryCode: 'PL' },
+    { code: '+420', name: 'Czech Republic', flag: '🇨🇿', countryCode: 'CZ' },
+    { code: '+421', name: 'Slovakia', flag: '🇸🇰', countryCode: 'SK' },
+    { code: '+36', name: 'Hungary', flag: '🇭🇺', countryCode: 'HU' },
+    { code: '+40', name: 'Romania', flag: '🇷🇴', countryCode: 'RO' },
+    { code: '+359', name: 'Bulgaria', flag: '🇧🇬', countryCode: 'BG' },
+    { code: '+385', name: 'Croatia', flag: '🇭🇷', countryCode: 'HR' },
+    { code: '+381', name: 'Serbia', flag: '🇷🇸', countryCode: 'RS' },
+    { code: '+386', name: 'Slovenia', flag: '🇸🇮', countryCode: 'SI' },
+
+    // Europe - Baltic
+    { code: '+372', name: 'Estonia', flag: '🇪🇪', countryCode: 'EE' },
+    { code: '+371', name: 'Latvia', flag: '🇱🇻', countryCode: 'LV' },
+    { code: '+370', name: 'Lithuania', flag: '🇱🇹', countryCode: 'LT' },
+
+    // Europe - Eastern
+    { code: '+380', name: 'Ukraine', flag: '🇺🇦', countryCode: 'UA' },
+    { code: '+7', name: 'Russia', flag: '🇷🇺', countryCode: 'RU' },
+
+    // Europe - Other
+    { code: '+90', name: 'Turkey', flag: '🇹🇷', countryCode: 'TR' },
+
+    // Microstates & Special Territories
+    { code: '+376', name: 'Andorra', flag: '🇦🇩', countryCode: 'AD' },
+    { code: '+377', name: 'Monaco', flag: '🇲🇨', countryCode: 'MC' },
+    { code: '+378', name: 'San Marino', flag: '🇸🇲', countryCode: 'SM' },
+    { code: '+379', name: 'Vatican City', flag: '🇻🇦', countryCode: 'VA' },
+    { code: '+423', name: 'Liechtenstein', flag: '🇱🇮', countryCode: 'LI' },
+    { code: '+350', name: 'Gibraltar', flag: '🇬🇮', countryCode: 'GI' },
+    { code: '+298', name: 'Faroe Islands', flag: '🇫🇴', countryCode: 'FO' },
+    { code: '+299', name: 'Greenland', flag: '🇬🇱', countryCode: 'GL' },
+    { code: '+358', name: 'Åland Islands', flag: '🇦🇽', countryCode: 'AX' },
+
+    // Asia - South
+    { code: '+91', name: 'India', flag: '🇮🇳', countryCode: 'IN' },
+    { code: '+92', name: 'Pakistan', flag: '🇵🇰', countryCode: 'PK' },
+    { code: '+880', name: 'Bangladesh', flag: '🇧🇩', countryCode: 'BD' },
+    { code: '+94', name: 'Sri Lanka', flag: '🇱🇰', countryCode: 'LK' },
+    { code: '+977', name: 'Nepal', flag: '🇳🇵', countryCode: 'NP' },
+
+    // Asia - East
+    { code: '+86', name: 'China', flag: '🇨🇳', countryCode: 'CN' },
+    { code: '+81', name: 'Japan', flag: '🇯🇵', countryCode: 'JP' },
+    { code: '+82', name: 'South Korea', flag: '🇰🇷', countryCode: 'KR' },
+    { code: '+850', name: 'North Korea', flag: '🇰🇵', countryCode: 'KP' },
+    { code: '+976', name: 'Mongolia', flag: '🇲🇳', countryCode: 'MN' },
+    { code: '+886', name: 'Taiwan', flag: '🇹🇼', countryCode: 'TW' },
+    { code: '+852', name: 'Hong Kong', flag: '🇭🇰', countryCode: 'HK' },
+    { code: '+853', name: 'Macau', flag: '🇲🇴', countryCode: 'MO' },
+
+    // Asia - Southeast
+    { code: '+84', name: 'Vietnam', flag: '🇻🇳', countryCode: 'VN' },
+    { code: '+66', name: 'Thailand', flag: '🇹🇭', countryCode: 'TH' },
+    { code: '+60', name: 'Malaysia', flag: '🇲🇾', countryCode: 'MY' },
+    { code: '+65', name: 'Singapore', flag: '🇸🇬', countryCode: 'SG' },
+    { code: '+63', name: 'Philippines', flag: '🇵🇭', countryCode: 'PH' },
+    { code: '+62', name: 'Indonesia', flag: '🇮🇩', countryCode: 'ID' },
+    { code: '+95', name: 'Myanmar', flag: '🇲🇲', countryCode: 'MM' },
+    { code: '+855', name: 'Cambodia', flag: '🇰🇭', countryCode: 'KH' },
+    { code: '+856', name: 'Laos', flag: '🇱🇦', countryCode: 'LA' },
+
+    // Asia - Central & West
+    { code: '+93', name: 'Afghanistan', flag: '🇦🇫', countryCode: 'AF' },
+    { code: '+98', name: 'Iran', flag: '🇮🇷', countryCode: 'IR' },
+    { code: '+964', name: 'Iraq', flag: '🇮🇶', countryCode: 'IQ' },
+    { code: '+963', name: 'Syria', flag: '🇸🇾', countryCode: 'SY' },
+    { code: '+961', name: 'Lebanon', flag: '🇱🇧', countryCode: 'LB' },
+    { code: '+962', name: 'Jordan', flag: '🇯🇴', countryCode: 'JO' },
+    { code: '+972', name: 'Israel', flag: '🇮🇱', countryCode: 'IL' },
+    { code: '+970', name: 'Palestine', flag: '🇵🇸', countryCode: 'PS' },
+
+    // Middle East - Gulf
+    { code: '+966', name: 'Saudi Arabia', flag: '🇸🇦', countryCode: 'SA' },
+    { code: '+971', name: 'UAE', flag: '🇦🇪', countryCode: 'AE' },
+    { code: '+974', name: 'Qatar', flag: '🇶🇦', countryCode: 'QA' },
+    { code: '+965', name: 'Kuwait', flag: '🇰🇼', countryCode: 'KW' },
+    { code: '+973', name: 'Bahrain', flag: '🇧🇭', countryCode: 'BH' },
+    { code: '+968', name: 'Oman', flag: '🇴🇲', countryCode: 'OM' },
+    { code: '+967', name: 'Yemen', flag: '🇾🇪', countryCode: 'YE' },
+
+    // Oceania
+    { code: '+61', name: 'Australia', flag: '🇦🇺', countryCode: 'AU' },
+    { code: '+64', name: 'New Zealand', flag: '🇳🇿', countryCode: 'NZ' },
+
+    // Africa - North
+    { code: '+20', name: 'Egypt', flag: '🇪🇬', countryCode: 'EG' },
+    { code: '+212', name: 'Morocco', flag: '🇲🇦', countryCode: 'MA' },
+    { code: '+213', name: 'Algeria', flag: '🇩🇿', countryCode: 'DZ' },
+    { code: '+216', name: 'Tunisia', flag: '🇹🇳', countryCode: 'TN' },
+    { code: '+218', name: 'Libya', flag: '🇱🇾', countryCode: 'LY' },
+
+    // Africa - East
+    { code: '+249', name: 'Sudan', flag: '🇸🇩', countryCode: 'SD' },
+    { code: '+252', name: 'Somalia', flag: '🇸🇴', countryCode: 'SO' },
+    { code: '+253', name: 'Djibouti', flag: '🇩🇯', countryCode: 'DJ' },
+    { code: '+291', name: 'Eritrea', flag: '🇪🇷', countryCode: 'ER' },
+    { code: '+251', name: 'Ethiopia', flag: '🇪🇹', countryCode: 'ET' },
+    { code: '+254', name: 'Kenya', flag: '🇰🇪', countryCode: 'KE' },
+    { code: '+256', name: 'Uganda', flag: '🇺🇬', countryCode: 'UG' },
+    { code: '+250', name: 'Rwanda', flag: '🇷🇼', countryCode: 'RW' },
+    { code: '+257', name: 'Burundi', flag: '🇧🇮', countryCode: 'BI' },
+    { code: '+255', name: 'Tanzania', flag: '🇹🇿', countryCode: 'TZ' },
+
+    // Africa - Southern
+    { code: '+27', name: 'South Africa', flag: '🇿🇦', countryCode: 'ZA' },
+    { code: '+258', name: 'Mozambique', flag: '🇲🇿', countryCode: 'MZ' },
+    { code: '+260', name: 'Zambia', flag: '🇿🇲', countryCode: 'ZM' },
+    { code: '+263', name: 'Zimbabwe', flag: '🇿🇼', countryCode: 'ZW' },
+    { code: '+265', name: 'Malawi', flag: '🇲🇼', countryCode: 'MW' },
+    { code: '+266', name: 'Lesotho', flag: '🇱🇸', countryCode: 'LS' },
+    { code: '+267', name: 'Botswana', flag: '🇧🇼', countryCode: 'BW' },
+    { code: '+268', name: 'Eswatini', flag: '🇸🇿', countryCode: 'SZ' },
+    { code: '+264', name: 'Namibia', flag: '🇳🇦', countryCode: 'NA' },
+
+    // Africa - Island Nations
+    { code: '+261', name: 'Madagascar', flag: '🇲🇬', countryCode: 'MG' },
+    { code: '+269', name: 'Comoros', flag: '🇰🇲', countryCode: 'KM' },
+    { code: '+248', name: 'Seychelles', flag: '🇸🇨', countryCode: 'SC' },
+    { code: '+230', name: 'Mauritius', flag: '🇲🇺', countryCode: 'MU' },
+    { code: '+238', name: 'Cape Verde', flag: '🇨🇻', countryCode: 'CV' },
+    { code: '+239', name: 'São Tomé and Príncipe', flag: '🇸🇹', countryCode: 'ST' },
+
+    // Africa - West
+    { code: '+234', name: 'Nigeria', flag: '🇳🇬', countryCode: 'NG' },
+    { code: '+233', name: 'Ghana', flag: '🇬🇭', countryCode: 'GH' },
+    { code: '+225', name: 'Ivory Coast', flag: '🇨🇮', countryCode: 'CI' },
+    { code: '+228', name: 'Togo', flag: '🇹🇬', countryCode: 'TG' },
+    { code: '+229', name: 'Benin', flag: '🇧🇯', countryCode: 'BJ' },
+    { code: '+245', name: 'Guinea-Bissau', flag: '🇬🇼', countryCode: 'GW' },
+    { code: '+224', name: 'Guinea', flag: '🇬🇳', countryCode: 'GN' },
+    { code: '+232', name: 'Sierra Leone', flag: '🇸🇱', countryCode: 'SL' },
+    { code: '+231', name: 'Liberia', flag: '🇱🇷', countryCode: 'LR' },
+    { code: '+226', name: 'Burkina Faso', flag: '🇧🇫', countryCode: 'BF' },
+    { code: '+223', name: 'Mali', flag: '🇲🇱', countryCode: 'ML' },
+    { code: '+221', name: 'Senegal', flag: '🇸🇳', countryCode: 'SN' },
+    { code: '+220', name: 'Gambia', flag: '🇬🇲', countryCode: 'GM' },
+    { code: '+222', name: 'Mauritania', flag: '🇲🇷', countryCode: 'MR' },
+
+    // Africa - Central
+    { code: '+227', name: 'Niger', flag: '🇳🇪', countryCode: 'NE' },
+    { code: '+235', name: 'Chad', flag: '🇹🇩', countryCode: 'TD' },
+    { code: '+236', name: 'Central African Republic', flag: '🇨🇫', countryCode: 'CF' },
+    { code: '+237', name: 'Cameroon', flag: '🇨🇲', countryCode: 'CM' },
+    { code: '+240', name: 'Equatorial Guinea', flag: '🇬🇶', countryCode: 'GQ' },
+    { code: '+241', name: 'Gabon', flag: '🇬🇦', countryCode: 'GA' },
+    { code: '+242', name: 'Republic of the Congo', flag: '🇨🇬', countryCode: 'CG' },
+    { code: '+243', name: 'DR Congo', flag: '🇨🇩', countryCode: 'CD' },
+    { code: '+244', name: 'Angola', flag: '🇦🇴', countryCode: 'AO' },
+
+    // South America
+    { code: '+55', name: 'Brazil', flag: '🇧🇷', countryCode: 'BR' },
+    { code: '+54', name: 'Argentina', flag: '🇦🇷', countryCode: 'AR' },
+
+    // Caribbean & Atlantic Islands
+    { code: '+290', name: 'Saint Helena', flag: '🇸🇭', countryCode: 'SH' },
+    { code: '+500', name: 'Falkland Islands', flag: '🇫🇰', countryCode: 'FK' },
+
+    // French Territories
+    { code: '+262', name: 'Réunion', flag: '🇷🇪', countryCode: 'RE' },
+    { code: '+262', name: 'Mayotte', flag: '🇾🇹', countryCode: 'YT' },
+    { code: '+594', name: 'French Guiana', flag: '🇬🇫', countryCode: 'GF' },
+    { code: '+689', name: 'French Polynesia', flag: '🇵🇫', countryCode: 'PF' },
+    { code: '+687', name: 'New Caledonia', flag: '🇳🇨', countryCode: 'NC' },
+    { code: '+681', name: 'Wallis and Futuna', flag: '🇼🇫', countryCode: 'WF' },
+    { code: '+508', name: 'Saint Pierre and Miquelon', flag: '🇵🇲', countryCode: 'PM' },
+    { code: '+590', name: 'Saint Barthélemy', flag: '🇧🇱', countryCode: 'BL' },
+    { code: '+590', name: 'Saint Martin', flag: '🇲🇫', countryCode: 'MF' },
+
+    // Netherlands Territories
+    { code: '+297', name: 'Aruba', flag: '🇦🇼', countryCode: 'AW' },
+    { code: '+599', name: 'Curaçao', flag: '🇨🇼', countryCode: 'CW' },
+    { code: '+1', name: 'Sint Maarten', flag: '🇸🇽', countryCode: 'SX' },
+    { code: '+599', name: 'Caribbean Netherlands', flag: '🇧🇶', countryCode: 'BQ' },
+
+    // UK Caribbean Territories
+    { code: '+1', name: 'Anguilla', flag: '🇦🇮', countryCode: 'AI' },
+    { code: '+1', name: 'Bermuda', flag: '🇧🇲', countryCode: 'BM' },
+    { code: '+1', name: 'British Virgin Islands', flag: '🇻🇬', countryCode: 'VG' },
+    { code: '+1', name: 'Cayman Islands', flag: '🇰🇾', countryCode: 'KY' },
+    { code: '+1', name: 'Montserrat', flag: '🇲🇸', countryCode: 'MS' },
+    { code: '+1', name: 'Turks and Caicos', flag: '🇹🇨', countryCode: 'TC' },
+
+    // US Territories
+    { code: '+1', name: 'Puerto Rico', flag: '🇵🇷', countryCode: 'PR' },
+    { code: '+1', name: 'US Virgin Islands', flag: '🇻🇮', countryCode: 'VI' },
+    { code: '+1', name: 'Guam', flag: '🇬🇺', countryCode: 'GU' },
+    { code: '+1', name: 'American Samoa', flag: '🇦🇸', countryCode: 'AS' },
+    { code: '+1', name: 'Northern Mariana Islands', flag: '🇲🇵', countryCode: 'MP' },
 ];
+
+export const getFlagUrl = (countryCode: string): string => {
+    // Convert to lowercase for flag CDN
+    return `https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`;
+};
 
 // Calculate rental hours for daily rental
 export const calculateRentalHours = (pickupDate: Date, pickupTime: string, dropoffDate: Date, dropoffTime: string) => {

@@ -71,7 +71,7 @@ const Login: React.FC = () => {
             <div className="max-w-md w-full">
                 {/* Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg mb-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl shadow-lg mb-4">
                         <LogIn className="h-8 w-8 text-white" />
                     </div>
                     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
@@ -102,7 +102,7 @@ const Login: React.FC = () => {
                                     onChange={handleChange}
                                     className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all ${errors.email
                                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                        : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+                                        : 'border-gray-200 focus:border-orange-500 focus:ring-orange-500/20'
                                         }`}
                                     placeholder="you@example.com"
                                 />
@@ -123,7 +123,7 @@ const Login: React.FC = () => {
                                 </label>
                                 <Link
                                     to="/forgot-password"
-                                    className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                                    className="text-sm text-orange-600 hover:text-orange-700 font-medium"
                                 >
                                     Forgot?
                                 </Link>
@@ -140,7 +140,7 @@ const Login: React.FC = () => {
                                     onChange={handleChange}
                                     className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all ${errors.password
                                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                        : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+                                        : 'border-gray-200 focus:border-orange-500 focus:ring-orange-500/20'
                                         }`}
                                     placeholder="Enter your password"
                                 />
@@ -169,7 +169,7 @@ const Login: React.FC = () => {
                             <input
                                 id="remember"
                                 type="checkbox"
-                                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500 focus:ring-2"
                             />
                             <label htmlFor="remember" className="ml-2 text-sm text-gray-600">
                                 Remember me for 30 days
@@ -180,7 +180,7 @@ const Login: React.FC = () => {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3.5 rounded-xl hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3.5 rounded-xl hover:shadow-2xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
                         >
                             {isLoading ? (
                                 <>
@@ -200,7 +200,7 @@ const Login: React.FC = () => {
                 {/* Sign Up Link */}
                 <p className="text-center mt-6 text-gray-600">
                     Don't have an account?{' '}
-                    <Link to="/register" className="text-blue-600 hover:text-blue-700 font-semibold">
+                    <Link to="/register" className="text-orange-600 hover:text-orange-700 font-semibold">
                         Sign up for free
                     </Link>
                 </p>

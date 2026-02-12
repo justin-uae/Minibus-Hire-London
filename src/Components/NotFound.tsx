@@ -8,7 +8,7 @@ const NotFound: React.FC = () => {
             <div className="max-w-3xl mx-auto text-center py-8">
                 {/* Animated Image Container */}
                 <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto mb-8">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 rounded-full blur-2xl animate-pulse"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-full blur-2xl animate-pulse"></div>
 
                     <div
                         className="relative w-full h-full flex items-center justify-center"
@@ -26,11 +26,11 @@ const NotFound: React.FC = () => {
 
                         {/* Floating elements around the image */}
                         <div
-                            className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-20"
+                            className="absolute -top-4 -right-4 w-8 h-8 bg-orange-500 rounded-full opacity-20"
                             style={{ animation: 'float 4s ease-in-out infinite 0.5s' }}
                         ></div>
                         <div
-                            className="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-500 rounded-full opacity-20"
+                            className="absolute -bottom-4 -left-4 w-6 h-6 bg-orange-500 rounded-full opacity-20"
                             style={{ animation: 'float 5s ease-in-out infinite 1s' }}
                         ></div>
                         <div
@@ -41,7 +41,7 @@ const NotFound: React.FC = () => {
 
                     {/* Glow effect */}
                     <div
-                        className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-blue-600/0 rounded-full"
+                        className="absolute inset-0 bg-gradient-to-r from-orange-500/0 via-orange-500/5 to-orange-600/0 rounded-full"
                         style={{
                             animation: 'glow 3s ease-in-out infinite alternate',
                             filter: 'blur(20px)'
@@ -54,7 +54,7 @@ const NotFound: React.FC = () => {
                     <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 animate-fade-in">
                         404
                     </h1>
-                    <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-600 to-amber-600 text-3xl md:text-4xl lg:text-5xl font-bold animate-fade-in">
+                    <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-3xl md:text-4xl lg:text-5xl font-bold animate-fade-in">
                         Page Not Found
                     </h2>
                     <p className="text-xl md:text-2xl text-gray-600 animate-fade-in-delay">
@@ -72,7 +72,7 @@ const NotFound: React.FC = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-3">
                     <Link
                         to="/"
-                        className="group relative bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3.5 px-8 rounded-2xl hover:shadow-2xl hover:scale-105 transition-all duration-500 inline-flex items-center justify-center gap-3 overflow-hidden shadow-lg"
+                        className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3.5 px-8 rounded-2xl hover:shadow-2xl hover:scale-105 transition-all duration-500 inline-flex items-center justify-center gap-3 overflow-hidden shadow-lg"
                     >
                         {/* Shine effect */}
                         <div className="absolute inset-0 translate-x-full group-hover:translate-x-0 transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>

@@ -13,7 +13,7 @@ const TaxiHeader: React.FC<HeaderProps> = ({ searchDetails, onEditSearch, isMobi
                 <div className="flex items-center justify-between mb-2">
                     <button
                         onClick={onEditSearch}
-                        className="flex items-center gap-1 text-gray-600 hover:text-blue-600 transition-colors"
+                        className="flex items-center gap-1 text-gray-600 hover:text-orange-600 transition-colors"
                     >
                         <ChevronLeft className="h-4 w-4" />
                         <span className="text-sm font-medium">Back</span>
@@ -48,7 +48,7 @@ const TaxiHeader: React.FC<HeaderProps> = ({ searchDetails, onEditSearch, isMobi
             <div className="flex items-center justify-between mb-3">
                 <button
                     onClick={onEditSearch}
-                    className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors font-semibold group"
+                    className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-colors font-semibold group"
                 >
                     <ChevronLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
                     <span>Edit Search</span>

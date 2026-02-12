@@ -67,14 +67,14 @@ const MapControls: React.FC<{
                     className="p-1.5 sm:p-2 rounded-lg hover:bg-gray-50 transition-colors group"
                     title="Zoom In"
                 >
-                    <ZoomIn className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 group-hover:text-blue-600" />
+                    <ZoomIn className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 group-hover:text-orange-600" />
                 </button>
                 <button
                     onClick={handleZoomOut}
                     className="p-1.5 sm:p-2 rounded-lg hover:bg-gray-50 transition-colors group"
                     title="Zoom Out"
                 >
-                    <ZoomOut className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 group-hover:text-blue-600" />
+                    <ZoomOut className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 group-hover:text-orange-600" />
                 </button>
                 <button
                     onClick={handleFullView}
@@ -93,7 +93,7 @@ const MapControls: React.FC<{
                 </button>
                 <button
                     onClick={onTrafficToggle}
-                    className={`p-1.5 sm:p-2 rounded-lg transition-colors group ${showTraffic ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-50 text-gray-700'}`}
+                    className={`p-1.5 sm:p-2 rounded-lg transition-colors group ${showTraffic ? 'bg-orange-50 text-orange-600' : 'hover:bg-gray-50 text-gray-700'}`}
                     title="Toggle Traffic"
                 >
                     <Car className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -149,9 +149,9 @@ const MapView: React.FC<MapViewProps> = ({ from, to, fromCoords, toCoords, selec
     return (
         <div className="h-full w-full relative rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200">
             {!mapReady && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 z-10">
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-50 to-gray-100 z-10">
                     <div className="text-center p-4">
-                        <div className="animate-spin rounded-full h-8 w-8 sm:h-10 sm:w-10 border-[3px] border-blue-500 border-t-transparent mx-auto mb-3 sm:mb-4"></div>
+                        <div className="animate-spin rounded-full h-8 w-8 sm:h-10 sm:w-10 border-[3px] border-orange-500 border-t-transparent mx-auto mb-3 sm:mb-4"></div>
                         <p className="text-gray-700 font-medium text-sm sm:text-base">Loading route map...</p>
                     </div>
                 </div>

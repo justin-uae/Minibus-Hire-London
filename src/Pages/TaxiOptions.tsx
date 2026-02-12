@@ -238,7 +238,7 @@ const TaxiOptions: React.FC = () => {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                 <div className="text-center">
-                    <RefreshCw className="h-12 w-12 text-blue-600 animate-spin mx-auto mb-4" />
+                    <RefreshCw className="h-12 w-12 text-orange-600 animate-spin mx-auto mb-4" />
                     <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Available Transport</h2>
                     <p className="text-gray-600">Please wait while we fetch the latest options...</p>
                 </div>
@@ -257,7 +257,7 @@ const TaxiOptions: React.FC = () => {
                     <div className="space-y-3">
                         <button
                             onClick={handleRetry}
-                            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
                             <RefreshCw className="h-5 w-5" />
                             Try Again
@@ -288,7 +288,7 @@ const TaxiOptions: React.FC = () => {
                     <div className="space-y-3">
                         <button
                             onClick={handleRetry}
-                            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
                             <RefreshCw className="h-5 w-5" />
                             Refresh
@@ -327,7 +327,7 @@ const TaxiOptions: React.FC = () => {
                         <div className="mb-6 bg-white rounded-xl shadow-lg overflow-hidden">
                             <div className="p-4 border-b border-gray-200">
                                 <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                                    <Navigation className="h-4 w-4 text-blue-600" />
+                                    <Navigation className="h-4 w-4 text-orange-600" />
                                     Route Map
                                 </h2>
                             </div>
@@ -347,9 +347,9 @@ const TaxiOptions: React.FC = () => {
                         {/* Airport Information - Mobile */}
                         {isAirportTrip && selectedTaxi && (
                             <div className="mb-4">
-                                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 space-y-3">
+                                <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 space-y-3">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <Plane className="h-5 w-5 text-blue-600" />
+                                        <Plane className="h-5 w-5 text-orange-600" />
                                         <h4 className="font-bold text-gray-900">Airport Trip Information</h4>
                                     </div>
 
@@ -359,10 +359,10 @@ const TaxiOptions: React.FC = () => {
                                             type="checkbox"
                                             checked={parkingAcknowledged}
                                             onChange={(e) => setParkingAcknowledged(e.target.checked)}
-                                            className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                                            className="mt-1 h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500 cursor-pointer"
                                         />
                                         <div className="flex-1">
-                                            <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                            <p className="text-sm font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
                                                 I acknowledge that parking fees will be collected
                                             </p>
                                             <p className="text-xs text-gray-600 mt-1">
@@ -381,7 +381,7 @@ const TaxiOptions: React.FC = () => {
                                             value={flightNumber}
                                             onChange={(e) => setFlightNumber(e.target.value)}
                                             placeholder="e.g., EK524, FZ123"
-                                            className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm font-medium uppercase"
+                                            className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm font-medium uppercase"
                                             style={{ textTransform: 'uppercase' }}
                                         />
                                         <p className="text-xs text-gray-500 mt-1.5">
@@ -436,7 +436,7 @@ const TaxiOptions: React.FC = () => {
                             {/* Header */}
                             <div className="mb-6">
                                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-                                    Available Transport <span className="text-blue-600">({filteredAndSortedTaxiOptions.length})</span>
+                                    Available Transport <span className="text-orange-600">({filteredAndSortedTaxiOptions.length})</span>
                                 </h1>
                                 <p className="text-gray-600 mb-4">
                                     Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} miles range
@@ -473,10 +473,10 @@ const TaxiOptions: React.FC = () => {
                             <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto space-y-4">
                                 {/* Booking Summary - Show first when taxi is selected */}
                                 {selectedTaxiData && (
-                                    <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-blue-500 animate-slideIn">
-                                        <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white">
+                                    <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-orange-500 animate-slideIn">
+                                        <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4 text-white">
                                             <h3 className="text-lg font-bold mb-1">Booking Summary</h3>
-                                            <p className="text-sm text-blue-100">
+                                            <p className="text-sm text-orange-100">
                                                 {searchDetails.tripType === 'return' ? 'Round Trip' : 'One-Way Trip'}
                                             </p>
                                         </div>
@@ -492,9 +492,9 @@ const TaxiOptions: React.FC = () => {
 
                                             {/* Airport Information Form - Desktop */}
                                             {isAirportTrip && (
-                                                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 space-y-3">
+                                                <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 space-y-3">
                                                     <div className="flex items-center gap-2 mb-2">
-                                                        <Plane className="h-5 w-5 text-blue-600" />
+                                                        <Plane className="h-5 w-5 text-orange-600" />
                                                         <h4 className="font-bold text-gray-900">Airport Trip Information</h4>
                                                     </div>
 
@@ -504,10 +504,10 @@ const TaxiOptions: React.FC = () => {
                                                             type="checkbox"
                                                             checked={parkingAcknowledged}
                                                             onChange={(e) => setParkingAcknowledged(e.target.checked)}
-                                                            className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                                                            className="mt-1 h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500 cursor-pointer"
                                                         />
                                                         <div className="flex-1">
-                                                            <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                                            <p className="text-sm font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
                                                                 I acknowledge that parking fees will be collected
                                                             </p>
                                                             <p className="text-xs text-gray-600 mt-1">
@@ -526,7 +526,7 @@ const TaxiOptions: React.FC = () => {
                                                             value={flightNumber}
                                                             onChange={(e) => setFlightNumber(e.target.value)}
                                                             placeholder="e.g., EK524, FZ123"
-                                                            className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm font-medium uppercase"
+                                                            className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm font-medium uppercase"
                                                             style={{ textTransform: 'uppercase' }}
                                                         />
                                                         <p className="text-xs text-gray-500 mt-1.5">
@@ -559,8 +559,8 @@ const TaxiOptions: React.FC = () => {
                                                     {searchDetails.tripType === 'return' ? (
                                                         <>
                                                             {/* Pickup */}
-                                                            <div className="bg-blue-50 p-2 rounded-lg">
-                                                                <p className="text-xs font-semibold text-blue-700 mb-1">→ Pickup</p>
+                                                            <div className="bg-orange-50 p-2 rounded-lg">
+                                                                <p className="text-xs font-semibold text-orange-700 mb-1">→ Pickup</p>
                                                                 <div className="text-xs text-gray-700">
                                                                     <div> {formatDateDisplay(searchDetails.date)} at {searchDetails.time}</div>
                                                                     <div className="text-gray-500">{distance.toFixed(1)} miles</div>
@@ -616,15 +616,15 @@ const TaxiOptions: React.FC = () => {
                                                                 </span>
                                                             </div>
                                                             {!isAirportTrip && (
-                                                                <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 mt-2">
-                                                                    <p className="text-xs text-blue-700 font-medium">
+                                                                <div className="bg-orange-50 border border-orange-200 rounded-lg p-2 mt-2">
+                                                                    <p className="text-xs text-orange-700 font-medium">
                                                                         Parking fees (if applicable) will be added to the final amount
                                                                     </p>
                                                                 </div>
                                                             )}
                                                             <div className="flex justify-between pt-2 border-t border-gray-200">
                                                                 <span className="font-bold text-gray-900">Total Amount</span>
-                                                                <span className="text-xl font-bold text-blue-600">
+                                                                <span className="text-xl font-bold text-orange-600">
                                                                     GBP {calculatePrice(selectedTaxiData, distance, 'return')}
                                                                 </span>
                                                             </div>
@@ -633,13 +633,13 @@ const TaxiOptions: React.FC = () => {
                                                         <>
                                                             <div className="flex justify-between">
                                                                 <span className="font-bold text-gray-900">Total Amount</span>
-                                                                <span className="text-xl font-bold text-blue-600">
+                                                                <span className="text-xl font-bold text-orange-600">
                                                                     GBP {calculatePrice(selectedTaxiData, distance, 'one-way')}
                                                                 </span>
                                                             </div>
                                                             {!isAirportTrip && (
-                                                                <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 mt-2">
-                                                                    <p className="text-xs text-blue-700 font-medium">
+                                                                <div className="bg-orange-50 border border-orange-200 rounded-lg p-2 mt-2">
+                                                                    <p className="text-xs text-orange-700 font-medium">
                                                                         Parking fees (if applicable) will be added to the final amount
                                                                     </p>
                                                                 </div>
@@ -653,7 +653,7 @@ const TaxiOptions: React.FC = () => {
                                             <button
                                                 onClick={handleProceedToPay}
                                                 disabled={isProceedDisabled()}
-                                                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3.5 px-6 rounded-xl hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 group mt-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                                                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3.5 px-6 rounded-xl hover:shadow-2xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 group mt-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                                             >
                                                 {checkoutLoading ? (
                                                     <>
@@ -676,7 +676,7 @@ const TaxiOptions: React.FC = () => {
                                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                                     <div className="p-4 border-b border-gray-200">
                                         <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                                            <Navigation className="h-5 w-5 text-blue-600" />
+                                            <Navigation className="h-5 w-5 text-orange-600" />
                                             Route Map
                                         </h2>
                                         <p className="text-gray-600 text-xs mt-1 truncate">
@@ -719,7 +719,7 @@ const TaxiOptions: React.FC = () => {
                                 <p className="text-xs text-gray-500 mb-1">Selected Vehicle</p>
                                 <p className="font-bold text-gray-900 truncate text-sm">{selectedTaxiData.name}</p>
                                 <p className="text-sm text-gray-600">
-                                    <span className="font-bold text-blue-600">
+                                    <span className="font-bold text-orange-600">
                                         GBP {calculatePrice(selectedTaxiData, distance, searchDetails.tripType)}
                                     </span>
                                 </p>
@@ -727,7 +727,7 @@ const TaxiOptions: React.FC = () => {
                             <button
                                 onClick={handleProceedToPay}
                                 disabled={isProceedDisabled()}
-                                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                             >
                                 {checkoutLoading ? (
                                     <>
@@ -745,8 +745,8 @@ const TaxiOptions: React.FC = () => {
 
                         {/* Parking Fee Notice - Only show for non-airport trips */}
                         {!isAirportTrip && (
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
-                                <p className="text-[10px] text-blue-700 font-medium text-center">
+                            <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
+                                <p className="text-[10px] text-orange-700 font-medium text-center">
                                     Parking fees (if applicable) will be added
                                 </p>
                             </div>

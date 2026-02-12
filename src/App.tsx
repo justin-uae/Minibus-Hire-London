@@ -19,6 +19,8 @@ import CoachHireServices from './Pages/CoachHireServices';
 import MinibusHireServices from './Pages/MinibusHireServices';
 import BlogListing from './Pages/BlogListing';
 import BlogDetail from './Pages/BlogDetail';
+import TermsAndConditions from './Pages/Termsandconditions';
+import PrivacyPolicy from './Pages/PrivacyPolicy';
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
             <Route path="/viewBlog/:slug" element={<BlogDetail />} />
             <Route path="/payment" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
           <Footer />
         </div>

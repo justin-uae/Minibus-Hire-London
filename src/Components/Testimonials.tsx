@@ -74,7 +74,7 @@ const Testimonials: React.FC = () => {
             <div className="container mx-auto px-4 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12 lg:mb-16">
-                    <div className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <div className="inline-block bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                         Testimonials
                     </div>
                     <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -94,7 +94,7 @@ const Testimonials: React.FC = () => {
                         >
                             {/* Quote Icon */}
                             <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                                <Quote className="h-16 w-16 text-blue-500" />
+                                <Quote className="h-16 w-16 text-orange-500" />
                             </div>
 
                             {/* Rating */}
@@ -102,7 +102,7 @@ const Testimonials: React.FC = () => {
                                 {[...Array(testimonial.rating)].map((_, i) => (
                                     <Star
                                         key={i}
-                                        className="h-5 w-5 fill-blue-400 text-blue-400"
+                                        className="h-5 w-5 fill-orange-400 text-orange-400"
                                     />
                                 ))}
                             </div>
@@ -134,8 +134,8 @@ const Testimonials: React.FC = () => {
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-16 lg:mt-20">
-                    <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
-                        <div className="text-4xl lg:text-5xl font-bold text-blue-600 mb-2">
+                    <div className="text-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl">
+                        <div className="text-4xl lg:text-5xl font-bold text-orange-600 mb-2">
                             50K+
                         </div>
                         <p className="text-gray-700 font-semibold">
@@ -150,8 +150,8 @@ const Testimonials: React.FC = () => {
                             Coverage Areas
                         </p>
                     </div>
-                    <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
-                        <div className="text-4xl lg:text-5xl font-bold text-blue-600 mb-2">
+                    <div className="text-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl">
+                        <div className="text-4xl lg:text-5xl font-bold text-orange-600 mb-2">
                             150+
                         </div>
                         <p className="text-gray-700 font-semibold">

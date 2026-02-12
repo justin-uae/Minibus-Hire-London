@@ -8,14 +8,14 @@ const HowItWorks: React.FC = () => {
             icon: <Calendar className="h-8 w-8" />,
             title: "Pick Date & Time",
             description: "Select your pickup and return dates with flexible scheduling options",
-            color: "from-blue-400 to-blue-500"
+            color: "from-orange-400 to-orange-500"
         },
         {
             number: "02",
             icon: <Search className="h-8 w-8" />,
             title: "Choose Your Car",
             description: "Browse our extensive fleet and select the perfect vehicle for your needs",
-            color: "from-blue-400 to-blue-500"
+            color: "from-orange-400 to-orange-500"
         },
         {
             number: "03",
@@ -45,7 +45,7 @@ const HowItWorks: React.FC = () => {
             <div className="container mx-auto px-4 lg:px-8 relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-12 lg:mb-16">
-                    <div className="inline-block bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <div className="inline-block bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                         Simple Process
                     </div>
                     <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
@@ -71,9 +71,9 @@ const HowItWorks: React.FC = () => {
                             )}
 
                             {/* Step Card */}
-                            <div className="relative bg-gradient-to-br from-gray-800 to-gray-700 rounded-2xl p-6 lg:p-8 border border-gray-600 hover:border-blue-500 transition-all duration-300 hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-blue-500/20">
+                            <div className="relative bg-gradient-to-br from-gray-800 to-gray-700 rounded-2xl p-6 lg:p-8 border border-gray-600 hover:border-orange-500 transition-all duration-300 hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-orange-500/20">
                                 {/* Step Number */}
-                                <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
                                     {step.number}
                                 </div>
 

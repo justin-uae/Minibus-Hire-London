@@ -29,7 +29,7 @@ const MobileBookingBar: React.FC<MobileBookingBarProps> = ({ selectedTaxi, dista
                         </div>
                         <button
                             onClick={onBookNow}
-                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg text-sm"
+                            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg text-sm"
                         >
                             Book Now
                         </button>

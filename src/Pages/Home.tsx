@@ -4,6 +4,7 @@ import PopularCars from '../Components/PopularCars';
 import HowItWorks from '../Components/HowItWorks';
 import Testimonials from '../Components/Testimonials';
 import Homepage from '../Components/HomePage';
+import AboutService from '../Components/AboutService';
 
 const CompletePage: React.FC = () => {
     return (
@@ -19,9 +20,9 @@ const CompletePage: React.FC = () => {
 
             {/* How It Works Section */}
             <HowItWorks />
-
             {/* Testimonials Section */}
             <Testimonials />
+            <AboutService />
 
             {/* Footer */}
         </div>

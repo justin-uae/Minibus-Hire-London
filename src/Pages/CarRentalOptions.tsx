@@ -300,7 +300,7 @@ const CarRentalOptions: React.FC = () => {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                 <div className="text-center">
-                    <RefreshCw className="h-12 w-12 text-blue-600 animate-spin mx-auto mb-4" />
+                    <RefreshCw className="h-12 w-12 text-orange-600 animate-spin mx-auto mb-4" />
                     <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Available Cars</h2>
                     <p className="text-gray-600">Please wait while we fetch the latest options...</p>
                 </div>
@@ -319,7 +319,7 @@ const CarRentalOptions: React.FC = () => {
                     <div className="space-y-3">
                         <button
                             onClick={handleRetry}
-                            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
                             <RefreshCw className="h-5 w-5" />
                             Try Again
@@ -348,7 +348,7 @@ const CarRentalOptions: React.FC = () => {
                     </p>
                     <button
                         onClick={() => navigate('/')}
-                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all"
+                        className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all"
                     >
                         Change Search
                     </button>
@@ -365,8 +365,8 @@ const CarRentalOptions: React.FC = () => {
                     <div className="flex items-center justify-between gap-4">
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1">
-                                <div className="p-1.5 bg-blue-100 rounded-lg">
-                                    <Calendar className="h-4 w-4 text-blue-600" />
+                                <div className="p-1.5 bg-orange-100 rounded-lg">
+                                    <Calendar className="h-4 w-4 text-orange-600" />
                                 </div>
                                 <h1 className="text-base sm:text-lg font-bold text-gray-900 truncate">
                                     Daily Rental - {getRentalTypeDescription()}
@@ -386,7 +386,7 @@ const CarRentalOptions: React.FC = () => {
                         </div>
                         <button
                             onClick={handleEditSearch}
-                            className="px-3 sm:px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap"
+                            className="px-3 sm:px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap"
                         >
                             Edit
                         </button>
@@ -399,14 +399,14 @@ const CarRentalOptions: React.FC = () => {
                 {/* Header */}
                 <div className="mb-6">
                     <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-                        Available Cars <span className="text-blue-600">({filteredAndSortedCars.length})</span>
+                        Available Cars <span className="text-orange-600">({filteredAndSortedCars.length})</span>
                     </h2>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-600">
                         <p>
                             Professional driver included • {rentalDetails.passengers} passenger{rentalDetails.passengers > 1 ? 's' : ''}
                         </p>
                         <div className="flex items-center gap-2">
-                            <span className="text-sm bg-blue-50 px-3 py-1 rounded-full font-medium">
+                            <span className="text-sm bg-orange-50 px-3 py-1 rounded-full font-medium">
                                 {formatDateDisplay(rentalDetails.date)} • {rentalDetails.time}
                             </span>
                             <span className="text-sm text-gray-400">→</span>
@@ -425,7 +425,7 @@ const CarRentalOptions: React.FC = () => {
                                 key={filter}
                                 onClick={() => setActiveFilter(filter)}
                                 className={`px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${activeFilter === filter
-                                    ? 'bg-blue-500 text-white shadow-lg'
+                                    ? 'bg-orange-500 text-white shadow-lg'
                                     : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
                                     }`}
                             >
@@ -436,7 +436,7 @@ const CarRentalOptions: React.FC = () => {
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value as 'price' | 'rating' | 'passengers')}
-                        className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500"
                     >
                         <option value="price">Price: Low to High</option>
                         <option value="rating">Rating: High to Low</option>
@@ -445,7 +445,7 @@ const CarRentalOptions: React.FC = () => {
                 </div>
 
                 {/* Rental Info Banner */}
-                <div className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-4">
+                <div className="mb-6 bg-gradient-to-r from-orange-50 to-indigo-50 border-2 border-orange-200 rounded-xl p-4">
                     <div className="flex items-center justify-between">
                         <div>
                             <h3 className="font-bold text-gray-900 mb-1">{getRentalTypeDescription()}</h3>
@@ -461,11 +461,11 @@ const CarRentalOptions: React.FC = () => {
                         </div>
                         <div className="text-right">
                             <p className="text-xs text-gray-500">Total Duration</p>
-                            <p className="text-lg font-bold text-blue-600">
+                            <p className="text-lg font-bold text-orange-600">
                                 {rentalDetails.rentalHours.toFixed(1)} hours
                             </p>
                             {rentalDetails.rentalHours >= 24 && (
-                                <p className="text-xs text-blue-600 font-medium">
+                                <p className="text-xs text-orange-600 font-medium">
                                     ({Math.ceil(rentalDetails.rentalHours / 24)} days)
                                 </p>
                             )}
@@ -480,7 +480,7 @@ const CarRentalOptions: React.FC = () => {
                             key={car.id}
                             className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 transition-all duration-300 cursor-pointer ${selectedCar === car.id
                                 ? 'border-green-500 shadow-xl shadow-green-500/20'
-                                : 'border-gray-100 hover:border-blue-300'
+                                : 'border-gray-100 hover:border-orange-300'
                                 }`}
                         // onClick={() => setSelectedCar(car.id)}
                         >
@@ -492,7 +492,7 @@ const CarRentalOptions: React.FC = () => {
                                     className="w-full h-full object-cover"
                                 />
                                 {car.popular && (
-                                    <div className="absolute top-3 right-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                                    <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                                         Popular
                                     </div>
                                 )}
@@ -551,9 +551,9 @@ const CarRentalOptions: React.FC = () => {
 
                                 {/* Rating */}
                                 <div className="flex items-center gap-2 mb-3">
-                                    <div className="flex items-center gap-1 bg-blue-50 px-2 py-1 rounded-full">
-                                        <Star className="h-3.5 w-3.5 fill-blue-500 text-blue-500" />
-                                        <span className="text-xs font-bold text-blue-600">{car.rating}</span>
+                                    <div className="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-full">
+                                        <Star className="h-3.5 w-3.5 fill-orange-500 text-orange-500" />
+                                        <span className="text-xs font-bold text-orange-600">{car.rating}</span>
                                     </div>
                                     <span className="text-xs text-gray-500">{car.reviews} reviews</span>
                                 </div>
@@ -561,41 +561,41 @@ const CarRentalOptions: React.FC = () => {
                                 {/* Specs */}
                                 <div className="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
                                     <div className="flex items-center gap-2">
-                                        <Users className="h-4 w-4 text-blue-600" />
+                                        <Users className="h-4 w-4 text-orange-600" />
                                         <span className="text-xs font-semibold text-gray-700">{car.passengers} Passengers</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <Briefcase className="h-4 w-4 text-blue-600" />
+                                        <Briefcase className="h-4 w-4 text-orange-600" />
                                         <span className="text-xs font-semibold text-gray-700">{car.luggage} Bags</span>
                                     </div>
                                 </div>
 
                                 {/* Driver Badge */}
-                                <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-50 to-amber-50 border border-blue-200 rounded-xl py-2 px-3 mb-3">
-                                    <svg className="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl py-2 px-3 mb-3">
+                                    <svg className="h-4 w-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
-                                    <span className="text-xs font-bold text-blue-700">Professional Driver Included</span>
+                                    <span className="text-xs font-bold text-orange-700">Professional Driver Included</span>
                                 </div>
 
                                 {/* Rental Type Badge */}
                                 <div className={`flex items-center justify-center gap-2 rounded-xl py-2 px-3 mb-3 ${rentalDetails.rentalHours <= 5
                                     ? 'bg-green-50 border border-green-200'
                                     : rentalDetails.rentalHours < 24
-                                        ? 'bg-blue-50 border border-blue-200'
-                                        : 'bg-blue-50 border border-blue-200'
+                                        ? 'bg-orange-50 border border-orange-200'
+                                        : 'bg-orange-50 border border-orange-200'
                                     }`}>
                                     <Clock className={`h-4 w-4 ${rentalDetails.rentalHours <= 5
                                         ? 'text-green-600'
                                         : rentalDetails.rentalHours < 24
-                                            ? 'text-blue-600'
-                                            : 'text-blue-600'
+                                            ? 'text-orange-600'
+                                            : 'text-orange-600'
                                         }`} />
                                     <span className={`text-xs font-bold ${rentalDetails.rentalHours <= 5
                                         ? 'text-green-700'
                                         : rentalDetails.rentalHours < 24
-                                            ? 'text-blue-700'
-                                            : 'text-blue-700'
+                                            ? 'text-orange-700'
+                                            : 'text-orange-700'
                                         }`}>
                                         {car.rentalType}
                                     </span>
@@ -628,7 +628,7 @@ const CarRentalOptions: React.FC = () => {
                                         }}
                                         className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${selectedCar === car.id
                                             ? 'bg-green-300 text-gray-700 hover:bg-green-300 '
-                                            : 'bg-blue-500 text-white shadow-lg'
+                                            : 'bg-orange-500 text-white shadow-lg'
                                             }`}
                                     >
                                         {selectedCar === car.id ? 'Selected' : 'Book'}
@@ -657,7 +657,7 @@ const CarRentalOptions: React.FC = () => {
                                 <p className="font-bold text-gray-900 truncate text-sm">{selectedCarData.name}</p>
                                 <div className="flex items-center gap-2">
                                     <p className="text-sm text-gray-600">
-                                        <span className="font-bold text-blue-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
+                                        <span className="font-bold text-orange-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
                                     </p>
                                     <span className="text-xs text-gray-400">•</span>
                                     <p className="text-xs text-gray-500">{selectedCarData.rentalType}</p>
@@ -666,7 +666,7 @@ const CarRentalOptions: React.FC = () => {
                             <button
                                 onClick={handleProceedToPay}
                                 disabled={checkoutLoading}
-                                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-50 text-sm"
+                                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-50 text-sm"
                             >
                                 {checkoutLoading ? (
                                     <>
@@ -687,9 +687,9 @@ const CarRentalOptions: React.FC = () => {
 
             {/* Desktop Booking Summary */}
             {!isMobile && selectedCarData && (
-                <div className="fixed bottom-8 right-8 bg-white rounded-2xl shadow-2xl border-2 border-blue-500 z-50 max-w-md overflow-hidden animate-slideIn">
+                <div className="fixed bottom-8 right-8 bg-white rounded-2xl shadow-2xl border-2 border-orange-500 z-50 max-w-md overflow-hidden animate-slideIn">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
+                    <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4">
                         <div className="flex items-center justify-between">
                             <h3 className="text-lg font-bold text-white">Booking Summary</h3>
                             <button
@@ -720,7 +720,7 @@ const CarRentalOptions: React.FC = () => {
                                     <p className="font-bold text-gray-900">{selectedCarData.name}</p>
                                     <p className="text-xs text-gray-500">{selectedCarData.type}</p>
                                     <div className="flex items-center gap-1 mt-1">
-                                        <Star className="h-3 w-3 fill-blue-500 text-blue-500" />
+                                        <Star className="h-3 w-3 fill-orange-500 text-orange-500" />
                                         <span className="text-xs font-semibold text-gray-700">{selectedCarData.rating}</span>
                                     </div>
                                 </div>
@@ -728,10 +728,10 @@ const CarRentalOptions: React.FC = () => {
                         </div>
 
                         {/* Rental Details */}
-                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-4 mb-4">
+                        <div className="bg-gradient-to-r from-orange-50 to-indigo-50 border-2 border-orange-200 rounded-xl p-4 mb-4">
                             <div className="flex items-center justify-between mb-3">
                                 <span className="text-sm font-semibold text-gray-700">Rental Type</span>
-                                <span className="text-sm font-bold text-blue-600">{getRentalTypeDescription()}</span>
+                                <span className="text-sm font-bold text-orange-600">{getRentalTypeDescription()}</span>
                             </div>
                             <div className="space-y-2 text-sm">
                                 <div className="flex items-center justify-between">
@@ -789,7 +789,7 @@ const CarRentalOptions: React.FC = () => {
                             <div className="mt-4 pt-4 border-t border-gray-200">
                                 <div className="flex items-center justify-between">
                                     <span className="text-base font-bold text-gray-900">Total Amount</span>
-                                    <span className="text-2xl font-bold text-blue-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
+                                    <span className="text-2xl font-bold text-orange-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
                                 </div>
                             </div>
                         </div>
@@ -798,7 +798,7 @@ const CarRentalOptions: React.FC = () => {
                         <button
                             onClick={handleProceedToPay}
                             disabled={checkoutLoading}
-                            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {checkoutLoading ? (
                                 <>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Clock, User, Tag, ChevronLeft, Share2, Bus, Loader, AlertCircle } from 'lucide-react';
 import { fetchBlogPostBySlug, fetchBlogPosts, type BlogPost } from '../services/shopifyClient';
+import BookingForm from '../Components/BookingForm';
 
 export default function BlogDetail() {
     const { slug } = useParams<{ slug: string }>();
@@ -68,13 +69,13 @@ export default function BlogDetail() {
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
             {/* Breadcrumb */}
             <div className="border-b border-gray-200 bg-white shadow-sm">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                        <Link to="/" className="hover:text-blue-600 font-medium transition-colors">
+                        <Link to="/" className="hover:text-orange-600 font-medium transition-colors">
                             Home
                         </Link>
                         <span className="text-gray-400">→</span>
-                        <Link to="/blogs" className="hover:text-blue-600 font-medium transition-colors">
+                        <Link to="/blogs" className="hover:text-orange-600 font-medium transition-colors">
                             Blog
                         </Link>
                         <span className="text-gray-400">→</span>
@@ -83,135 +84,179 @@ export default function BlogDetail() {
                 </div>
             </div>
 
-            {/* Article */}
-            <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
-                {/* Header */}
-                <header className="mb-8">
-                    <div className="flex items-center gap-3 mb-4">
-                        <span className="inline-block bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg">
-                            {blog.category}
-                        </span>
-                    </div>
+            {/* Main Content - Two Column Layout */}
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+                    {/* Left Column - Blog Content */}
+                    <div className="lg:col-span-6 xl:col-span-7">
+                        <article>
+                            {/* Header */}
+                            <header className="mb-8">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <span className="inline-block bg-gradient-to-r from-orange-600 to-orange-700 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg">
+                                        {blog.category}
+                                    </span>
+                                </div>
 
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
-                        {blog.title}
-                    </h1>
+                                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
+                                    {blog.title}
+                                </h1>
 
-                    {/* Meta Info */}
-                    <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-gray-600 mb-6">
-                        <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                <User className="w-4 h-4 text-blue-600" />
-                            </div>
-                            <span className="font-semibold text-gray-900">{blog.author}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                                <Clock className="w-4 h-4 text-purple-600" />
-                            </div>
-                            <span className="font-medium">{blog.readTime}</span>
-                        </div>
-                        <button
-                            onClick={handleShare}
-                            className="flex items-center gap-2 ml-auto px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl transition-all font-semibold shadow-lg hover:shadow-xl hover:scale-105"
-                        >
-                            <Share2 className="w-4 h-4" />
-                            Share
-                        </button>
-                    </div>
+                                {/* Meta Info */}
+                                <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-gray-600 mb-6">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                                            <User className="w-4 h-4 text-orange-600" />
+                                        </div>
+                                        <span className="font-semibold text-gray-900">{blog.author}</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <Clock className="w-4 h-4 text-purple-600" />
+                                        </div>
+                                        <span className="font-medium">{blog.readTime}</span>
+                                    </div>
+                                    <button
+                                        onClick={handleShare}
+                                        className="flex items-center gap-2 ml-auto px-5 py-2.5 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white rounded-xl transition-all font-semibold shadow-lg hover:shadow-xl hover:scale-105"
+                                    >
+                                        <Share2 className="w-4 h-4" />
+                                        Share
+                                    </button>
+                                </div>
 
-                    {/* Author Info */}
-                    {blog.authorBio && (
-                        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-5 border-2 border-blue-200 shadow-lg">
-                            <div className="flex items-start gap-4">
-                                {blog.authorImage && (
-                                    <img
-                                        src={blog.authorImage}
-                                        alt={blog.author}
-                                        className="w-16 h-16 rounded-full object-cover border-2 border-blue-400 shadow-md"
-                                    />
+                                {/* Author Info */}
+                                {blog.authorBio && (
+                                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-5 border-2 border-orange-200 shadow-lg">
+                                        <div className="flex items-start gap-4">
+                                            {blog.authorImage && (
+                                                <img
+                                                    src={blog.authorImage}
+                                                    alt={blog.author}
+                                                    className="w-16 h-16 rounded-full object-cover border-2 border-orange-400 shadow-md"
+                                                />
+                                            )}
+                                            <div className="flex-1">
+                                                <h3 className="font-bold text-gray-900 text-sm mb-1">About {blog.author}</h3>
+                                                <p className="text-xs text-gray-700 leading-relaxed">{blog.authorBio}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 )}
-                                <div className="flex-1">
-                                    <h3 className="font-bold text-gray-900 text-sm mb-1">About {blog.author}</h3>
-                                    <p className="text-xs text-gray-700 leading-relaxed">{blog.authorBio}</p>
+                            </header>
+
+                            {/* Featured Image */}
+                            <div className="mb-8 sm:mb-12">
+                                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 border-gray-200">
+                                    <img
+                                        src={blog.image}
+                                        alt={blog.title}
+                                        className="w-full h-auto object-cover"
+                                        style={{ maxHeight: '500px' }}
+                                    />
                                 </div>
                             </div>
-                        </div>
-                    )}
-                </header>
 
-                {/* Featured Image */}
-                <div className="mb-8 sm:mb-12">
-                    <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 border-gray-200">
-                        <img
-                            src={blog.image}
-                            alt={blog.title}
-                            className="w-full h-auto object-cover"
-                            style={{ maxHeight: '500px' }}
-                        />
-                    </div>
-                </div>
-
-                {/* Content */}
-                <div className="prose prose-lg max-w-none mb-12">
-                    <div
-                        className="text-gray-800 leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: blog.contentHtml }}
-                    />
-                </div>
-
-                {/* Tags */}
-                {blog.tags.length > 0 && (
-                    <div className="mb-12 pb-8 border-b-2 border-gray-200">
-                        <div className="flex items-center gap-2 mb-4">
-                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                <Tag className="w-4 h-4 text-blue-600" />
-                            </div>
-                            <h3 className="font-bold text-gray-900 text-lg">Tags</h3>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                            {blog.tags.map((tag, index) => (
-                                <span
-                                    key={index}
-                                    className="inline-block bg-white hover:bg-blue-50 px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:text-blue-600 transition-all cursor-pointer border-2 border-gray-200 hover:border-blue-300 shadow-sm hover:shadow-md"
-                                >
-                                    #{tag}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {/* Related Posts */}
-                {relatedBlogs.length > 0 && (
-                    <div className="mt-12">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                            <Bus className="w-7 h-7 text-blue-600" />
-                            Related Articles
-                        </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {relatedBlogs.map((relatedBlog) => (
-                                <RelatedBlogCard
-                                    key={relatedBlog.id}
-                                    blog={relatedBlog}
-                                    onClick={() => navigate(`/viewBlog/${relatedBlog.slug}`)}
+                            {/* Content */}
+                            <div className="prose prose-lg max-w-none mb-12">
+                                <div
+                                    className="text-gray-800 leading-relaxed"
+                                    dangerouslySetInnerHTML={{ __html: blog.contentHtml }}
                                 />
-                            ))}
+                            </div>
+
+                            {/* Tags */}
+                            {blog.tags.length > 0 && (
+                                <div className="mb-12 pb-8 border-b-2 border-gray-200">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                                            <Tag className="w-4 h-4 text-orange-600" />
+                                        </div>
+                                        <h3 className="font-bold text-gray-900 text-lg">Tags</h3>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {blog.tags.map((tag, index) => (
+                                            <span
+                                                key={index}
+                                                className="inline-block bg-white hover:bg-orange-50 px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:text-orange-600 transition-all cursor-pointer border-2 border-gray-200 hover:border-orange-300 shadow-sm hover:shadow-md"
+                                            >
+                                                #{tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Related Posts */}
+                            {relatedBlogs.length > 0 && (
+                                <div className="mt-12">
+                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                        <Bus className="w-7 h-7 text-orange-600" />
+                                        Related Articles
+                                    </h2>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        {relatedBlogs.map((relatedBlog) => (
+                                            <RelatedBlogCard
+                                                key={relatedBlog.id}
+                                                blog={relatedBlog}
+                                                onClick={() => navigate(`/viewBlog/${relatedBlog.slug}`)}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Back to Blog Link */}
+                            <div className="mt-12 text-center lg:text-left">
+                                <Link
+                                    to="/blogs"
+                                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                                >
+                                    <ChevronLeft className="w-5 h-5" />
+                                    Back to All Articles
+                                </Link>
+                            </div>
+                        </article>
+                    </div>
+
+                    {/* Right Column - Booking Form (Sticky) */}
+                    <div className="lg:col-span-6 xl:col-span-5">
+                        <div className="lg:sticky lg:top-24">
+                            {/* Booking Form Section */}
+                            <BookingForm
+                                showTitle={false}
+                                className="shadow-2xl"
+                            />
+
+                            {/* Optional CTA Below Form */}
+                            <div className="mt-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border-2 border-orange-200 shadow-lg">
+                                <h3 className="font-bold text-gray-900 text-lg mb-2 flex items-center gap-2">
+                                    <Bus className="w-5 h-5 text-orange-600" />
+                                    Why Book With Us?
+                                </h3>
+                                <ul className="space-y-2 text-sm text-gray-700">
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-600 font-bold">✓</span>
+                                        <span>Professional drivers available 24/7</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-600 font-bold">✓</span>
+                                        <span>Premium fleet across UK</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-600 font-bold">✓</span>
+                                        <span>Best price guaranteed</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-600 font-bold">✓</span>
+                                        <span>Instant booking confirmation</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                )}
-
-                {/* Back to Blog Link */}
-                <div className="mt-12 text-center">
-                    <Link
-                        to="/blogs"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105"
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                        Back to All Articles
-                    </Link>
                 </div>
-            </article>
+            </div>
         </div>
     );
 }
@@ -220,7 +265,7 @@ export default function BlogDetail() {
 const RelatedBlogCard = ({ blog, onClick }: { blog: BlogPost; onClick: () => void }) => (
     <div
         onClick={onClick}
-        className="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-blue-300 hover:-translate-y-2"
+        className="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-orange-300 hover:-translate-y-2"
     >
         <div className="relative overflow-hidden h-40">
             <img
@@ -232,12 +277,12 @@ const RelatedBlogCard = ({ blog, onClick }: { blog: BlogPost; onClick: () => voi
         </div>
 
         <div className="p-4">
-            <div className="flex items-center gap-2 mb-2 text-xs text-blue-600">
+            <div className="flex items-center gap-2 mb-2 text-xs text-orange-600">
                 <Clock className="w-3.5 h-3.5" />
                 <span className="font-medium">{blog.readTime}</span>
             </div>
 
-            <h3 className="text-sm font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+            <h3 className="text-sm font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors line-clamp-2">
                 {blog.title}
             </h3>
 
@@ -250,13 +295,13 @@ const RelatedBlogCard = ({ blog, onClick }: { blog: BlogPost; onClick: () => voi
 const LoadingSkeleton = () => (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
         <div className="border-b border-gray-200 bg-white">
-            <div className="max-w-4xl mx-auto px-4 py-4">
+            <div className="container mx-auto px-4 py-4">
                 <div className="h-4 w-64 bg-gray-200 rounded animate-pulse"></div>
             </div>
         </div>
-        <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-12">
             <div className="flex flex-col items-center justify-center py-20">
-                <Loader className="h-16 w-16 text-blue-600 animate-spin mb-4" />
+                <Loader className="h-16 w-16 text-orange-600 animate-spin mb-4" />
                 <p className="text-gray-600 font-medium text-lg">Loading article...</p>
             </div>
         </div>
@@ -276,9 +321,9 @@ const NotFoundState = () => (
             </p>
             <Link
                 to="/blogs"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
             >
-                <ChevronLeft className="w-5 w-5" />
+                <ChevronLeft className="w-5 h-5" />
                 Browse All Articles
             </Link>
         </div>

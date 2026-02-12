@@ -24,7 +24,7 @@ const CoachHireServices: React.FC = () => {
         }).sort((a, b) => a.passengers - b.passengers)
 
     const stats = [
-        { icon: Bus, value: '3', label: 'Coach Sizes', color: 'from-blue-500 to-blue-600' },
+        { icon: Bus, value: '3', label: 'Coach Sizes', color: 'from-orange-500 to-orange-600' },
         { icon: Users, value: '56-72', label: 'Passengers', color: 'from-orange-500 to-orange-600' },
         { icon: Clock, value: '24/7', label: 'Available', color: 'from-green-500 to-green-600' },
         { icon: Shield, value: '100%', label: 'CRB Checked', color: 'from-purple-500 to-purple-600' }
@@ -41,7 +41,7 @@ const CoachHireServices: React.FC = () => {
             icon: Users,
             title: 'Large Group Capacity',
             description: 'Perfect for large groups with coaches accommodating 56, 64, and 72 passengers comfortably.',
-            color: 'bg-blue-100 text-blue-600'
+            color: 'bg-orange-100 text-orange-600'
         },
         {
             icon: MapPin,
@@ -63,7 +63,7 @@ const CoachHireServices: React.FC = () => {
             <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
                 <div className="container mx-auto px-4 py-20">
                     <div className="flex flex-col items-center justify-center py-20">
-                        <Loader className="h-16 w-16 text-blue-600 animate-spin mb-4" />
+                        <Loader className="h-16 w-16 text-orange-600 animate-spin mb-4" />
                         <p className="text-gray-600 font-medium text-lg">Loading our coach fleet...</p>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ const CoachHireServices: React.FC = () => {
                         <p className="text-gray-600 text-sm mb-6">{error}</p>
                         <button
                             onClick={() => dispatch(fetchTaxiProducts())}
-                            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl"
+                            className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl"
                         >
                             <RefreshCw className="h-5 w-5" />
                             Try Again
@@ -96,7 +96,7 @@ const CoachHireServices: React.FC = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
             {/* Hero Section */}
-            <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white py-20 md:py-28 overflow-hidden">
+            <div className="relative bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-28 overflow-hidden">
                 {/* Animated background elements */}
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
@@ -108,7 +108,7 @@ const CoachHireServices: React.FC = () => {
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 animate-fade-in">
                             Coach Hire Services
                         </h1>
-                        <p className="text-xl md:text-2xl text-blue-100 mb-8 animate-fade-in-delay">
+                        <p className="text-xl md:text-2xl text-orange-100 mb-8 animate-fade-in-delay">
                             Premium Large Group Transportation Across the UK
                         </p>
                         <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto animate-fade-in-delay-2">
@@ -138,7 +138,7 @@ const CoachHireServices: React.FC = () => {
 
 
             {/* Available Coaches Section */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 py-16 md:py-20">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 py-16 md:py-20">
                 <div className="container mx-auto px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="text-center mb-12">
@@ -155,7 +155,7 @@ const CoachHireServices: React.FC = () => {
                             <>
                                 <div className="mb-6 text-center">
                                     <p className="text-gray-600 font-medium">
-                                        Showing <span className="text-blue-600 font-bold">{coachProducts.length}</span> coach{coachProducts.length !== 1 ? 'es' : ''}
+                                        Showing <span className="text-orange-600 font-bold">{coachProducts.length}</span> coach{coachProducts.length !== 1 ? 'es' : ''}
                                     </p>
                                 </div>
 
@@ -163,7 +163,7 @@ const CoachHireServices: React.FC = () => {
                                     {coachProducts.map((coach) => (
                                         <div
                                             key={coach.id}
-                                            className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-blue-100 hover:border-blue-300"
+                                            className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-orange-100 hover:border-orange-300"
                                         >
                                             {/* Coach Image */}
                                             <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 h-56">
@@ -178,7 +178,7 @@ const CoachHireServices: React.FC = () => {
 
                                                 {/* Badges */}
                                                 {coach.popular && (
-                                                    <div className="absolute top-3 right-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">
+                                                    <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">
                                                         Most Popular
                                                     </div>
                                                 )}
@@ -187,7 +187,7 @@ const CoachHireServices: React.FC = () => {
                                                 </div>
 
                                                 {/* Passenger Count Badge */}
-                                                <div className="absolute bottom-3 left-3 bg-blue-600 text-white px-4 py-2 rounded-xl font-bold shadow-lg flex items-center gap-2">
+                                                <div className="absolute bottom-3 left-3 bg-orange-600 text-white px-4 py-2 rounded-xl font-bold shadow-lg flex items-center gap-2">
                                                     <Users className="h-5 w-5" />
                                                     <span className="text-lg">{coach.passengers} Seater</span>
                                                 </div>
@@ -197,13 +197,13 @@ const CoachHireServices: React.FC = () => {
                                             <div className="p-6">
                                                 {/* Name & Rating */}
                                                 <div className="mb-4">
-                                                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                                                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
                                                         {coach.name}
                                                     </h3>
                                                     <div className="flex items-center gap-2">
-                                                        <div className="flex items-center gap-1 bg-blue-50 px-3 py-1 rounded-full">
-                                                            <Star className="h-4 w-4 fill-blue-500 text-blue-500" />
-                                                            <span className="text-sm font-bold text-blue-600">
+                                                        <div className="flex items-center gap-1 bg-orange-50 px-3 py-1 rounded-full">
+                                                            <Star className="h-4 w-4 fill-orange-500 text-orange-500" />
+                                                            <span className="text-sm font-bold text-orange-600">
                                                                 {coach.rating}
                                                             </span>
                                                         </div>
@@ -217,8 +217,8 @@ const CoachHireServices: React.FC = () => {
                                                 <div className="space-y-3 mb-4 pb-4 border-b border-gray-200">
                                                     <div className="flex items-center justify-between">
                                                         <div className="flex items-center gap-2 text-gray-700">
-                                                            <div className="p-2 bg-blue-50 rounded-lg">
-                                                                <Users className="h-5 w-5 text-blue-600" />
+                                                            <div className="p-2 bg-orange-50 rounded-lg">
+                                                                <Users className="h-5 w-5 text-orange-600" />
                                                             </div>
                                                             <div>
                                                                 <p className="text-xs text-gray-500 font-medium">Passengers</p>
@@ -240,7 +240,7 @@ const CoachHireServices: React.FC = () => {
                                                 {/* Get Quote Button */}
 
                                                 <Link to="/contact"
-                                                    className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl text-center"
+                                                    className="block w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl text-center"
                                                 >
                                                     Get a Quote
                                                 </Link>
@@ -258,7 +258,7 @@ const CoachHireServices: React.FC = () => {
                                 </p>
                                 <button
                                     onClick={() => dispatch(fetchTaxiProducts())}
-                                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg"
+                                    className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg"
                                 >
                                     <RefreshCw className="h-5 w-5" />
                                     Refresh
@@ -302,19 +302,19 @@ const CoachHireServices: React.FC = () => {
             </div>
 
             {/* CTA Section */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-16">
+            <div className="bg-gradient-to-r from-orange-600 to-orange-700 text-white py-16">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
                             Ready to Book Your Coach?
                         </h2>
-                        <p className="text-xl text-blue-100 mb-8">
+                        <p className="text-xl text-orange-100 mb-8">
                             Get a quote for your large group travel needs. Professional service, competitive rates, and nationwide coverage guaranteed!
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
 
                             <Link to="/contact"
-                                className="bg-white text-blue-600 font-bold py-4 px-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2"
+                                className="bg-white text-orange-600 font-bold py-4 px-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2"
                             >
                                 <Bus className="h-5 w-5" />
                                 Get a Quote Now

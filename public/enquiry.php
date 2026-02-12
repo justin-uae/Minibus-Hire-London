@@ -46,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Configuration
-define('RECIPIENT_EMAIL', 'testing@globalweb.ae');
+define('RECIPIENT_EMAIL', 'info@minibushirelondon.org');
 define('SITE_NAME', 'Minibus Hire London');
-define('SITE_DOMAIN', 'minibushire.org');
+define('SITE_DOMAIN', 'minibushirelondon.org');
 
 // Get JSON data
 $json = file_get_contents('php://input');
@@ -220,7 +220,7 @@ $emailBody = "
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .header { 
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); 
+            background: linear-gradient(135deg, #e67a0d 0%, #e26f11 100%); 
             color: white; 
             padding: 30px; 
             text-align: center; 
@@ -246,11 +246,11 @@ $emailBody = "
             padding: 12px 20px;
             margin: 0 -30px 25px -30px;
             font-weight: 700;
-            color: #1e40af;
+            color: #e67a0d;
             text-transform: uppercase;
             font-size: 13px;
             letter-spacing: 0.5px;
-            border-left: 4px solid #3b82f6;
+            border-left: 4px solid #e67a0d;
         }
         .field { 
             margin-bottom: 18px;
@@ -264,7 +264,7 @@ $emailBody = "
         }
         .label { 
             font-weight: 600; 
-            color: #2563eb; 
+            color: #e67a0d; 
             text-transform: uppercase; 
             font-size: 11px; 
             letter-spacing: 0.5px;
@@ -275,7 +275,7 @@ $emailBody = "
             background: #f9fafb; 
             padding: 12px 15px; 
             border-radius: 8px; 
-            border-left: 4px solid #3b82f6;
+            border-left: 4px solid #e67a0d;
             color: #1f2937;
             word-wrap: break-word;
         }
@@ -290,7 +290,7 @@ $emailBody = "
             margin: 5px 0;
         }
         .email-link {
-            color: #3b82f6;
+            color: #e67a0d;
             text-decoration: none;
             font-weight: 600;
         }
@@ -323,12 +323,12 @@ $emailBody = "
 <body>
     <div class='container'>
         <div class='header'>
-            <h1>🚌 New Transport Enquiry</h1>
+            <h1>New Transport Enquiry</h1>
             <div class='service-type'>{$serviceTypeDisplay}</div>
         </div>
         <div class='content'>
             <div class='urgent-notice'>
-                <strong>⏰ New Booking Enquiry</strong><br>
+                <strong>New Booking Enquiry</strong><br>
                 A customer has requested a quote. Please respond within 2 hours for best conversion rates.
             </div>
 
@@ -372,7 +372,7 @@ $emailBody = "
         </div>
         <div class='footer'>
             <p><strong>" . SITE_NAME . "</strong></p>
-            <p><a href='https://" . SITE_DOMAIN . "' style='color: #3b82f6; text-decoration: none;'>" . SITE_DOMAIN . "</a></p>
+            <p><a href='https://" . SITE_DOMAIN . "' style='color: #e67a0d; text-decoration: none;'>" . SITE_DOMAIN . "</a></p>
             <p style='margin-top: 15px; font-size: 11px;'>
                 This email was automatically generated from your transport booking enquiry form.
             </p>

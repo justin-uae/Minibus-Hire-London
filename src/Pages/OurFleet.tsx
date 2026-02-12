@@ -46,10 +46,10 @@ const OurFleet: React.FC = () => {
     // Loading state
     if (loading && !initialized) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-16">
+            <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 pt-16">
                 <div className="container mx-auto px-4 py-20">
                     <div className="flex flex-col items-center justify-center py-20">
-                        <Loader className="h-16 w-16 text-blue-600 animate-spin mb-4" />
+                        <Loader className="h-16 w-16 text-orange-600 animate-spin mb-4" />
                         <p className="text-gray-600 font-medium text-lg">Loading our fleet...</p>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ const OurFleet: React.FC = () => {
     // Error state
     if (error && !loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-16">
+            <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 pt-16">
                 <div className="container mx-auto px-4 py-20">
                     <div className="flex flex-col items-center justify-center py-20">
                         <AlertCircle className="h-16 w-16 text-red-500 mb-4" />
@@ -68,7 +68,7 @@ const OurFleet: React.FC = () => {
                         <p className="text-gray-600 text-sm mb-6">{error}</p>
                         <button
                             onClick={() => dispatch(fetchTaxiProducts())}
-                            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl"
+                            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl"
                         >
                             <RefreshCw className="h-5 w-5" />
                             Try Again
@@ -80,15 +80,15 @@ const OurFleet: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-16">
+        <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 pt-16">
             {/* Hero Section */}
-            <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-16 md:py-20">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-16 md:py-20">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                             Our Fleet
                         </h1>
-                        <p className="text-lg md:text-xl text-blue-100">
+                        <p className="text-lg md:text-xl text-orange-100">
                             Discover our wide range of vehicles - from economy to luxury
                         </p>
                     </div>
@@ -112,7 +112,7 @@ const OurFleet: React.FC = () => {
                                         key={type}
                                         onClick={() => setFilterType(type)}
                                         className={`px-4 py-2 rounded-xl font-medium transition-all text-sm ${filterType === type
-                                            ? 'bg-blue-500 text-white shadow-lg'
+                                            ? 'bg-orange-500 text-white shadow-lg'
                                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                             }`}
                                     >
@@ -130,7 +130,7 @@ const OurFleet: React.FC = () => {
                             <select
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value)}
-                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 font-medium"
+                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 font-medium"
                             >
                                 <option value="passengers-low">Least Passengers</option>
                                 <option value="popular">Most Popular</option>
@@ -146,11 +146,11 @@ const OurFleet: React.FC = () => {
                     {filterType !== 'all' && (
                         <div className="mt-4 flex items-center gap-2">
                             <span className="text-sm text-gray-600">Active filter:</span>
-                            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                            <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
                                 {filterType}
                                 <button
                                     onClick={() => setFilterType('all')}
-                                    className="hover:bg-blue-200 rounded-full p-0.5 transition-colors"
+                                    className="hover:bg-orange-200 rounded-full p-0.5 transition-colors"
                                 >
                                     <X className="h-3 w-3" />
                                 </button>
@@ -162,7 +162,7 @@ const OurFleet: React.FC = () => {
                 {/* Results Count */}
                 <div className="mb-6">
                     <p className="text-gray-600 font-medium">
-                        Showing <span className="text-blue-600 font-bold">{filteredProducts.length}</span> vehicle{filteredProducts.length !== 1 ? 's' : ''}
+                        Showing <span className="text-orange-600 font-bold">{filteredProducts.length}</span> vehicle{filteredProducts.length !== 1 ? 's' : ''}
                         {filterType !== 'all' && ` in ${filterType} category`}
                     </p>
                 </div>
@@ -173,7 +173,7 @@ const OurFleet: React.FC = () => {
                         {filteredProducts.map((car) => (
                             <div
                                 key={car.id}
-                                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-blue-200"
+                                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-orange-200"
                             >
                                 {/* Car Image */}
                                 <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 h-40 sm:h-44">
@@ -188,7 +188,7 @@ const OurFleet: React.FC = () => {
 
                                     {/* Badges */}
                                     {car.popular && (
-                                        <div className="absolute top-2 right-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold shadow-lg">
+                                        <div className="absolute top-2 right-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold shadow-lg">
                                             Popular
                                         </div>
                                     )}
@@ -201,13 +201,13 @@ const OurFleet: React.FC = () => {
                                 <div className="p-4">
                                     {/* Name & Rating */}
                                     <div className="mb-3">
-                                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors line-clamp-1">
                                             {car.name}
                                         </h3>
                                         <div className="flex items-center gap-2 flex-wrap">
-                                            <div className="flex items-center gap-1 bg-blue-50 px-2 py-1 rounded-full">
-                                                <Star className="h-3 w-3 fill-blue-500 text-blue-500" />
-                                                <span className="text-xs font-bold text-blue-600">
+                                            <div className="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-full">
+                                                <Star className="h-3 w-3 fill-orange-500 text-orange-500" />
+                                                <span className="text-xs font-bold text-orange-600">
                                                     {car.rating}
                                                 </span>
                                             </div>
@@ -221,8 +221,8 @@ const OurFleet: React.FC = () => {
                                     <div className="space-y-2 mb-3 pb-3 border-b border-gray-100">
                                         <div className="flex items-center justify-between gap-2">
                                             <div className="flex items-center gap-1.5 text-gray-700">
-                                                <div className="p-1.5 bg-blue-50 rounded-lg">
-                                                    <Users className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-blue-600" />
+                                                <div className="p-1.5 bg-orange-50 rounded-lg">
+                                                    <Users className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-orange-600" />
                                                 </div>
                                                 <span className="text-xs font-semibold">{car.passengers}</span>
                                             </div>
@@ -235,11 +235,11 @@ const OurFleet: React.FC = () => {
                                         </div>
 
                                         {/* Driver Included Badge */}
-                                        <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-50 to-amber-50 border-2 border-blue-200 rounded-xl py-2 px-3">
-                                            <svg className="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-200 rounded-xl py-2 px-3">
+                                            <svg className="h-4 w-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
-                                            <span className="text-xs font-bold text-blue-700">Professional Driver Included</span>
+                                            <span className="text-xs font-bold text-orange-700">Professional Driver Included</span>
                                         </div>
                                     </div>
 
@@ -259,7 +259,7 @@ const OurFleet: React.FC = () => {
                         {filterType !== 'all' && (
                             <button
                                 onClick={() => setFilterType('all')}
-                                className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg"
+                                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg"
                             >
                                 Clear Filters
                             </button>

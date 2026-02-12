@@ -105,7 +105,7 @@ const Register: React.FC = () => {
 
         if (strength <= 1) return { strength: 25, label: 'Weak', color: 'bg-red-500' };
         if (strength === 2) return { strength: 50, label: 'Fair', color: 'bg-yellow-500' };
-        if (strength === 3) return { strength: 75, label: 'Good', color: 'bg-blue-500' };
+        if (strength === 3) return { strength: 75, label: 'Good', color: 'bg-orange-500' };
         return { strength: 100, label: 'Strong', color: 'bg-green-500' };
     };
 
@@ -116,7 +116,7 @@ const Register: React.FC = () => {
             <div className="max-w-md w-full">
                 {/* Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg mb-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl shadow-lg mb-4">
                         <UserPlus className="h-8 w-8 text-white" />
                     </div>
                     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
@@ -147,7 +147,7 @@ const Register: React.FC = () => {
                                     onChange={handleChange}
                                     className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all ${errors.fullName
                                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                        : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+                                        : 'border-gray-200 focus:border-orange-500 focus:ring-orange-500/20'
                                         }`}
                                     placeholder="John Doe"
                                 />
@@ -177,7 +177,7 @@ const Register: React.FC = () => {
                                     onChange={handleChange}
                                     className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all ${errors.email
                                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                        : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+                                        : 'border-gray-200 focus:border-orange-500 focus:ring-orange-500/20'
                                         }`}
                                     placeholder="you@example.com"
                                 />
@@ -207,7 +207,7 @@ const Register: React.FC = () => {
                                     onChange={handleChange}
                                     className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all ${errors.phone
                                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                        : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+                                        : 'border-gray-200 focus:border-orange-500 focus:ring-orange-500/20'
                                         }`}
                                     placeholder="+971 50 123 4567"
                                 />
@@ -237,7 +237,7 @@ const Register: React.FC = () => {
                                     onChange={handleChange}
                                     className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all ${errors.password
                                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                        : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+                                        : 'border-gray-200 focus:border-orange-500 focus:ring-orange-500/20'
                                         }`}
                                     placeholder="Create a strong password"
                                 />
@@ -256,7 +256,7 @@ const Register: React.FC = () => {
                                     <div className="flex items-center justify-between mb-1">
                                         <span className="text-xs text-gray-600">Password strength:</span>
                                         <span className={`text-xs font-semibold ${passwordStrength.strength === 100 ? 'text-green-600' :
-                                            passwordStrength.strength >= 75 ? 'text-blue-600' :
+                                            passwordStrength.strength >= 75 ? 'text-orange-600' :
                                                 passwordStrength.strength >= 50 ? 'text-yellow-600' :
                                                     'text-red-600'
                                             }`}>
@@ -299,7 +299,7 @@ const Register: React.FC = () => {
                                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
                                         : formData.confirmPassword && formData.password === formData.confirmPassword
                                             ? 'border-green-300 focus:border-green-500 focus:ring-green-500/20'
-                                            : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500/20'
+                                            : 'border-gray-200 focus:border-orange-500 focus:ring-orange-500/20'
                                         }`}
                                     placeholder="Confirm your password"
                                 />
@@ -332,15 +332,15 @@ const Register: React.FC = () => {
                                     type="checkbox"
                                     checked={acceptTerms}
                                     onChange={(e) => setAcceptTerms(e.target.checked)}
-                                    className="w-4 h-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                    className="w-4 h-4 mt-1 text-orange-600 border-gray-300 rounded focus:ring-orange-500 focus:ring-2"
                                 />
                                 <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
                                     I agree to the{' '}
-                                    <Link to="/terms" className="text-blue-600 hover:text-blue-700 font-medium">
+                                    <Link to="/terms" className="text-orange-600 hover:text-orange-700 font-medium">
                                         Terms and Conditions
                                     </Link>{' '}
                                     and{' '}
-                                    <Link to="/privacy" className="text-blue-600 hover:text-blue-700 font-medium">
+                                    <Link to="/privacy" className="text-orange-600 hover:text-orange-700 font-medium">
                                         Privacy Policy
                                     </Link>
                                 </label>
@@ -357,7 +357,7 @@ const Register: React.FC = () => {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3.5 rounded-xl hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3.5 rounded-xl hover:shadow-2xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
                         >
                             {isLoading ? (
                                 <>
@@ -377,7 +377,7 @@ const Register: React.FC = () => {
                 {/* Login Link */}
                 <p className="text-center mt-6 text-gray-600">
                     Already have an account?{' '}
-                    <Link to="/login" className="text-blue-600 hover:text-blue-700 font-semibold">
+                    <Link to="/login" className="text-orange-600 hover:text-orange-700 font-semibold">
                         Sign in here
                     </Link>
                 </p>

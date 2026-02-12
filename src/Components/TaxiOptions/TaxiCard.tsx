@@ -43,7 +43,7 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
     if (isMobile) {
         return (
             <div
-                className={`bg-white rounded-lg overflow-hidden shadow-md ${isSelected ? 'border-2 border-blue-500' : 'border border-gray-200'}`}
+                className={`bg-white rounded-lg overflow-hidden shadow-md ${isSelected ? 'border-2 border-orange-500' : 'border border-gray-200'}`}
                 onClick={handleCardClick}
             >
                 <div className="p-3">
@@ -71,7 +71,7 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
                                     {taxi.name}
                                 </h3>
                                 <div className="flex items-center gap-1">
-                                    <Star className="h-3 w-3 fill-blue-400 text-blue-400" />
+                                    <Star className="h-3 w-3 fill-orange-400 text-orange-400" />
                                     <span className="text-xs font-semibold">{taxi.rating}</span>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
                                     onClick={handleBookClick}
                                     className={`px-3 py-1.5 rounded-lg text-xs font-bold ${isSelected
                                         ? 'bg-green-600 text-white'
-                                        : 'bg-blue-500 text-white'}`}
+                                        : 'bg-orange-500 text-white'}`}
                                 >
                                     {isSelected ? 'Selected' : 'Select'}
                                 </button>
@@ -137,8 +137,8 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
     return (
         <div
             className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${isSelected
-                ? 'border-blue-500 ring-2 ring-blue-100'
-                : 'border-transparent hover:border-blue-200'}`}
+                ? 'border-orange-500 ring-2 ring-orange-100'
+                : 'border-transparent hover:border-orange-200'}`}
             onClick={handleCardClick}
         >
             <div className="p-6">
@@ -155,7 +155,7 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
                                 {taxi.type}
                             </div>
                             {taxi.popular && (
-                                <div className="absolute top-3 right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                                     Popular
                                 </div>
                             )}
@@ -183,7 +183,7 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
 
                                 <div className="flex items-center gap-4 mb-3">
                                     <div className="flex items-center gap-1">
-                                        <Star className="h-4 w-4 fill-blue-400 text-blue-400" />
+                                        <Star className="h-4 w-4 fill-orange-400 text-orange-400" />
                                         <span className="font-semibold text-gray-900">{taxi.rating}</span>
                                         <span className="text-gray-500 text-sm">({taxi.reviews.toLocaleString()})</span>
                                     </div>
@@ -252,7 +252,7 @@ const TaxiCard: React.FC<TaxiCardProps> = ({
                                     onClick={handleBookClick}
                                     className={`px-6 py-3 rounded-xl font-bold transition-all duration-200 ${isSelected
                                         ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg'
-                                        : 'bg-blue-500 hover:bg-blue-600 text-white shadow-md hover:shadow-lg'}`}
+                                        : 'bg-orange-500 hover:bg-orange-600 text-white shadow-md hover:shadow-lg'}`}
                                 >
                                     {isSelected ? 'Transport Selected' : 'Select This Transport'}
                                 </button>

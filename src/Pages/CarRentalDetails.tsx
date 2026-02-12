@@ -502,7 +502,7 @@ Please provide me with pricing options and availability.`;
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center pt-16">
                 <div className="text-center">
-                    <RefreshCw className="h-12 w-12 text-blue-600 animate-spin mx-auto mb-4" />
+                    <RefreshCw className="h-12 w-12 text-orange-600 animate-spin mx-auto mb-4" />
                     <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Vehicle Details</h2>
                     <p className="text-gray-600">Please wait...</p>
                 </div>
@@ -520,7 +520,7 @@ Please provide me with pricing options and availability.`;
                     <p className="text-gray-600 mb-6">The vehicle you're looking for doesn't exist or is no longer available.</p>
                     <button
                         onClick={() => navigate('/')}
-                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all"
+                        className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all"
                     >
                         Back to Home
                     </button>
@@ -535,7 +535,7 @@ Please provide me with pricing options and availability.`;
                 {/* Back Button */}
                 <button
                     onClick={() => navigate('/')}
-                    className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 font-semibold mb-6 transition-colors"
+                    className="inline-flex items-center gap-2 text-gray-600 hover:text-orange-600 font-semibold mb-6 transition-colors"
                 >
                     <ArrowLeft className="h-5 w-5" />
                     Back to Fleet
@@ -554,7 +554,7 @@ Please provide me with pricing options and availability.`;
                                     className="w-full h-full object-cover"
                                 />
                                 {selectedCar?.popular && (
-                                    <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                                    <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                                         Popular Choice
                                     </div>
                                 )}
@@ -567,18 +567,18 @@ Please provide me with pricing options and availability.`;
                                         <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">{selectedCar?.name}</h1>
                                         <p className="text-sm sm:text-base lg:text-lg text-gray-600">{selectedCar?.type}</p>
                                     </div>
-                                    <div className="flex items-center gap-2 bg-blue-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl w-fit">
-                                        <Star className="h-4 w-4 sm:h-5 sm:w-5 fill-blue-500 text-blue-500" />
-                                        <span className="text-base sm:text-lg font-bold text-blue-600">{selectedCar?.rating}</span>
+                                    <div className="flex items-center gap-2 bg-orange-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl w-fit">
+                                        <Star className="h-4 w-4 sm:h-5 sm:w-5 fill-orange-500 text-orange-500" />
+                                        <span className="text-base sm:text-lg font-bold text-orange-600">{selectedCar?.rating}</span>
                                         <span className="text-xs sm:text-sm text-gray-500">({selectedCar?.reviews})</span>
                                     </div>
                                 </div>
 
                                 {/* Specifications */}
                                 <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                                    <div className="bg-blue-50 rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
-                                        <div className="p-2 sm:p-3 bg-blue-100 rounded-lg">
-                                            <Users className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-blue-600" />
+                                    <div className="bg-orange-50 rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
+                                        <div className="p-2 sm:p-3 bg-orange-100 rounded-lg">
+                                            <Users className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-600" />
                                         </div>
                                         <div>
                                             <p className="text-xs sm:text-sm text-gray-600">Passengers</p>
@@ -600,7 +600,7 @@ Please provide me with pricing options and availability.`;
                                 <div className="border-t border-gray-200 pt-4 sm:pt-6">
                                     <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Features & Amenities</h3>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                                        {['Air Conditioning', 'Automatic', 'GPS Navigation', 'Bluetooth', 'USB Charging', 'Child Seat Available'].map((feature) => (
+                                        {['Air Conditioning', 'Automatic', 'GPS Navigation', 'orangetooth', 'USB Charging', 'Child Seat Available'].map((feature) => (
                                             <div key={feature} className="flex items-center gap-2">
                                                 <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
                                                 <span className="text-xs sm:text-sm text-gray-700">{feature}</span>
@@ -627,12 +627,12 @@ Please provide me with pricing options and availability.`;
                                             type="button"
                                             onClick={() => setRentalType('fixed')}
                                             className={`py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl border-2 font-medium text-xs sm:text-sm transition-all duration-200 ${rentalType === 'fixed'
-                                                ? 'bg-gradient-to-r from-blue-50 to-blue-100 border-blue-500 text-blue-700 shadow-sm'
+                                                ? 'bg-gradient-to-r from-orange-50 to-orange-100 border-orange-500 text-orange-700 shadow-sm'
                                                 : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
                                                 }`}
                                         >
                                             <div className="flex flex-col items-center gap-1">
-                                                <CheckCircle className={`h-4 w-4 sm:h-5 sm:w-5 ${rentalType === 'fixed' ? 'text-blue-600' : 'text-gray-400'}`} />
+                                                <CheckCircle className={`h-4 w-4 sm:h-5 sm:w-5 ${rentalType === 'fixed' ? 'text-orange-600' : 'text-gray-400'}`} />
                                                 <span className="text-xs sm:text-sm">Yes, I know</span>
                                             </div>
                                         </button>
@@ -663,8 +663,8 @@ Please provide me with pricing options and availability.`;
                                 <div className="group">
                                     <div className="flex items-center justify-between mb-2">
                                         <label className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-gray-900">
-                                            <div className="p-1 sm:p-1.5 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-lg border border-blue-200">
-                                                <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+                                            <div className="p-1 sm:p-1.5 bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-lg border border-orange-200">
+                                                <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-orange-600" />
                                             </div>
                                             Pickup Location <span className="text-red-500">*</span>
                                         </label>
@@ -678,9 +678,9 @@ Please provide me with pricing options and availability.`;
                                                 value={rentalDetails.pickupLocation}
                                                 onChange={(e) => setRentalDetails(prev => ({ ...prev, pickupLocation: e.target.value }))}
                                                 required
-                                                className="relative w-full py-3 sm:py-4 pl-10 sm:pl-12 pr-10 sm:pr-12 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 text-sm sm:text-base text-gray-700 placeholder-gray-400 transition-all duration-200"
+                                                className="relative w-full py-3 sm:py-4 pl-10 sm:pl-12 pr-10 sm:pr-12 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 text-sm sm:text-base text-gray-700 placeholder-gray-400 transition-all duration-200"
                                             />
-                                            <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400 group-hover:text-blue-500 transition-colors duration-200" />
+                                            <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400 group-hover:text-orange-500 transition-colors duration-200" />
 
                                             <button
                                                 type="button"
@@ -690,9 +690,9 @@ Please provide me with pricing options and availability.`;
                                                 title="Use current location"
                                             >
                                                 {isGettingLocation ? (
-                                                    <div className="animate-spin rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 border-b-2 border-blue-600"></div>
+                                                    <div className="animate-spin rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 border-b-2 border-orange-600"></div>
                                                 ) : (
-                                                    <Locate className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-500 hover:text-blue-500" />
+                                                    <Locate className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-500 hover:text-orange-500" />
                                                 )}
                                             </button>
                                         </div>
@@ -821,8 +821,8 @@ Please provide me with pricing options and availability.`;
                                     <div className="group">
                                         <div className="flex items-center justify-between mb-2">
                                             <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                                                <div className="p-1.5 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-lg border border-blue-200">
-                                                    <Clock className="h-4 w-4 text-blue-600" />
+                                                <div className="p-1.5 bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-lg border border-orange-200">
+                                                    <Clock className="h-4 w-4 text-orange-600" />
                                                 </div>
                                                 Pickup Time
                                             </label>
@@ -831,7 +831,7 @@ Please provide me with pricing options and availability.`;
                                             <select
                                                 value={rentalDetails.pickupTime}
                                                 onChange={(e) => setRentalDetails(prev => ({ ...prev, pickupTime: e.target.value }))}
-                                                className="relative w-full py-4 px-4 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 text-gray-700 text-sm transition-all duration-200 appearance-none cursor-pointer font-medium"
+                                                className="relative w-full py-4 px-4 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 text-gray-700 text-sm transition-all duration-200 appearance-none cursor-pointer font-medium"
                                             >
                                                 {timeSlots.map((time) => (
                                                     <option key={time} value={time}>
@@ -976,8 +976,8 @@ Please provide me with pricing options and availability.`;
                                         <div className="group">
                                             <div className="flex items-center justify-between mb-2">
                                                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                                                    <div className="p-1.5 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-lg border border-blue-200">
-                                                        <Clock className="h-4 w-4 text-blue-600" />
+                                                    <div className="p-1.5 bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-lg border border-orange-200">
+                                                        <Clock className="h-4 w-4 text-orange-600" />
                                                     </div>
                                                     Dropoff Time
                                                 </label>
@@ -986,7 +986,7 @@ Please provide me with pricing options and availability.`;
                                                 <select
                                                     value={rentalDetails.dropoffTime}
                                                     onChange={(e) => setRentalDetails(prev => ({ ...prev, dropoffTime: e.target.value }))}
-                                                    className="relative w-full py-4 px-4 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 text-gray-700 text-sm transition-all duration-200 appearance-none cursor-pointer font-medium"
+                                                    className="relative w-full py-4 px-4 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 text-gray-700 text-sm transition-all duration-200 appearance-none cursor-pointer font-medium"
                                                 >
                                                     {timeSlots.map((time) => (
                                                         <option key={time} value={time}>
@@ -1006,10 +1006,10 @@ Please provide me with pricing options and availability.`;
 
                                 {/* Number of Days Display - Only show for fixed rental type */}
                                 {rentalType === 'fixed' && (
-                                    <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
+                                    <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4">
                                         <div className="flex items-center justify-between">
                                             <span className="text-sm font-semibold text-gray-700">Rental Duration</span>
-                                            <span className="text-xl font-bold text-blue-600">
+                                            <span className="text-xl font-bold text-orange-600">
                                                 {rentalDetails.numberOfDays} {rentalDetails.numberOfDays === 1 ? 'Day' : 'Days'}
                                             </span>
                                         </div>
@@ -1018,9 +1018,9 @@ Please provide me with pricing options and availability.`;
 
                                 {/* Airport Information - Only show if airport trip */}
                                 {isAirportTrip && (
-                                    <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 space-y-4">
+                                    <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 space-y-4">
                                         <div className="flex items-center gap-2">
-                                            <Plane className="h-5 w-5 text-blue-600" />
+                                            <Plane className="h-5 w-5 text-orange-600" />
                                             <h4 className="font-bold text-gray-900">Airport Trip Information</h4>
                                         </div>
 
@@ -1030,10 +1030,10 @@ Please provide me with pricing options and availability.`;
                                                 type="checkbox"
                                                 checked={parkingAcknowledged}
                                                 onChange={(e) => setParkingAcknowledged(e.target.checked)}
-                                                className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                                                className="mt-1 h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500 cursor-pointer"
                                             />
                                             <div className="flex-1">
-                                                <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                                <p className="text-sm font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
                                                     I acknowledge that parking fees will be collected<span className="text-red-500">*</span>
                                                 </p>
                                                 <p className="text-xs text-gray-600 mt-1">
@@ -1052,7 +1052,7 @@ Please provide me with pricing options and availability.`;
                                                 value={flightNumber}
                                                 onChange={(e) => setFlightNumber(e.target.value.toUpperCase())}
                                                 placeholder="e.g., EK524, FZ123"
-                                                className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm font-medium uppercase"
+                                                className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm font-medium uppercase"
                                             />
                                             <p className="text-xs text-gray-500 mt-2">
                                                 Required for airport pickup tracking and driver coordination
@@ -1067,9 +1067,9 @@ Please provide me with pricing options and availability.`;
                     {/* Right Column - Booking Summary */}
                     <div className="lg:col-span-1">
                         <div className="bg-white rounded-2xl shadow-xl overflow-hidden sticky top-24">
-                            <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
+                            <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-6 text-white">
                                 <h3 className="text-xl font-bold mb-1">Booking Summary</h3>
-                                <p className="text-sm text-blue-100">Daily Rental</p>
+                                <p className="text-sm text-orange-100">Daily Rental</p>
                             </div>
 
                             <div className="p-6 space-y-4">
@@ -1093,7 +1093,7 @@ Please provide me with pricing options and availability.`;
                                     </div>
                                     <div className="border-t-2 border-gray-200 pt-3 flex justify-between">
                                         <span className="font-bold text-gray-900">Total Amount</span>
-                                        <span className="text-2xl font-bold text-blue-600">GBP {totalPrice}</span>
+                                        <span className="text-2xl font-bold text-orange-600">GBP {totalPrice}</span>
                                     </div>
                                 </div>
 
@@ -1127,7 +1127,7 @@ Please provide me with pricing options and availability.`;
                                     <button
                                         onClick={handleCheckout}
                                         disabled={!isFormValid() || checkoutLoading}
-                                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                                        className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 px-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                                     >
                                         {checkoutLoading ? (
                                             <>

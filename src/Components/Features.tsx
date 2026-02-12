@@ -7,13 +7,13 @@ const Features: React.FC = () => {
             icon: <Shield className="h-8 w-8" />,
             title: "CRB Checked Drivers",
             description: "All our drivers are fully CRB checked and professionally trained for your complete safety and peace of mind",
-            color: "from-blue-400 to-blue-500"
+            color: "from-orange-400 to-orange-500"
         },
         {
             icon: <Users className="h-8 w-8" />,
             title: "6 to 72 Passengers",
             description: "Extensive fleet of minibuses and coaches to accommodate any group size, from small parties to large events",
-            color: "from-blue-400 to-blue-500"
+            color: "from-orange-400 to-orange-500"
         },
         {
             icon: <Calendar className="h-8 w-8" />,
