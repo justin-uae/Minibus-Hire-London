@@ -18,7 +18,7 @@ const GET_PRODUCTS_QUERY = `
           description
           productType
           tags
-          variants(first: 40) {
+          variants(first: 100) {
             edges {
               node {
                 id
@@ -248,7 +248,7 @@ export async function fetchTaxiProducts(): Promise<TaxiOption[]> {
       headers,
       body: JSON.stringify({
         query: GET_PRODUCTS_QUERY,
-        variables: { first: 110 }
+        variables: { first: 200 }
       }),
     });
 
@@ -301,7 +301,7 @@ export async function fetchProductById(productId: string): Promise<TaxiOption | 
           id
           title
           description
-          variants(first: 10) {
+          variants(first: 80) {
             edges {
               node {
                 id
@@ -591,7 +591,7 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
       body: JSON.stringify({
         query: GET_BLOG_POSTS_QUERY,
         variables: {
-          first: 50,
+          first: 90,
           query: 'tag:blog OR product_type:Blog',
         },
       }),

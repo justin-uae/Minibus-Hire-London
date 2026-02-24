@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Clock, User, Bus, Search, X, Loader } from 'lucide-react';
 import { fetchBlogPosts, type BlogPost } from '../services/shopifyClient';
+import SEOHead from '../Components/SEOHead';
 
 export default function BlogListing() {
     const navigate = useNavigate();
@@ -52,104 +53,111 @@ export default function BlogListing() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
-            {/* Hero Section */}
-            <div className="relative bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-28 overflow-hidden">
-                {/* Animated background elements */}
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
-                    <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse delay-1000"></div>
-                    <Bus className="absolute top-20 right-20 w-32 h-32 text-white animate-pulse" />
-                    <Bus className="absolute bottom-20 left-20 w-40 h-40 text-white animate-bounce" style={{ animationDuration: '2.5s' }} />
-                </div>
+        <>
+            <SEOHead
+                title="Minibus Hire Blog - Tips, Guides & Travel Advice"
+                description="Read our latest articles on group travel, minibus hire tips, UK destinations, event transport guides and advice to help you plan your perfect journey."
+                keywords="minibus hire blog, group travel tips, coach hire advice, UK travel guide, minibus booking tips"
+                canonicalUrl="/blogs"
+            />
+            <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
+                {/* Hero Section */}
+                <div className="relative bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-28 overflow-hidden">
+                    {/* Animated background elements */}
+                    <div className="absolute inset-0 opacity-10">
+                        <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
+                        <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse delay-1000"></div>
+                        <Bus className="absolute top-20 right-20 w-32 h-32 text-white animate-pulse" />
+                        <Bus className="absolute bottom-20 left-20 w-40 h-40 text-white animate-bounce" style={{ animationDuration: '2.5s' }} />
+                    </div>
 
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center z-10">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 animate-fade-in">
-                        Minibus Hire <span className="text-orange-200">Blog</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-orange-100 mb-8 animate-fade-in-delay max-w-3xl mx-auto">
-                        Travel tips, guides, and insights for group transportation
-                    </p>
+                    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center z-10">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 animate-fade-in">
+                            Minibus Hire <span className="text-orange-200">Blog</span>
+                        </h1>
+                        <p className="text-xl md:text-2xl text-orange-100 mb-8 animate-fade-in-delay max-w-3xl mx-auto">
+                            Travel tips, guides, and insights for group transportation
+                        </p>
 
-                    {/* Search Bar */}
-                    <div className="max-w-2xl mx-auto w-full animate-fade-in-delay-2">
-                        <div className="relative group">
-                            <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-gray-400 group-focus-within:text-orange-600 transition-colors z-10" />
-                            <input
-                                type="text"
-                                placeholder="Search travel tips, guides, destinations..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="relative w-full pl-12 sm:pl-14 md:pl-16 pr-12 sm:pr-14 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl bg-white text-gray-900 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-4 focus:ring-orange-300 shadow-xl font-medium border-2 border-transparent focus:border-orange-400 transition-all"
-                            />
-                            {searchQuery && (
-                                <button
-                                    onClick={() => setSearchQuery('')}
-                                    className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-1.5 hover:bg-gray-100 rounded-full transition-colors z-10"
-                                >
-                                    <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-                                </button>
-                            )}
+                        {/* Search Bar */}
+                        <div className="max-w-2xl mx-auto w-full animate-fade-in-delay-2">
+                            <div className="relative group">
+                                <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-gray-400 group-focus-within:text-orange-600 transition-colors z-10" />
+                                <input
+                                    type="text"
+                                    placeholder="Search travel tips, guides, destinations..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="relative w-full pl-12 sm:pl-14 md:pl-16 pr-12 sm:pr-14 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl bg-white text-gray-900 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-4 focus:ring-orange-300 shadow-xl font-medium border-2 border-transparent focus:border-orange-400 transition-all"
+                                />
+                                {searchQuery && (
+                                    <button
+                                        onClick={() => setSearchQuery('')}
+                                        className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-1.5 hover:bg-gray-100 rounded-full transition-colors z-10"
+                                    >
+                                        <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
-                {/* Category Filter */}
-                {categories.length > 0 && (
-                    <div className="mb-8">
-                        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
-                            <button
-                                onClick={() => setSelectedCategory('')}
-                                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg hover:shadow-xl ${!selectedCategory
-                                    ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white'
-                                    : 'bg-white text-gray-900 border-2 border-gray-200 hover:border-orange-300'
-                                    }`}
-                            >
-                                All Posts
-                            </button>
-                            {categories.map((category) => (
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+                    {/* Category Filter */}
+                    {categories.length > 0 && (
+                        <div className="mb-8">
+                            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
                                 <button
-                                    key={category}
-                                    onClick={() => setSelectedCategory(category)}
-                                    className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg hover:shadow-xl ${selectedCategory === category
+                                    onClick={() => setSelectedCategory('')}
+                                    className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg hover:shadow-xl ${!selectedCategory
                                         ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white'
                                         : 'bg-white text-gray-900 border-2 border-gray-200 hover:border-orange-300'
                                         }`}
                                 >
-                                    {category}
+                                    All Posts
                                 </button>
+                                {categories.map((category) => (
+                                    <button
+                                        key={category}
+                                        onClick={() => setSelectedCategory(category)}
+                                        className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg hover:shadow-xl ${selectedCategory === category
+                                            ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white'
+                                            : 'bg-white text-gray-900 border-2 border-gray-200 hover:border-orange-300'
+                                            }`}
+                                    >
+                                        {category}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Results Count */}
+                    <div className="mb-6">
+                        <p className="text-gray-600 font-medium">
+                            Showing <span className="text-orange-600 font-bold text-lg">{filteredBlogs.length}</span>
+                            <span className="ml-1">{filteredBlogs.length === 1 ? 'article' : 'articles'}</span>
+                        </p>
+                    </div>
+
+                    {/* Blog Grid */}
+                    {filteredBlogs.length === 0 ? (
+                        <EmptyState searchQuery={searchQuery} onClear={() => { setSearchQuery(''); setSelectedCategory(''); }} />
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {filteredBlogs.map((blog) => (
+                                <BlogCard
+                                    key={blog.id}
+                                    blog={blog}
+                                    onClick={() => goToBlogDetail(blog.slug)} // Changed to use slug
+                                />
                             ))}
                         </div>
-                    </div>
-                )}
-
-                {/* Results Count */}
-                <div className="mb-6">
-                    <p className="text-gray-600 font-medium">
-                        Showing <span className="text-orange-600 font-bold text-lg">{filteredBlogs.length}</span>
-                        <span className="ml-1">{filteredBlogs.length === 1 ? 'article' : 'articles'}</span>
-                    </p>
+                    )}
                 </div>
 
-                {/* Blog Grid */}
-                {filteredBlogs.length === 0 ? (
-                    <EmptyState searchQuery={searchQuery} onClear={() => { setSearchQuery(''); setSelectedCategory(''); }} />
-                ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredBlogs.map((blog) => (
-                            <BlogCard
-                                key={blog.id}
-                                blog={blog}
-                                onClick={() => goToBlogDetail(blog.slug)} // Changed to use slug
-                            />
-                        ))}
-                    </div>
-                )}
-            </div>
-
-            <style>{`
+                <style>{`
                 @keyframes fade-in {
                     from {
                         opacity: 0;
@@ -199,7 +207,8 @@ export default function BlogListing() {
                     animation-delay: 1s;
                 }
             `}</style>
-        </div>
+            </div>
+        </>
     );
 }
 

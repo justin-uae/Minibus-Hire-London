@@ -1,5 +1,5 @@
 import type { CartItem } from '../store/slices/cartSlice';
-import { airportKeywords } from '../utils/common';
+import { airportKeywords, airportPostcodes } from '../utils/common';
 
 const SHOPIFY_DOMAIN = import.meta.env.VITE_SHOPIFY_DOMAIN;
 const STOREFRONT_ACCESS_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN;
@@ -14,44 +14,38 @@ interface ShopifyCartLineInput {
 /**
  * Check if a location is an airport
  */
-const isAirportLocation = (location: string): boolean => {
-    const normalizedLocation = location.toLowerCase().trim();
+export const isAirportLocation = (location: string): boolean => {
+    const normalized = location.toLowerCase().trim();
 
-    return airportKeywords.some(keyword => normalizedLocation.includes(keyword));
-};
-
-/**
- * Get exact parking fee variant ID for each specific vehicle type
- * Returns null if no matching parking fee is found
- */
-const getParkingFeeVariantId = (vehicleType: string): string | null => {
-    // Normalize the vehicle type (trim and lowercase for comparison)
-    const normalizedType = vehicleType.trim().toLowerCase();
-
-    const parkingFeeMap: { [key: string]: string } = {
-        'standard sedan': import.meta.env.VITE_PARKING_FEE_STANDARD_SEDAN,
-        'budget group transport': import.meta.env.VITE_PARKING_FEE_BUDGET_GROUP_TRANSPORT,
-        'luxury limousine': import.meta.env.VITE_PARKING_FEE_LUXURY_LIMOUSINE,
-        'luxury group transport': import.meta.env.VITE_PARKING_FEE_LUXURY_GROUP_TRANSPORT,
-        'luxury vip group transport': import.meta.env.VITE_PARKING_FEE_LUXURY_VIP_GROUP_TRANSPORT,
-        'executive minibus': import.meta.env.VITE_PARKING_FEE_EXECUTIVE_MINIBUS,
-        'executive minivan': import.meta.env.VITE_PARKING_FEE_EXECUTIVE_MINIVAN,
-        'luxury sedan': import.meta.env.VITE_PARKING_FEE_LUXURY_SEDAN,
-        'luxury suv': import.meta.env.VITE_PARKING_FEE_LUXURY_SUV,
-        'large group transport': import.meta.env.VITE_PARKING_FEE_LARGE_GROUP_TRANSPORT,
-        'vip luxury sedan': import.meta.env.VITE_PARKING_FEE_VIP_LUXURY_SEDAN,
-    };
-
-    const variantId = parkingFeeMap[normalizedType];
-
-    if (!variantId) {
-        console.warn(`No parking fee configured for vehicle type: "${vehicleType}"`);
-        return null;
+    // Layer 1: postcode matching (most reliable — catches Google's resolved addresses)
+    const postcodeMatch = normalized.match(/\b([a-z]{1,2}\d{1,2}[a-z]?)\b/);
+    if (postcodeMatch && airportPostcodes.includes(postcodeMatch[1])) {
+        return true;
     }
 
-    return variantId;
-};
+    // Layer 2: must contain the word "airport" or "terminal"
+    const hasAirportWord = normalized.includes('airport') || normalized.includes('terminal');
+    if (!hasAirportWord) return false;
 
+    // Layer 3: only then check specific keywords alongside airport word
+    return airportKeywords.some(keyword => normalized.includes(keyword));
+};
+/**
+ * Get parking fee variant ID based on passenger capacity parsed from vehicle type
+ * e.g. "8 Passenger" → 8
+ * ≤8 seats   → SMALL fee
+ * 9–16 seats  → MEDIUM fee
+ * 17–75 seats → LARGE fee
+ */
+const getParkingFeeVariantId = (passengers: number): string | null => {
+    if (passengers <= 8) {
+        return import.meta.env.VITE_PARKING_FEE_SMALL || null;
+    } else if (passengers <= 16) {
+        return import.meta.env.VITE_PARKING_FEE_MEDIUM || null;
+    } else {
+        return import.meta.env.VITE_PARKING_FEE_LARGE || null;
+    }
+};
 /**
  * Convert cart item to Shopify line input
  * 
@@ -200,7 +194,8 @@ export const createCart = async (
     let parkingFeeVariantId: string | null = null;
     if (isAirportTrip) {
         const vehicleType = cartItem.taxi.type || '';
-        parkingFeeVariantId = getParkingFeeVariantId(vehicleType);
+        // parkingFeeVariantId = getParkingFeeVariantId(vehicleType);
+        parkingFeeVariantId = getParkingFeeVariantId(cartItem.taxi.passengers);
 
         if (!parkingFeeVariantId) {
             console.warn(`⚠ No parking fee product found for vehicle type: ${vehicleType}`);

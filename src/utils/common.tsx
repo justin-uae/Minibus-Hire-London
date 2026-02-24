@@ -169,24 +169,127 @@ export const getCategoryText = (type: string) => {
     }
 };
 
-export const airportKeywords = [
+/**
+ * AIRPORT DETECTION STRATEGY
+ *
+ * Google Places resolves airport selections to their postal address, e.g.:
+ *   "Edinburgh Airport" → "Edinburgh EH12 9DN, UK"
+ *   "Heathrow Airport" → "Longford, Hounslow TW6 1EW, UK"
+ *
+ * We use TWO layers of detection:
+ *   1. airportPostcodes — exact UK airport postcodes (catches Google's resolved addresses)
+ *   2. airportKeywords — name/code keywords (catches typed or partially resolved addresses)
+ */
+
+export const airportPostcodes: string[] = [
+    // ── LONDON ──────────────────────────────────
+    'tw6',          // Heathrow (TW6 1EW / TW6 2GA etc.)
+    'rh6',          // Gatwick (RH6 0NP)
+    'cm24',         // Stansted (CM24 1QW)
+    'lu2',          // Luton (LU2 9QT)
+    'e16',          // London City (E16 2PX)
+    'ss2',          // Southend (SS2 6YF)
+
+    // ── ENGLAND ──────────────────────────────────
+    'b26',          // Birmingham (B26 3QJ)
+    'bs48',         // Bristol (BS48 3DY)
+    'ex5',          // Exeter (EX5 2BD)
+    'pl5',          // Plymouth City (PL5 2BQ -- closed, kept for legacy)
+    'me14',         // Rochester (ME14)
+    'tn29',         // Lydd (TN29 9QL)
+    'bn26',         // Shoreham (BN26)
+    'gu14',         // Farnborough (GU14 6XA)
+    'hp27',         // Wycombe Air Park
+    'sg6',          // London Luton satellite postcode
+    'po3',          // Portsmouth (PO3 5PJ)
+    'so18',         // Southampton (SO18 2NL)
+    'dh1',          // Durham Tees Valley
+    'dl2',          // Durham Tees Valley (DL2 1LU)
+    'ts18',         // Teesside
+    'ne13',         // Newcastle (NE13 8BZ)
+    'sr5',          // Sunderland / Wearside
+    'ls19',         // Leeds Bradford (LS19 7TU)
+    'dn9',          // Doncaster Sheffield / Robin Hood (DN9 3RH)
+    'hx4',          // Halifax / Calderdale
+    'm90',          // Manchester (M90 1QX)
+    'ch5',          // Hawarden / Chester (CH5 3FB)
+    'cv8',          // Coventry (CV8 3AZ)
+    'st18',         // Staffordshire (near Birmingham)
+    'kw1',          // Wick (KW1 4QT)
+    'tr9',          // Newquay Cornwall (TR9 6RJ)
+    'pl12',         // Bodmin / Cornwall
+
+    // ── SCOTLAND ─────────────────────────────────
+    'eh12',         // Edinburgh (EH12 9DN)
+    'eh28',         // Edinburgh Airport parking / nearby
+    'pa3',          // Glasgow International (PA3 2SW)
+    'ka9',          // Prestwick (KA9 2PL)
+    'ab21',         // Aberdeen (AB21 7DU)
+    'iv2',          // Inverness (IV2 7JB)
+    'dd2',          // Dundee (DD2)
+    'ph1',          // Perth Scone (PH1)
+    'ky11',         // Leuchars / St Andrews area
+    'hs1',          // Stornoway (HS1 2RB)
+    'pa31',         // Campbeltown / Machrihanish
+    'ze1',          // Sumburgh / Shetland (ZE1)
+    'ze3',          // Lerwick/Tingwall
+    'kw17',         // Kirkwall / Orkney
+    'gy1',          // Guernsey (GY1)
+    'je1',          // Jersey (JE1)
+
+    // ── WALES ────────────────────────────────────
+    'cf62',         // Cardiff (CF62 3BD)
+    'sa1',          // Swansea (SA1)
+    'll65',         // Anglesey (LL65 3NY)
+
+    // ── NORTHERN IRELAND ─────────────────────────
+    'bt3',          // Belfast City / George Best (BT3 9JH)
+    'bt29',         // Belfast International (BT29 4AB)
+    'bt94',         // Enniskillen (BT94)
+    'bt41',         // Antrim (near Belfast Intl)
+    'bt51',         // City of Derry / Londonderry (BT51)
+
+    // ── ISLE OF MAN ──────────────────────────────
+    'im4',          // Ronaldsway / IOM (IM4 1)
+];
+
+export const airportKeywords: string[] = [
+    // Generic — safe standalone
     'airport',
-    'heathrow', 'lhr',
-    'gatwick', 'lgw',
-    'stansted', 'stn',
-    'luton', 'ltn',
-    'london city', 'lcy',
-    'southend', 'sen',
-    'birmingham', 'bhx',
-    'manchester', 'man',
-    'edinburgh', 'edi',
-    'glasgow', 'gla',
-    'bristol', 'brs',
-    'liverpool', 'lpl',
-    'newcastle', 'ncl',
-    'east midlands', 'ema',
-    'leeds bradford', 'lba',
-    'terminal'
+    'terminal',
+
+    // IATA codes — safe standalone (short, unique)
+    'lhr', 'lgw', 'stn', 'ltn', 'lcy', 'sen',
+    'bhx', 'man', 'edi', 'gla', 'brs', 'lpl',
+    'ncl', 'ema', 'lba', 'dsa', 'abz', 'inv',
+    'bfs', 'bhd', 'cwl', 'ext', 'nqy', 'sou',
+    'pik', 'dnd', 'huy', 'blk', 'nwi', 'boh',
+    'mme', 'oxf', 'fab', 'cbg', 'lyx', 'esh',
+    'cvt', 'ceg', 'syy', 'koi', 'lsi', 'brr',
+    'beb', 'ila', 'tre', 'lwk', 'cax', 'cal',
+    'sws', 'jsy', 'gci', 'iom', 'ald',
+
+    // Unambiguous multi-word names — safe standalone
+    'heathrow',
+    'gatwick',
+    'stansted',
+    'luton',
+    'london city airport',
+    'southend airport',
+    'east midlands airport',
+    'leeds bradford',
+    'robin hood airport',
+    'doncaster sheffield',
+    'durham tees valley',
+    'london southend',
+    'glasgow prestwick',
+    'prestwick airport',
+    'george best belfast',
+    'belfast international',
+    'city of derry',
+    'ronaldsway',
+    'turnhouse',
+    'ingliston',        // Edinburgh Airport area name
 ];
 
 export const countryDialCodes = [

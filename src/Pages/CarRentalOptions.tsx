@@ -7,6 +7,7 @@ import { fetchTaxiProducts } from '../store/slices/shopifySlice';
 import { createCheckout } from '../store/slices/cartSlice';
 import type { SearchDetails } from '../types';
 import { formatDateDisplay, getCategoryText } from '../utils/common';
+import SEOHead from '../Components/SEOHead';
 
 interface RentalDetails {
     serviceType: 'daily-rental';
@@ -358,167 +359,196 @@ const CarRentalOptions: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-16 pb-24">
-            {/* Fixed Header */}
-            <div className="bg-white shadow-lg sticky top-16 z-40 border-b border-gray-200">
-                <div className="container mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4">
-                    <div className="flex items-center justify-between gap-4">
-                        <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1">
-                                <div className="p-1.5 bg-orange-100 rounded-lg">
-                                    <Calendar className="h-4 w-4 text-orange-600" />
-                                </div>
-                                <h1 className="text-base sm:text-lg font-bold text-gray-900 truncate">
-                                    Daily Rental - {getRentalTypeDescription()}
-                                </h1>
-                            </div>
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-xs sm:text-sm text-gray-600">
-                                <div className="flex items-center gap-1.5">
-                                    <MapPin className="h-3.5 w-3.5 text-gray-400 flex-shrink-0" />
-                                    <span className="truncate">{rentalDetails.pickupLocation}</span>
-                                </div>
-                                <span className="hidden sm:inline text-gray-300">•</span>
-                                <div className="flex items-center gap-1">
-                                    <Clock className="h-3.5 w-3.5 text-gray-400 flex-shrink-0" />
-                                    <span>{rentalDetails.rentalHours.toFixed(1)} hours</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button
-                            onClick={handleEditSearch}
-                            className="px-3 sm:px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap"
-                        >
-                            Edit
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="container mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
-                {/* Header */}
-                <div className="mb-6">
-                    <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-                        Available Cars <span className="text-orange-600">({filteredAndSortedCars.length})</span>
-                    </h2>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-600">
-                        <p>
-                            Professional driver included • {rentalDetails.passengers} passenger{rentalDetails.passengers > 1 ? 's' : ''}
-                        </p>
-                        <div className="flex items-center gap-2">
-                            <span className="text-sm bg-orange-50 px-3 py-1 rounded-full font-medium">
-                                {formatDateDisplay(rentalDetails.date)} • {rentalDetails.time}
-                            </span>
-                            <span className="text-sm text-gray-400">→</span>
-                            <span className="text-sm bg-green-50 px-3 py-1 rounded-full font-medium">
-                                {formatDateDisplay(rentalDetails.dropoffDate)} • {rentalDetails.dropoffTime}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Filters */}
-                <div className="mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4 flex justify-between">
-                    <div className="flex gap-2 overflow-x-auto pb-2 ">
-                        {['all'].map((filter) => (
-                            <button
-                                key={filter}
-                                onClick={() => setActiveFilter(filter)}
-                                className={`px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${activeFilter === filter
-                                    ? 'bg-orange-500 text-white shadow-lg'
-                                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
-                                    }`}
-                            >
-                                {filter.charAt(0).toUpperCase() + filter.slice(1)}
-                            </button>
-                        ))}
-                    </div>
-                    <select
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value as 'price' | 'rating' | 'passengers')}
-                        className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500"
-                    >
-                        <option value="price">Price: Low to High</option>
-                        <option value="rating">Rating: High to Low</option>
-                        <option value="passengers">Capacity: High to Low</option>
-                    </select>
-                </div>
-
-                {/* Rental Info Banner */}
-                <div className="mb-6 bg-gradient-to-r from-orange-50 to-indigo-50 border-2 border-orange-200 rounded-xl p-4">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <h3 className="font-bold text-gray-900 mb-1">{getRentalTypeDescription()}</h3>
-                            <p className="text-sm text-gray-600">
-                                {rentalDetails.rentalHours <= 5 ? (
-                                    'Up to 5 hours rental'
-                                ) : rentalDetails.rentalHours < 24 ? (
-                                    'More than 5 hours, less than 24 hours'
-                                ) : (
-                                    `${Math.ceil(rentalDetails.rentalHours / 24)} day${Math.ceil(rentalDetails.rentalHours / 24) > 1 ? 's' : ''} (≥24 hours)`
-                                )}
-                            </p>
-                        </div>
-                        <div className="text-right">
-                            <p className="text-xs text-gray-500">Total Duration</p>
-                            <p className="text-lg font-bold text-orange-600">
-                                {rentalDetails.rentalHours.toFixed(1)} hours
-                            </p>
-                            {rentalDetails.rentalHours >= 24 && (
-                                <p className="text-xs text-orange-600 font-medium">
-                                    ({Math.ceil(rentalDetails.rentalHours / 24)} days)
-                                </p>
-                            )}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Cars Grid */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                    {filteredAndSortedCars.map((car) => (
-                        <div
-                            key={car.id}
-                            className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 transition-all duration-300 cursor-pointer ${selectedCar === car.id
-                                ? 'border-green-500 shadow-xl shadow-green-500/20'
-                                : 'border-gray-100 hover:border-orange-300'
-                                }`}
-                        // onClick={() => setSelectedCar(car.id)}
-                        >
-                            {/* Car Image */}
-                            <div className="relative h-48 bg-gradient-to-br from-gray-50 to-gray-100">
-                                <img
-                                    src={car.image}
-                                    alt={car.name}
-                                    className="w-full h-full object-cover"
-                                />
-                                {car.popular && (
-                                    <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                                        Popular
+        <>
+            <SEOHead
+                title="Car Rental Options - Executive & Group Vehicle Hire"
+                description="Explore our car rental options for individuals and groups across the UK. From executive saloons to MPVs, find the right vehicle for your journey."
+                keywords="car rental UK, executive car hire London, MPV hire UK, group car rental, vehicle hire options"
+                canonicalUrl="/car-rental-options"
+            />
+            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-16 pb-24">
+                {/* Fixed Header */}
+                <div className="bg-white shadow-lg sticky top-16 z-40 border-b border-gray-200">
+                    <div className="container mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4">
+                        <div className="flex items-center justify-between gap-4">
+                            <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <div className="p-1.5 bg-orange-100 rounded-lg">
+                                        <Calendar className="h-4 w-4 text-orange-600" />
                                     </div>
-                                )}
-                                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-800 shadow-lg">
-                                    {car.type}
+                                    <h1 className="text-base sm:text-lg font-bold text-gray-900 truncate">
+                                        Daily Rental - {getRentalTypeDescription()}
+                                    </h1>
+                                </div>
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-xs sm:text-sm text-gray-600">
+                                    <div className="flex items-center gap-1.5">
+                                        <MapPin className="h-3.5 w-3.5 text-gray-400 flex-shrink-0" />
+                                        <span className="truncate">{rentalDetails.pickupLocation}</span>
+                                    </div>
+                                    <span className="hidden sm:inline text-gray-300">•</span>
+                                    <div className="flex items-center gap-1">
+                                        <Clock className="h-3.5 w-3.5 text-gray-400 flex-shrink-0" />
+                                        <span>{rentalDetails.rentalHours.toFixed(1)} hours</span>
+                                    </div>
                                 </div>
                             </div>
+                            <button
+                                onClick={handleEditSearch}
+                                className="px-3 sm:px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap"
+                            >
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-                            {/* Car Details */}
-                            <div className="p-4">
-                                <div className="flex items-start justify-between mb-2">
-                                    <h3 className="text-lg font-bold text-gray-900">{car.name}</h3>
-                                    {/* Category Tooltip */}
-                                    {!isMobile && (
-                                        <div className="relative">
+                {/* Main Content */}
+                <div className="container mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
+                    {/* Header */}
+                    <div className="mb-6">
+                        <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
+                            Available Cars <span className="text-orange-600">({filteredAndSortedCars.length})</span>
+                        </h2>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-600">
+                            <p>
+                                Professional driver included • {rentalDetails.passengers} passenger{rentalDetails.passengers > 1 ? 's' : ''}
+                            </p>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm bg-orange-50 px-3 py-1 rounded-full font-medium">
+                                    {formatDateDisplay(rentalDetails.date)} • {rentalDetails.time}
+                                </span>
+                                <span className="text-sm text-gray-400">→</span>
+                                <span className="text-sm bg-green-50 px-3 py-1 rounded-full font-medium">
+                                    {formatDateDisplay(rentalDetails.dropoffDate)} • {rentalDetails.dropoffTime}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Filters */}
+                    <div className="mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4 flex justify-between">
+                        <div className="flex gap-2 overflow-x-auto pb-2 ">
+                            {['all'].map((filter) => (
+                                <button
+                                    key={filter}
+                                    onClick={() => setActiveFilter(filter)}
+                                    className={`px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${activeFilter === filter
+                                        ? 'bg-orange-500 text-white shadow-lg'
+                                        : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                                        }`}
+                                >
+                                    {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                                </button>
+                            ))}
+                        </div>
+                        <select
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value as 'price' | 'rating' | 'passengers')}
+                            className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        >
+                            <option value="price">Price: Low to High</option>
+                            <option value="rating">Rating: High to Low</option>
+                            <option value="passengers">Capacity: High to Low</option>
+                        </select>
+                    </div>
+
+                    {/* Rental Info Banner */}
+                    <div className="mb-6 bg-gradient-to-r from-orange-50 to-indigo-50 border-2 border-orange-200 rounded-xl p-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <h3 className="font-bold text-gray-900 mb-1">{getRentalTypeDescription()}</h3>
+                                <p className="text-sm text-gray-600">
+                                    {rentalDetails.rentalHours <= 5 ? (
+                                        'Up to 5 hours rental'
+                                    ) : rentalDetails.rentalHours < 24 ? (
+                                        'More than 5 hours, less than 24 hours'
+                                    ) : (
+                                        `${Math.ceil(rentalDetails.rentalHours / 24)} day${Math.ceil(rentalDetails.rentalHours / 24) > 1 ? 's' : ''} (≥24 hours)`
+                                    )}
+                                </p>
+                            </div>
+                            <div className="text-right">
+                                <p className="text-xs text-gray-500">Total Duration</p>
+                                <p className="text-lg font-bold text-orange-600">
+                                    {rentalDetails.rentalHours.toFixed(1)} hours
+                                </p>
+                                {rentalDetails.rentalHours >= 24 && (
+                                    <p className="text-xs text-orange-600 font-medium">
+                                        ({Math.ceil(rentalDetails.rentalHours / 24)} days)
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Cars Grid */}
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        {filteredAndSortedCars.map((car) => (
+                            <div
+                                key={car.id}
+                                className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 transition-all duration-300 cursor-pointer ${selectedCar === car.id
+                                    ? 'border-green-500 shadow-xl shadow-green-500/20'
+                                    : 'border-gray-100 hover:border-orange-300'
+                                    }`}
+                            // onClick={() => setSelectedCar(car.id)}
+                            >
+                                {/* Car Image */}
+                                <div className="relative h-48 bg-gradient-to-br from-gray-50 to-gray-100">
+                                    <img
+                                        src={car.image}
+                                        alt={car.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    {car.popular && (
+                                        <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                                            Popular
+                                        </div>
+                                    )}
+                                    <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-800 shadow-lg">
+                                        {car.type}
+                                    </div>
+                                </div>
+
+                                {/* Car Details */}
+                                <div className="p-4">
+                                    <div className="flex items-start justify-between mb-2">
+                                        <h3 className="text-lg font-bold text-gray-900">{car.name}</h3>
+                                        {/* Category Tooltip */}
+                                        {!isMobile && (
+                                            <div className="relative">
+                                                <div
+                                                    className="flex items-center gap-1 text-gray-500 cursor-help"
+                                                    onMouseEnter={() => setTooltipCarId(car.id)}
+                                                    onMouseLeave={() => setTooltipCarId(null)}
+                                                >
+                                                    <Info className="h-4 w-4" />
+                                                    <span className="text-xs font-medium">{getCategoryText(car.type)}</span>
+                                                </div>
+                                                {tooltipCarId === car.id && (
+                                                    <div className="absolute right-0 top-full mt-2 w-72 bg-gray-900 text-white text-xs rounded-lg p-3 shadow-xl z-30 animate-fadeIn">
+                                                        <div className="absolute -top-1 right-4 w-2 h-2 bg-gray-900 transform rotate-45"></div>
+                                                        <p className="leading-relaxed">
+                                                            You may not get the exact same model, but you will always get a car of the same class, size, passenger capacity, luggage space, and features.
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Mobile Category Tooltip */}
+                                    {isMobile && (
+                                        <div className="relative mb-2">
                                             <div
-                                                className="flex items-center gap-1 text-gray-500 cursor-help"
-                                                onMouseEnter={() => setTooltipCarId(car.id)}
-                                                onMouseLeave={() => setTooltipCarId(null)}
+                                                className="flex items-center gap-1 text-gray-500"
+                                                onClick={() => setTooltipCarId(tooltipCarId === car.id ? null : car.id)}
                                             >
-                                                <Info className="h-4 w-4" />
-                                                <span className="text-xs font-medium">{getCategoryText(car.type)}</span>
+                                                <Info className="h-3 w-3" />
+                                                <span className="text-[10px] font-medium">{getCategoryText(car.type)}</span>
                                             </div>
                                             {tooltipCarId === car.id && (
-                                                <div className="absolute right-0 top-full mt-2 w-72 bg-gray-900 text-white text-xs rounded-lg p-3 shadow-xl z-30 animate-fadeIn">
-                                                    <div className="absolute -top-1 right-4 w-2 h-2 bg-gray-900 transform rotate-45"></div>
+                                                <div className="absolute left-0 top-full mt-1 w-56 bg-gray-900 text-white text-[10px] rounded-lg p-2 shadow-xl z-30 animate-fadeIn">
+                                                    <div className="absolute -top-1 left-4 w-2 h-2 bg-gray-900 transform rotate-45"></div>
                                                     <p className="leading-relaxed">
                                                         You may not get the exact same model, but you will always get a car of the same class, size, passenger capacity, luggage space, and features.
                                                     </p>
@@ -526,314 +556,292 @@ const CarRentalOptions: React.FC = () => {
                                             )}
                                         </div>
                                     )}
-                                </div>
 
-                                {/* Mobile Category Tooltip */}
-                                {isMobile && (
-                                    <div className="relative mb-2">
-                                        <div
-                                            className="flex items-center gap-1 text-gray-500"
-                                            onClick={() => setTooltipCarId(tooltipCarId === car.id ? null : car.id)}
-                                        >
-                                            <Info className="h-3 w-3" />
-                                            <span className="text-[10px] font-medium">{getCategoryText(car.type)}</span>
+                                    {/* Rating */}
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <div className="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-full">
+                                            <Star className="h-3.5 w-3.5 fill-orange-500 text-orange-500" />
+                                            <span className="text-xs font-bold text-orange-600">{car.rating}</span>
                                         </div>
-                                        {tooltipCarId === car.id && (
-                                            <div className="absolute left-0 top-full mt-1 w-56 bg-gray-900 text-white text-[10px] rounded-lg p-2 shadow-xl z-30 animate-fadeIn">
-                                                <div className="absolute -top-1 left-4 w-2 h-2 bg-gray-900 transform rotate-45"></div>
-                                                <p className="leading-relaxed">
-                                                    You may not get the exact same model, but you will always get a car of the same class, size, passenger capacity, luggage space, and features.
-                                                </p>
-                                            </div>
-                                        )}
+                                        <span className="text-xs text-gray-500">{car.reviews} reviews</span>
                                     </div>
-                                )}
 
-                                {/* Rating */}
-                                <div className="flex items-center gap-2 mb-3">
-                                    <div className="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-full">
-                                        <Star className="h-3.5 w-3.5 fill-orange-500 text-orange-500" />
-                                        <span className="text-xs font-bold text-orange-600">{car.rating}</span>
+                                    {/* Specs */}
+                                    <div className="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
+                                        <div className="flex items-center gap-2">
+                                            <Users className="h-4 w-4 text-orange-600" />
+                                            <span className="text-xs font-semibold text-gray-700">{car.passengers} Passengers</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Briefcase className="h-4 w-4 text-orange-600" />
+                                            <span className="text-xs font-semibold text-gray-700">{car.luggage} Bags</span>
+                                        </div>
                                     </div>
-                                    <span className="text-xs text-gray-500">{car.reviews} reviews</span>
-                                </div>
 
-                                {/* Specs */}
-                                <div className="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
-                                    <div className="flex items-center gap-2">
-                                        <Users className="h-4 w-4 text-orange-600" />
-                                        <span className="text-xs font-semibold text-gray-700">{car.passengers} Passengers</span>
+                                    {/* Driver Badge */}
+                                    <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl py-2 px-3 mb-3">
+                                        <svg className="h-4 w-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                        <span className="text-xs font-bold text-orange-700">Professional Driver Included</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <Briefcase className="h-4 w-4 text-orange-600" />
-                                        <span className="text-xs font-semibold text-gray-700">{car.luggage} Bags</span>
-                                    </div>
-                                </div>
 
-                                {/* Driver Badge */}
-                                <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl py-2 px-3 mb-3">
-                                    <svg className="h-4 w-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                    <span className="text-xs font-bold text-orange-700">Professional Driver Included</span>
-                                </div>
-
-                                {/* Rental Type Badge */}
-                                <div className={`flex items-center justify-center gap-2 rounded-xl py-2 px-3 mb-3 ${rentalDetails.rentalHours <= 5
-                                    ? 'bg-green-50 border border-green-200'
-                                    : rentalDetails.rentalHours < 24
-                                        ? 'bg-orange-50 border border-orange-200'
-                                        : 'bg-orange-50 border border-orange-200'
-                                    }`}>
-                                    <Clock className={`h-4 w-4 ${rentalDetails.rentalHours <= 5
-                                        ? 'text-green-600'
+                                    {/* Rental Type Badge */}
+                                    <div className={`flex items-center justify-center gap-2 rounded-xl py-2 px-3 mb-3 ${rentalDetails.rentalHours <= 5
+                                        ? 'bg-green-50 border border-green-200'
                                         : rentalDetails.rentalHours < 24
-                                            ? 'text-orange-600'
-                                            : 'text-orange-600'
-                                        }`} />
-                                    <span className={`text-xs font-bold ${rentalDetails.rentalHours <= 5
-                                        ? 'text-green-700'
-                                        : rentalDetails.rentalHours < 24
-                                            ? 'text-orange-700'
-                                            : 'text-orange-700'
+                                            ? 'bg-orange-50 border border-orange-200'
+                                            : 'bg-orange-50 border border-orange-200'
                                         }`}>
-                                        {car.rentalType}
-                                    </span>
-                                </div>
-
-                                {/* Price */}
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-xs text-gray-500">
-                                            {rentalDetails.rentalHours <= 5 ? 'Half Day Rate'
-                                                : rentalDetails.rentalHours < 24 ? 'Full Day Rate'
-                                                    : `Total for ${car.quantity} Day${car.quantity > 1 ? 's' : ''}`}
-                                        </p>
-                                        <span className="text-[14px] text-red-500 line-through">
-                                            GBP {Math.round(car.displayPrice * 1.2)}
+                                        <Clock className={`h-4 w-4 ${rentalDetails.rentalHours <= 5
+                                            ? 'text-green-600'
+                                            : rentalDetails.rentalHours < 24
+                                                ? 'text-orange-600'
+                                                : 'text-orange-600'
+                                            }`} />
+                                        <span className={`text-xs font-bold ${rentalDetails.rentalHours <= 5
+                                            ? 'text-green-700'
+                                            : rentalDetails.rentalHours < 24
+                                                ? 'text-orange-700'
+                                                : 'text-orange-700'
+                                            }`}>
+                                            {car.rentalType}
                                         </span>
-                                        <p className="text-2xl font-bold text-gray-900">
-                                            GBP {Math.round(car.displayPrice)}
-                                        </p>
-                                        {rentalDetails.rentalHours >= 24 && car.quantity > 1 && (
-                                            <p className="text-xs text-gray-500">
-                                                GBP {Math.round(car.pricePerDay || 0)} × {car.quantity} day{car.quantity > 1 ? 's' : ''}
-                                            </p>
-                                        )}
                                     </div>
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleBookNow(car.id);
-                                        }}
-                                        className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${selectedCar === car.id
-                                            ? 'bg-green-300 text-gray-700 hover:bg-green-300 '
-                                            : 'bg-orange-500 text-white shadow-lg'
-                                            }`}
-                                    >
-                                        {selectedCar === car.id ? 'Selected' : 'Book'}
-                                    </button>
+
+                                    {/* Price */}
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <p className="text-xs text-gray-500">
+                                                {rentalDetails.rentalHours <= 5 ? 'Half Day Rate'
+                                                    : rentalDetails.rentalHours < 24 ? 'Full Day Rate'
+                                                        : `Total for ${car.quantity} Day${car.quantity > 1 ? 's' : ''}`}
+                                            </p>
+                                            <span className="text-[14px] text-red-500 line-through">
+                                                GBP {Math.round(car.displayPrice * 1.2)}
+                                            </span>
+                                            <p className="text-2xl font-bold text-gray-900">
+                                                GBP {Math.round(car.displayPrice)}
+                                            </p>
+                                            {rentalDetails.rentalHours >= 24 && car.quantity > 1 && (
+                                                <p className="text-xs text-gray-500">
+                                                    GBP {Math.round(car.pricePerDay || 0)} × {car.quantity} day{car.quantity > 1 ? 's' : ''}
+                                                </p>
+                                            )}
+                                        </div>
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleBookNow(car.id);
+                                            }}
+                                            className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${selectedCar === car.id
+                                                ? 'bg-green-300 text-gray-700 hover:bg-green-300 '
+                                                : 'bg-orange-500 text-white shadow-lg'
+                                                }`}
+                                        >
+                                            {selectedCar === car.id ? 'Selected' : 'Book'}
+                                        </button>
+                                    </div>
                                 </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Mobile Booking Bar */}
+                {isMobile && selectedCarData && (
+                    <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50 animate-slideUp">
+                        <div className="container mx-auto px-4 py-3">
+                            {checkoutError && (
+                                <div className="bg-red-50 border border-red-200 rounded-lg p-2 flex items-start gap-2 mb-3">
+                                    <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
+                                    <p className="text-red-700 text-xs">{checkoutError}</p>
+                                </div>
+                            )}
+
+                            <div className="flex items-center justify-between gap-3">
+                                <div className="flex-1">
+                                    <p className="text-xs text-gray-500 mb-1">Selected Car</p>
+                                    <p className="font-bold text-gray-900 truncate text-sm">{selectedCarData.name}</p>
+                                    <div className="flex items-center gap-2">
+                                        <p className="text-sm text-gray-600">
+                                            <span className="font-bold text-orange-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
+                                        </p>
+                                        <span className="text-xs text-gray-400">•</span>
+                                        <p className="text-xs text-gray-500">{selectedCarData.rentalType}</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={handleProceedToPay}
+                                    disabled={checkoutLoading}
+                                    className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-50 text-sm"
+                                >
+                                    {checkoutLoading ? (
+                                        <>
+                                            <RefreshCw className="h-4 w-4 animate-spin" />
+                                            <span>Processing...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Lock className="h-4 w-4" />
+                                            <span>Book Now</span>
+                                        </>
+                                    )}
+                                </button>
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
+                    </div>
+                )}
 
-            {/* Mobile Booking Bar */}
-            {isMobile && selectedCarData && (
-                <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50 animate-slideUp">
-                    <div className="container mx-auto px-4 py-3">
-                        {checkoutError && (
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-2 flex items-start gap-2 mb-3">
-                                <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
-                                <p className="text-red-700 text-xs">{checkoutError}</p>
+                {/* Desktop Booking Summary */}
+                {!isMobile && selectedCarData && (
+                    <div className="fixed bottom-8 right-8 bg-white rounded-2xl shadow-2xl border-2 border-orange-500 z-50 max-w-md overflow-hidden animate-slideIn">
+                        {/* Header */}
+                        <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4">
+                            <div className="flex items-center justify-between">
+                                <h3 className="text-lg font-bold text-white">Booking Summary</h3>
+                                <button
+                                    onClick={() => setSelectedCar(null)}
+                                    className="p-1 hover:bg-white/20 rounded-lg transition-colors"
+                                    title="Close"
+                                >
+                                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
                             </div>
-                        )}
+                        </div>
 
-                        <div className="flex items-center justify-between gap-3">
-                            <div className="flex-1">
-                                <p className="text-xs text-gray-500 mb-1">Selected Car</p>
-                                <p className="font-bold text-gray-900 truncate text-sm">{selectedCarData.name}</p>
-                                <div className="flex items-center gap-2">
-                                    <p className="text-sm text-gray-600">
-                                        <span className="font-bold text-orange-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
-                                    </p>
-                                    <span className="text-xs text-gray-400">•</span>
-                                    <p className="text-xs text-gray-500">{selectedCarData.rentalType}</p>
+                        <div className="p-6">
+                            {checkoutError && (
+                                <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start gap-2 mb-4">
+                                    <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
+                                    <p className="text-red-700 text-sm">{checkoutError}</p>
+                                </div>
+                            )}
+
+                            {/* Vehicle Info */}
+                            <div className="mb-4">
+                                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                                    <img src={selectedCarData.image} alt={selectedCarData.name} className="w-20 h-12 object-contain rounded-lg" />
+                                    <div className="flex-1">
+                                        <p className="font-bold text-gray-900">{selectedCarData.name}</p>
+                                        <p className="text-xs text-gray-500">{selectedCarData.type}</p>
+                                        <div className="flex items-center gap-1 mt-1">
+                                            <Star className="h-3 w-3 fill-orange-500 text-orange-500" />
+                                            <span className="text-xs font-semibold text-gray-700">{selectedCarData.rating}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+                            {/* Rental Details */}
+                            <div className="bg-gradient-to-r from-orange-50 to-indigo-50 border-2 border-orange-200 rounded-xl p-4 mb-4">
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-sm font-semibold text-gray-700">Rental Type</span>
+                                    <span className="text-sm font-bold text-orange-600">{getRentalTypeDescription()}</span>
+                                </div>
+                                <div className="space-y-2 text-sm">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-gray-600">Duration</span>
+                                        <span className="font-semibold text-gray-900">{rentalDetails.rentalHours.toFixed(1)} hours</span>
+                                    </div>
+                                    {rentalDetails.rentalHours >= 24 && (
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-gray-600">Days</span>
+                                            <span className="font-semibold text-gray-900">{selectedCarData.quantity || 1} day{(selectedCarData.quantity || 1) > 1 ? 's' : ''}</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Schedule */}
+                            <div className="bg-gray-50 rounded-xl p-4 mb-4 space-y-3">
+                                <div className="flex items-start gap-3">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 flex-shrink-0">
+                                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-xs font-semibold text-gray-500 uppercase">Pickup</p>
+                                        <p className="font-semibold text-gray-900">{formatDateDisplay(rentalDetails.date)}</p>
+                                        <p className="text-sm text-gray-600">{rentalDetails.time}</p>
+                                    </div>
+                                </div>
+                                <div className="ml-4 border-l-2 border-dashed border-gray-300 h-4"></div>
+                                <div className="flex items-start gap-3">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-red-100 flex-shrink-0">
+                                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-xs font-semibold text-gray-500 uppercase">Dropoff</p>
+                                        <p className="font-semibold text-gray-900">{formatDateDisplay(rentalDetails.dropoffDate)}</p>
+                                        <p className="text-sm text-gray-600">{rentalDetails.dropoffTime}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Price Breakdown */}
+                            <div className="border-t-2 border-gray-200 pt-4 mb-4">
+                                <div className="space-y-2">
+                                    <div className="flex justify-between text-sm">
+                                        <span className="text-gray-600">{selectedCarData.rentalType}</span>
+                                        <span className="font-semibold text-gray-900">GBP {Math.round(selectedCarData.displayPrice)}</span>
+                                    </div>
+                                    {rentalDetails.rentalHours >= 24 && selectedCarData.quantity > 1 && (
+                                        <div className="flex justify-between text-xs text-gray-500">
+                                            <span>Price calculation</span>
+                                            <span>GBP {Math.round(selectedCarData.pricePerDay || 0)} × {selectedCarData.quantity} days</span>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="mt-4 pt-4 border-t border-gray-200">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-base font-bold text-gray-900">Total Amount</span>
+                                        <span className="text-2xl font-bold text-orange-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Book Now Button */}
                             <button
                                 onClick={handleProceedToPay}
                                 disabled={checkoutLoading}
-                                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-50 text-sm"
+                                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {checkoutLoading ? (
                                     <>
-                                        <RefreshCw className="h-4 w-4 animate-spin" />
+                                        <RefreshCw className="h-5 w-5 animate-spin" />
                                         <span>Processing...</span>
                                     </>
                                 ) : (
                                     <>
-                                        <Lock className="h-4 w-4" />
-                                        <span>Book Now</span>
+                                        <Lock className="h-5 w-5" />
+                                        <span>Proceed to Payment</span>
                                     </>
                                 )}
                             </button>
-                        </div>
-                    </div>
-                </div>
-            )}
 
-            {/* Desktop Booking Summary */}
-            {!isMobile && selectedCarData && (
-                <div className="fixed bottom-8 right-8 bg-white rounded-2xl shadow-2xl border-2 border-orange-500 z-50 max-w-md overflow-hidden animate-slideIn">
-                    {/* Header */}
-                    <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4">
-                        <div className="flex items-center justify-between">
-                            <h3 className="text-lg font-bold text-white">Booking Summary</h3>
-                            <button
-                                onClick={() => setSelectedCar(null)}
-                                className="p-1 hover:bg-white/20 rounded-lg transition-colors"
-                                title="Close"
-                            >
-                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="p-6">
-                        {checkoutError && (
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start gap-2 mb-4">
-                                <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
-                                <p className="text-red-700 text-sm">{checkoutError}</p>
-                            </div>
-                        )}
-
-                        {/* Vehicle Info */}
-                        <div className="mb-4">
-                            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                                <img src={selectedCarData.image} alt={selectedCarData.name} className="w-20 h-12 object-contain rounded-lg" />
-                                <div className="flex-1">
-                                    <p className="font-bold text-gray-900">{selectedCarData.name}</p>
-                                    <p className="text-xs text-gray-500">{selectedCarData.type}</p>
-                                    <div className="flex items-center gap-1 mt-1">
-                                        <Star className="h-3 w-3 fill-orange-500 text-orange-500" />
-                                        <span className="text-xs font-semibold text-gray-700">{selectedCarData.rating}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Rental Details */}
-                        <div className="bg-gradient-to-r from-orange-50 to-indigo-50 border-2 border-orange-200 rounded-xl p-4 mb-4">
-                            <div className="flex items-center justify-between mb-3">
-                                <span className="text-sm font-semibold text-gray-700">Rental Type</span>
-                                <span className="text-sm font-bold text-orange-600">{getRentalTypeDescription()}</span>
-                            </div>
-                            <div className="space-y-2 text-sm">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-gray-600">Duration</span>
-                                    <span className="font-semibold text-gray-900">{rentalDetails.rentalHours.toFixed(1)} hours</span>
-                                </div>
-                                {rentalDetails.rentalHours >= 24 && (
-                                    <div className="flex items-center justify-between">
-                                        <span className="text-gray-600">Days</span>
-                                        <span className="font-semibold text-gray-900">{selectedCarData.quantity || 1} day{(selectedCarData.quantity || 1) > 1 ? 's' : ''}</span>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Schedule */}
-                        <div className="bg-gray-50 rounded-xl p-4 mb-4 space-y-3">
-                            <div className="flex items-start gap-3">
-                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 flex-shrink-0">
-                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                </div>
-                                <div className="flex-1">
-                                    <p className="text-xs font-semibold text-gray-500 uppercase">Pickup</p>
-                                    <p className="font-semibold text-gray-900">{formatDateDisplay(rentalDetails.date)}</p>
-                                    <p className="text-sm text-gray-600">{rentalDetails.time}</p>
-                                </div>
-                            </div>
-                            <div className="ml-4 border-l-2 border-dashed border-gray-300 h-4"></div>
-                            <div className="flex items-start gap-3">
-                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-red-100 flex-shrink-0">
-                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                </div>
-                                <div className="flex-1">
-                                    <p className="text-xs font-semibold text-gray-500 uppercase">Dropoff</p>
-                                    <p className="font-semibold text-gray-900">{formatDateDisplay(rentalDetails.dropoffDate)}</p>
-                                    <p className="text-sm text-gray-600">{rentalDetails.dropoffTime}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Price Breakdown */}
-                        <div className="border-t-2 border-gray-200 pt-4 mb-4">
-                            <div className="space-y-2">
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-gray-600">{selectedCarData.rentalType}</span>
-                                    <span className="font-semibold text-gray-900">GBP {Math.round(selectedCarData.displayPrice)}</span>
-                                </div>
-                                {rentalDetails.rentalHours >= 24 && selectedCarData.quantity > 1 && (
-                                    <div className="flex justify-between text-xs text-gray-500">
-                                        <span>Price calculation</span>
-                                        <span>GBP {Math.round(selectedCarData.pricePerDay || 0)} × {selectedCarData.quantity} days</span>
-                                    </div>
-                                )}
-                            </div>
+                            {/* Trust Badges */}
                             <div className="mt-4 pt-4 border-t border-gray-200">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-base font-bold text-gray-900">Total Amount</span>
-                                    <span className="text-2xl font-bold text-orange-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Book Now Button */}
-                        <button
-                            onClick={handleProceedToPay}
-                            disabled={checkoutLoading}
-                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            {checkoutLoading ? (
-                                <>
-                                    <RefreshCw className="h-5 w-5 animate-spin" />
-                                    <span>Processing...</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Lock className="h-5 w-5" />
-                                    <span>Proceed to Payment</span>
-                                </>
-                            )}
-                        </button>
-
-                        {/* Trust Badges */}
-                        <div className="mt-4 pt-4 border-t border-gray-200">
-                            <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
-                                <div className="flex items-center gap-1">
-                                    <Lock className="h-3 w-3" />
-                                    <span>Secure Payment</span>
-                                </div>
-                                <span>•</span>
-                                <div className="flex items-center gap-1">
-                                    <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <span>Instant Confirmation</span>
+                                <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
+                                    <div className="flex items-center gap-1">
+                                        <Lock className="h-3 w-3" />
+                                        <span>Secure Payment</span>
+                                    </div>
+                                    <span>•</span>
+                                    <div className="flex items-center gap-1">
+                                        <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>Instant Confirmation</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            <style>{`
+                <style>{`
                 @keyframes slideUp {
                     from {
                         opacity: 0;
@@ -879,7 +887,8 @@ const CarRentalOptions: React.FC = () => {
                     animation: fadeIn 0.2s ease-out;
                 }
             `}</style>
-        </div>
+            </div>
+        </>
     );
 };
 

@@ -21,6 +21,7 @@ import BlogListing from './Pages/BlogListing';
 import BlogDetail from './Pages/BlogDetail';
 import TermsAndConditions from './Pages/Termsandconditions';
 import PrivacyPolicy from './Pages/PrivacyPolicy';
+import { WhatsAppButton } from './Components/WhatsAppButton';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
           <Footer />
+          <WhatsAppButton />
         </div>
       </Router>
     </Provider>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, FileText, CheckCircle, AlertCircle, Globe, Lock, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEOHead from '../Components/SEOHead';
 
 interface PolicySection {
     id: string;
@@ -145,106 +146,115 @@ const PrivacyPolicy: React.FC = () => {
     ];
 
     return (
-        <section className="py-16 lg:py-24 bg-white">
-            <div className="container mx-auto px-4 lg:px-8">
-                {/* Section Header */}
-                <div className="text-center mb-12 lg:mb-16">
-                    <div className="inline-block bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                        Your Privacy Matters
-                    </div>
-                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                        Privacy Policy
-                    </h2>
-                    <p className="text-gray-600 text-base lg:text-lg max-w-2xl mx-auto">
-                        Minibus Hire London ("us", "we", or "our") operates the https://www.minibushirelondon.org website (the "Service").
-                        This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service.
-                    </p>
-                </div>
-
-                {/* Important Notice */}
-                <div className="max-w-4xl mx-auto mb-12">
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-2xl p-6 lg:p-8">
-                        <div className="flex items-start gap-4">
-                            <div className="flex-shrink-0">
-                                <Shield className="h-8 w-8 text-blue-600" />
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                    Your Data Protection
-                                </h3>
-                                <p className="text-gray-700 leading-relaxed">
-                                    The data we receive from you is used to improve the website experience for yourself and new users who may visit or make an enquiry on our website.
-                                    You agree to the collection and use of information in relation to this privacy policy by using our service.
-                                </p>
-                            </div>
+        <>
+            <SEOHead
+                title="Privacy Policy - Minibus Hire London"
+                description="Read our privacy policy to understand how Minibus Hire London collects, uses and protects your personal data in compliance with UK GDPR regulations."
+                keywords="privacy policy minibus hire, data protection, GDPR compliance, personal data policy"
+                canonicalUrl="/privacy"
+                noIndex={false}
+            />
+            <section className="py-16 lg:py-24 bg-white">
+                <div className="container mx-auto px-4 lg:px-8">
+                    {/* Section Header */}
+                    <div className="text-center mb-12 lg:mb-16">
+                        <div className="inline-block bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            Your Privacy Matters
                         </div>
-                    </div>
-                </div>
-
-                {/* Policy Sections Grid */}
-                <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
-                    {privacyData.map((section) => (
-                        <div
-                            key={section.id}
-                            className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 lg:p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1"
-                        >
-                            {/* Section Header */}
-                            <div className="flex items-start gap-4 mb-6">
-                                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform">
-                                    {section.icon}
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">
-                                        {section.title}
-                                    </h3>
-                                </div>
-                            </div>
-
-                            {/* Section Content */}
-                            <ul className="space-y-3">
-                                {section.content.map((item, idx) => (
-                                    <li key={idx} className="flex items-start gap-3">
-                                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                                        <span className="text-gray-700 text-sm lg:text-base leading-relaxed">
-                                            {item}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Contact Section */}
-                <div className="mt-16 lg:mt-20 text-center">
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 lg:p-12 max-w-3xl mx-auto border-2 border-orange-200">
-                        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mb-6">
-                            <Phone className="h-8 w-8 text-white" />
-                        </div>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-                            Questions About Your Privacy?
-                        </h3>
-                        <p className="text-gray-700 text-base lg:text-lg mb-6">
-                            If you have any questions about this Privacy Policy, please don't hesitate to contact us.
-                            Your privacy and data security are our top priorities.
+                        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                            Privacy Policy
+                        </h2>
+                        <p className="text-gray-600 text-base lg:text-lg max-w-2xl mx-auto">
+                            Minibus Hire London ("us", "we", or "our") operates the https://www.minibushirelondon.org website (the "Service").
+                            This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service.
                         </p>
-                        <Link
-                            to="/contact"
-                            className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-                        >
-                            Contact Us Today
-                        </Link>
+                    </div>
+
+                    {/* Important Notice */}
+                    <div className="max-w-4xl mx-auto mb-12">
+                        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-2xl p-6 lg:p-8">
+                            <div className="flex items-start gap-4">
+                                <div className="flex-shrink-0">
+                                    <Shield className="h-8 w-8 text-blue-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                                        Your Data Protection
+                                    </h3>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        The data we receive from you is used to improve the website experience for yourself and new users who may visit or make an enquiry on our website.
+                                        You agree to the collection and use of information in relation to this privacy policy by using our service.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Policy Sections Grid */}
+                    <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
+                        {privacyData.map((section) => (
+                            <div
+                                key={section.id}
+                                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 lg:p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1"
+                            >
+                                {/* Section Header */}
+                                <div className="flex items-start gap-4 mb-6">
+                                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform">
+                                        {section.icon}
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">
+                                            {section.title}
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                {/* Section Content */}
+                                <ul className="space-y-3">
+                                    {section.content.map((item, idx) => (
+                                        <li key={idx} className="flex items-start gap-3">
+                                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                                            <span className="text-gray-700 text-sm lg:text-base leading-relaxed">
+                                                {item}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Contact Section */}
+                    <div className="mt-16 lg:mt-20 text-center">
+                        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 lg:p-12 max-w-3xl mx-auto border-2 border-orange-200">
+                            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mb-6">
+                                <Phone className="h-8 w-8 text-white" />
+                            </div>
+                            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                                Questions About Your Privacy?
+                            </h3>
+                            <p className="text-gray-700 text-base lg:text-lg mb-6">
+                                If you have any questions about this Privacy Policy, please don't hesitate to contact us.
+                                Your privacy and data security are our top priorities.
+                            </p>
+                            <Link
+                                to="/contact"
+                                className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                            >
+                                Contact Us Today
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Last Updated */}
+                    <div className="mt-12 text-center">
+                        <p className="text-sm text-gray-500">
+                            Last Updated: 15th July 2020
+                        </p>
                     </div>
                 </div>
-
-                {/* Last Updated */}
-                <div className="mt-12 text-center">
-                    <p className="text-sm text-gray-500">
-                        Last Updated: 15th July 2020
-                    </p>
-                </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 };
 

@@ -12,7 +12,9 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchTaxiProducts } from '../store/slices/shopifySlice';
 import { createCheckout } from '../store/slices/cartSlice';
 import { selectVariantByDistance } from '../utils/variantSelector';
-import { airportKeywords, formatDateDisplay } from '../utils/common';
+import { formatDateDisplay } from '../utils/common';
+import SEOHead from '../Components/SEOHead';
+import { isAirportLocation } from '../services/shopifyCartService';
 
 const TaxiOptions: React.FC = () => {
     const location = useLocation();
@@ -46,13 +48,7 @@ const TaxiOptions: React.FC = () => {
 
     // Check if either location is an airport
     const isAirportTrip = useMemo(() => {
-
-        const fromLower = searchDetails.from.toLowerCase();
-        const toLower = searchDetails.to.toLowerCase();
-
-        return airportKeywords.some(keyword =>
-            fromLower.includes(keyword) || toLower.includes(keyword)
-        );
+        return isAirportLocation(searchDetails.from) || isAirportLocation(searchDetails.to);
     }, [searchDetails.from, searchDetails.to]);
 
     // Fetch products from Shopify on mount
@@ -306,153 +302,119 @@ const TaxiOptions: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-16 pb-24">
-            {/* Fixed Header */}
-            <div className="bg-white shadow-lg sticky top-16 z-40 border-b border-gray-200">
-                <div className="container mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4">
-                    <TaxiHeader
-                        searchDetails={searchDetails}
-                        onEditSearch={handleEditSearch}
-                        isMobile={isMobile}
-                    />
+        <>
+            <SEOHead
+                title="Transport Options - UK Group Travel Solutions"
+                description="Discover all transport options available with Minibus Hire London. Airport transfers, day trips, events, school runs and more - tailored solutions for every journey."
+                keywords="group transport options UK, minibus transport solutions, coach hire options, group travel UK"
+                canonicalUrl="/transport-options"
+            />
+            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-16 pb-24">
+                {/* Fixed Header */}
+                <div className="bg-white shadow-lg sticky top-16 z-40 border-b border-gray-200">
+                    <div className="container mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4">
+                        <TaxiHeader
+                            searchDetails={searchDetails}
+                            onEditSearch={handleEditSearch}
+                            isMobile={isMobile}
+                        />
+                    </div>
                 </div>
-            </div>
 
-            {/* Main Content */}
-            <div className="container mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
-                {/* Mobile Layout */}
-                {isMobile && (
-                    <>
-                        {/* Map Section */}
-                        <div className="mb-6 bg-white rounded-xl shadow-lg overflow-hidden">
-                            <div className="p-4 border-b border-gray-200">
-                                <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                                    <Navigation className="h-4 w-4 text-orange-600" />
-                                    Route Map
-                                </h2>
-                            </div>
-                            <div className="h-64 sm:h-80 p-2">
-                                <MapView
-                                    from={searchDetails.from}
-                                    to={searchDetails.to}
-                                    fromCoords={searchDetails.fromCoords || { lat: 25.2532, lng: 55.3657 }}
-                                    toCoords={searchDetails.toCoords || { lat: 25.1972, lng: 55.2744 }}
-                                    distance={distance}
-                                    duration={duration}
-                                    selectedTaxiId={selectedTaxi}
-                                />
-                            </div>
-                        </div>
-
-                        {/* Airport Information - Mobile */}
-                        {isAirportTrip && selectedTaxi && (
-                            <div className="mb-4">
-                                <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 space-y-3">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <Plane className="h-5 w-5 text-orange-600" />
-                                        <h4 className="font-bold text-gray-900">Airport Trip Information</h4>
-                                    </div>
-
-                                    {/* Parking Fee Checkbox */}
-                                    <label className="flex items-start gap-3 cursor-pointer group">
-                                        <input
-                                            type="checkbox"
-                                            checked={parkingAcknowledged}
-                                            onChange={(e) => setParkingAcknowledged(e.target.checked)}
-                                            className="mt-1 h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500 cursor-pointer"
-                                        />
-                                        <div className="flex-1">
-                                            <p className="text-sm font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
-                                                I acknowledge that parking fees will be collected
-                                            </p>
-                                            <p className="text-xs text-gray-600 mt-1">
-                                                Airport parking charges applicable
-                                            </p>
-                                        </div>
-                                    </label>
-
-                                    {/* Flight Number Input */}
-                                    <div>
-                                        <label className="block text-sm font-semibold text-gray-900 mb-2">
-                                            Flight Number <span className="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={flightNumber}
-                                            onChange={(e) => setFlightNumber(e.target.value)}
-                                            placeholder="e.g., EK524, FZ123"
-                                            className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm font-medium uppercase"
-                                            style={{ textTransform: 'uppercase' }}
-                                        />
-                                        <p className="text-xs text-gray-500 mt-1.5">
-                                            Required for airport pickup/drop-off tracking
-                                        </p>
-                                    </div>
+                {/* Main Content */}
+                <div className="container mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
+                    {/* Mobile Layout */}
+                    {isMobile && (
+                        <>
+                            {/* Map Section */}
+                            <div className="mb-6 bg-white rounded-xl shadow-lg overflow-hidden">
+                                <div className="p-4 border-b border-gray-200">
+                                    <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                                        <Navigation className="h-4 w-4 text-orange-600" />
+                                        Route Map
+                                    </h2>
+                                </div>
+                                <div className="h-64 sm:h-80 p-2">
+                                    <MapView
+                                        from={searchDetails.from}
+                                        to={searchDetails.to}
+                                        fromCoords={searchDetails.fromCoords || { lat: 25.2532, lng: 55.3657 }}
+                                        toCoords={searchDetails.toCoords || { lat: 25.1972, lng: 55.2744 }}
+                                        distance={distance}
+                                        duration={duration}
+                                        selectedTaxiId={selectedTaxi}
+                                    />
                                 </div>
                             </div>
-                        )}
 
-                        {/* Header */}
-                        <div className="mb-4">
-                            <h1 className="text-xl font-bold text-gray-900 mb-1">
-                                Available Transport ({filteredAndSortedTaxiOptions.length})
-                            </h1>
-                            <p className="text-gray-600 text-sm">
-                                Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} miles range
-                            </p>
-                        </div>
+                            {/* Airport Information - Mobile */}
+                            {isAirportTrip && selectedTaxi && (
+                                <div className="mb-4">
+                                    <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 space-y-3">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <Plane className="h-5 w-5 text-orange-600" />
+                                            <h4 className="font-bold text-gray-900">Airport Trip Information</h4>
+                                        </div>
 
-                        {/* Filters */}
-                        <Filters
-                            activeFilter={activeFilter}
-                            sortBy={sortBy}
-                            onFilterChange={setActiveFilter}
-                            onSortChange={setSortBy}
-                        />
+                                        {/* Parking Fee Checkbox */}
+                                        <label className="flex items-start gap-3 cursor-pointer group">
+                                            <input
+                                                type="checkbox"
+                                                checked={parkingAcknowledged}
+                                                onChange={(e) => setParkingAcknowledged(e.target.checked)}
+                                                className="mt-1 h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500 cursor-pointer"
+                                            />
+                                            <div className="flex-1">
+                                                <p className="text-sm font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                                                    I acknowledge that parking fees will be collected
+                                                </p>
+                                                <p className="text-xs text-gray-600 mt-1">
+                                                    Airport parking charges applicable
+                                                </p>
+                                            </div>
+                                        </label>
 
-                        {/* Taxi Options List */}
-                        <div className="space-y-3">
-                            {filteredAndSortedTaxiOptions.map((taxi) => (
-                                <TaxiCard
-                                    key={taxi.id}
-                                    taxi={taxi}
-                                    isSelected={selectedTaxi === taxi.id}
-                                    distance={distance}
-                                    duration={duration}
-                                    tripType={searchDetails.tripType}
-                                    onSelect={setSelectedTaxi}
-                                    onBookNow={handleBookNow}
-                                />
-                            ))}
-                        </div>
-                    </>
-                )}
+                                        {/* Flight Number Input */}
+                                        <div>
+                                            <label className="block text-sm font-semibold text-gray-900 mb-2">
+                                                Flight Number <span className="text-red-500">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={flightNumber}
+                                                onChange={(e) => setFlightNumber(e.target.value)}
+                                                placeholder="e.g., EK524, FZ123"
+                                                className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm font-medium uppercase"
+                                                style={{ textTransform: 'uppercase' }}
+                                            />
+                                            <p className="text-xs text-gray-500 mt-1.5">
+                                                Required for airport pickup/drop-off tracking
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
 
-                {/* Desktop Layout */}
-                {!isMobile && (
-                    <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
-                        {/* Left Column - Taxi Options */}
-                        <div className="lg:col-span-2">
                             {/* Header */}
-                            <div className="mb-6">
-                                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-                                    Available Transport <span className="text-orange-600">({filteredAndSortedTaxiOptions.length})</span>
+                            <div className="mb-4">
+                                <h1 className="text-xl font-bold text-gray-900 mb-1">
+                                    Available Transport ({filteredAndSortedTaxiOptions.length})
                                 </h1>
-                                <p className="text-gray-600 mb-4">
+                                <p className="text-gray-600 text-sm">
                                     Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} miles range
                                 </p>
-
-                                {/* Filters */}
-                                <Filters
-                                    activeFilter={activeFilter}
-                                    sortBy={sortBy}
-                                    onFilterChange={setActiveFilter}
-                                    onSortChange={setSortBy}
-                                />
                             </div>
 
+                            {/* Filters */}
+                            <Filters
+                                activeFilter={activeFilter}
+                                sortBy={sortBy}
+                                onFilterChange={setActiveFilter}
+                                onSortChange={setSortBy}
+                            />
+
                             {/* Taxi Options List */}
-                            <div className="space-y-4">
+                            <div className="space-y-3">
                                 {filteredAndSortedTaxiOptions.map((taxi) => (
                                     <TaxiCard
                                         key={taxi.id}
@@ -466,296 +428,337 @@ const TaxiOptions: React.FC = () => {
                                     />
                                 ))}
                             </div>
-                        </div>
+                        </>
+                    )}
 
-                        {/* Right Column - Map & Booking Summary */}
-                        <div className="lg:col-span-1">
-                            <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto space-y-4">
-                                {/* Booking Summary - Show first when taxi is selected */}
-                                {selectedTaxiData && (
-                                    <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-orange-500 animate-slideIn">
-                                        <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4 text-white">
-                                            <h3 className="text-lg font-bold mb-1">Booking Summary</h3>
-                                            <p className="text-sm text-orange-100">
-                                                {searchDetails.tripType === 'return' ? 'Round Trip' : 'One-Way Trip'}
-                                            </p>
-                                        </div>
+                    {/* Desktop Layout */}
+                    {!isMobile && (
+                        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+                            {/* Left Column - Taxi Options */}
+                            <div className="lg:col-span-2">
+                                {/* Header */}
+                                <div className="mb-6">
+                                    <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
+                                        Available Transport <span className="text-orange-600">({filteredAndSortedTaxiOptions.length})</span>
+                                    </h1>
+                                    <p className="text-gray-600 mb-4">
+                                        Showing vehicles for {requiredPassengers} passenger{requiredPassengers > 1 ? 's' : ''} • {distance.toFixed(1)} miles range
+                                    </p>
 
-                                        <div className="p-4 space-y-3">
-                                            {/* Checkout Error */}
-                                            {checkoutError && (
-                                                <div className="bg-red-50 border-2 border-red-200 rounded-xl p-3 flex items-start gap-2">
-                                                    <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
-                                                    <p className="text-red-700 text-sm">{checkoutError}</p>
-                                                </div>
-                                            )}
+                                    {/* Filters */}
+                                    <Filters
+                                        activeFilter={activeFilter}
+                                        sortBy={sortBy}
+                                        onFilterChange={setActiveFilter}
+                                        onSortChange={setSortBy}
+                                    />
+                                </div>
 
-                                            {/* Airport Information Form - Desktop */}
-                                            {isAirportTrip && (
-                                                <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 space-y-3">
-                                                    <div className="flex items-center gap-2 mb-2">
-                                                        <Plane className="h-5 w-5 text-orange-600" />
-                                                        <h4 className="font-bold text-gray-900">Airport Trip Information</h4>
-                                                    </div>
+                                {/* Taxi Options List */}
+                                <div className="space-y-4">
+                                    {filteredAndSortedTaxiOptions.map((taxi) => (
+                                        <TaxiCard
+                                            key={taxi.id}
+                                            taxi={taxi}
+                                            isSelected={selectedTaxi === taxi.id}
+                                            distance={distance}
+                                            duration={duration}
+                                            tripType={searchDetails.tripType}
+                                            onSelect={setSelectedTaxi}
+                                            onBookNow={handleBookNow}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
 
-                                                    {/* Parking Fee Checkbox */}
-                                                    <label className="flex items-start gap-3 cursor-pointer group">
-                                                        <input
-                                                            type="checkbox"
-                                                            checked={parkingAcknowledged}
-                                                            onChange={(e) => setParkingAcknowledged(e.target.checked)}
-                                                            className="mt-1 h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500 cursor-pointer"
-                                                        />
-                                                        <div className="flex-1">
-                                                            <p className="text-sm font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
-                                                                I acknowledge that parking fees will be collected
-                                                            </p>
-                                                            <p className="text-xs text-gray-600 mt-1">
-                                                                Airport parking charges applicable
-                                                            </p>
-                                                        </div>
-                                                    </label>
-
-                                                    {/* Flight Number Input */}
-                                                    <div>
-                                                        <label className="block text-sm font-semibold text-gray-900 mb-2">
-                                                            Flight Number <span className="text-red-500">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            value={flightNumber}
-                                                            onChange={(e) => setFlightNumber(e.target.value)}
-                                                            placeholder="e.g., EK524, FZ123"
-                                                            className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm font-medium uppercase"
-                                                            style={{ textTransform: 'uppercase' }}
-                                                        />
-                                                        <p className="text-xs text-gray-500 mt-1.5">
-                                                            Required for airport pickup/drop-off tracking
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            )}
-
-                                            {/* Selected Vehicle */}
-                                            <div>
-                                                <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Selected Vehicle</p>
-                                                <div className="flex items-center gap-3">
-                                                    <img
-                                                        src={selectedTaxiData.image}
-                                                        alt={selectedTaxiData.name}
-                                                        className="w-16 h-10 object-contain rounded-lg"
-                                                    />
-                                                    <div className="flex-1">
-                                                        <p className="font-bold text-gray-900">{selectedTaxiData.name}</p>
-                                                        <p className="text-xs text-gray-500">{selectedTaxiData.type}</p>
-                                                    </div>
-                                                </div>
+                            {/* Right Column - Map & Booking Summary */}
+                            <div className="lg:col-span-1">
+                                <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto space-y-4">
+                                    {/* Booking Summary - Show first when taxi is selected */}
+                                    {selectedTaxiData && (
+                                        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-orange-500 animate-slideIn">
+                                            <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4 text-white">
+                                                <h3 className="text-lg font-bold mb-1">Booking Summary</h3>
+                                                <p className="text-sm text-orange-100">
+                                                    {searchDetails.tripType === 'return' ? 'Round Trip' : 'One-Way Trip'}
+                                                </p>
                                             </div>
 
-                                            {/* Journey Details */}
-                                            <div className="border-t border-gray-200 pt-3">
-                                                <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Journey Details</p>
-                                                <div className="space-y-1.5 text-sm">
-                                                    {searchDetails.tripType === 'return' ? (
-                                                        <>
-                                                            {/* Pickup */}
-                                                            <div className="bg-orange-50 p-2 rounded-lg">
-                                                                <p className="text-xs font-semibold text-orange-700 mb-1">→ Pickup</p>
-                                                                <div className="text-xs text-gray-700">
-                                                                    <div> {formatDateDisplay(searchDetails.date)} at {searchDetails.time}</div>
-                                                                    <div className="text-gray-500">{distance.toFixed(1)} miles</div>
-                                                                </div>
-                                                            </div>
+                                            <div className="p-4 space-y-3">
+                                                {/* Checkout Error */}
+                                                {checkoutError && (
+                                                    <div className="bg-red-50 border-2 border-red-200 rounded-xl p-3 flex items-start gap-2">
+                                                        <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
+                                                        <p className="text-red-700 text-sm">{checkoutError}</p>
+                                                    </div>
+                                                )}
 
-                                                            {/* Return */}
-                                                            {searchDetails.returnDate && (
-                                                                <div className="bg-green-50 p-2 rounded-lg">
-                                                                    <p className="text-xs font-semibold text-green-700 mb-1">← Return</p>
+                                                {/* Airport Information Form - Desktop */}
+                                                {isAirportTrip && (
+                                                    <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 space-y-3">
+                                                        <div className="flex items-center gap-2 mb-2">
+                                                            <Plane className="h-5 w-5 text-orange-600" />
+                                                            <h4 className="font-bold text-gray-900">Airport Trip Information</h4>
+                                                        </div>
+
+                                                        {/* Parking Fee Checkbox */}
+                                                        <label className="flex items-start gap-3 cursor-pointer group">
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={parkingAcknowledged}
+                                                                onChange={(e) => setParkingAcknowledged(e.target.checked)}
+                                                                className="mt-1 h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500 cursor-pointer"
+                                                            />
+                                                            <div className="flex-1">
+                                                                <p className="text-sm font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                                                                    I acknowledge that parking fees will be collected
+                                                                </p>
+                                                                <p className="text-xs text-gray-600 mt-1">
+                                                                    Airport parking charges applicable
+                                                                </p>
+                                                            </div>
+                                                        </label>
+
+                                                        {/* Flight Number Input */}
+                                                        <div>
+                                                            <label className="block text-sm font-semibold text-gray-900 mb-2">
+                                                                Flight Number <span className="text-red-500">*</span>
+                                                            </label>
+                                                            <input
+                                                                type="text"
+                                                                value={flightNumber}
+                                                                onChange={(e) => setFlightNumber(e.target.value)}
+                                                                placeholder="e.g., EK524, FZ123"
+                                                                className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm font-medium uppercase"
+                                                                style={{ textTransform: 'uppercase' }}
+                                                            />
+                                                            <p className="text-xs text-gray-500 mt-1.5">
+                                                                Required for airport pickup/drop-off tracking
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {/* Selected Vehicle */}
+                                                <div>
+                                                    <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Selected Vehicle</p>
+                                                    <div className="flex items-center gap-3">
+                                                        <img
+                                                            src={selectedTaxiData.image}
+                                                            alt={selectedTaxiData.name}
+                                                            className="w-16 h-10 object-contain rounded-lg"
+                                                        />
+                                                        <div className="flex-1">
+                                                            <p className="font-bold text-gray-900">{selectedTaxiData.name}</p>
+                                                            <p className="text-xs text-gray-500">{selectedTaxiData.type}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Journey Details */}
+                                                <div className="border-t border-gray-200 pt-3">
+                                                    <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Journey Details</p>
+                                                    <div className="space-y-1.5 text-sm">
+                                                        {searchDetails.tripType === 'return' ? (
+                                                            <>
+                                                                {/* Pickup */}
+                                                                <div className="bg-orange-50 p-2 rounded-lg">
+                                                                    <p className="text-xs font-semibold text-orange-700 mb-1">→ Pickup</p>
                                                                     <div className="text-xs text-gray-700">
-                                                                        <div>{formatDateDisplay(searchDetails.returnDate)} at {searchDetails.returnTime}</div>
+                                                                        <div> {formatDateDisplay(searchDetails.date)} at {searchDetails.time}</div>
                                                                         <div className="text-gray-500">{distance.toFixed(1)} miles</div>
                                                                     </div>
                                                                 </div>
-                                                            )}
+
+                                                                {/* Return */}
+                                                                {searchDetails.returnDate && (
+                                                                    <div className="bg-green-50 p-2 rounded-lg">
+                                                                        <p className="text-xs font-semibold text-green-700 mb-1">← Return</p>
+                                                                        <div className="text-xs text-gray-700">
+                                                                            <div>{formatDateDisplay(searchDetails.returnDate)} at {searchDetails.returnTime}</div>
+                                                                            <div className="text-gray-500">{distance.toFixed(1)} miles</div>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <div className="flex justify-between">
+                                                                    <span className="text-gray-600">Date & Time</span>
+                                                                    <span className="font-semibold text-gray-900">{formatDateDisplay(searchDetails.date)} at {searchDetails.time}</span>
+                                                                </div>
+                                                                <div className="flex justify-between">
+                                                                    <span className="text-gray-600">Distance</span>
+                                                                    <span className="font-semibold text-gray-900">{distance.toFixed(1)} miles</span>
+                                                                </div>
+                                                                <div className="flex justify-between">
+                                                                    <span className="text-gray-600">Duration</span>
+                                                                    <span className="font-semibold text-gray-900">{duration}</span>
+                                                                </div>
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                {/* Price Breakdown */}
+                                                <div className="border-t border-gray-200 pt-3">
+                                                    <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Price Breakdown</p>
+                                                    <div className="space-y-1.5 text-sm">
+                                                        {searchDetails.tripType === 'return' ? (
+                                                            <>
+                                                                <div className="flex justify-between">
+                                                                    <span className="text-gray-600">Pickup Trip ({distance.toFixed(1)} miles)</span>
+                                                                    <span className="font-semibold text-gray-900">
+                                                                        GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
+                                                                    </span>
+                                                                </div>
+                                                                <div className="flex justify-between">
+                                                                    <span className="text-gray-600">Return Trip ({distance.toFixed(1)} miles)</span>
+                                                                    <span className="font-semibold text-gray-900">
+                                                                        GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
+                                                                    </span>
+                                                                </div>
+                                                                {!isAirportTrip && (
+                                                                    <div className="bg-orange-50 border border-orange-200 rounded-lg p-2 mt-2">
+                                                                        <p className="text-xs text-orange-700 font-medium">
+                                                                            Parking fees (if applicable) will be added to the final amount
+                                                                        </p>
+                                                                    </div>
+                                                                )}
+                                                                <div className="flex justify-between pt-2 border-t border-gray-200">
+                                                                    <span className="font-bold text-gray-900">Total Amount</span>
+                                                                    <span className="text-xl font-bold text-orange-600">
+                                                                        GBP {calculatePrice(selectedTaxiData, distance, 'return')}
+                                                                    </span>
+                                                                </div>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <div className="flex justify-between">
+                                                                    <span className="font-bold text-gray-900">Total Amount</span>
+                                                                    <span className="text-xl font-bold text-orange-600">
+                                                                        GBP {calculatePrice(selectedTaxiData, distance, 'one-way')}
+                                                                    </span>
+                                                                </div>
+                                                                {!isAirportTrip && (
+                                                                    <div className="bg-orange-50 border border-orange-200 rounded-lg p-2 mt-2">
+                                                                        <p className="text-xs text-orange-700 font-medium">
+                                                                            Parking fees (if applicable) will be added to the final amount
+                                                                        </p>
+                                                                    </div>
+                                                                )}
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                {/* Proceed to Pay Button */}
+                                                <button
+                                                    onClick={handleProceedToPay}
+                                                    disabled={isProceedDisabled()}
+                                                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3.5 px-6 rounded-xl hover:shadow-2xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 group mt-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                                                >
+                                                    {checkoutLoading ? (
+                                                        <>
+                                                            <RefreshCw className="h-5 w-5 animate-spin" />
+                                                            <span>Processing...</span>
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <div className="flex justify-between">
-                                                                <span className="text-gray-600">Date & Time</span>
-                                                                <span className="font-semibold text-gray-900">{formatDateDisplay(searchDetails.date)} at {searchDetails.time}</span>
-                                                            </div>
-                                                            <div className="flex justify-between">
-                                                                <span className="text-gray-600">Distance</span>
-                                                                <span className="font-semibold text-gray-900">{distance.toFixed(1)} miles</span>
-                                                            </div>
-                                                            <div className="flex justify-between">
-                                                                <span className="text-gray-600">Duration</span>
-                                                                <span className="font-semibold text-gray-900">{duration}</span>
-                                                            </div>
+                                                            <Lock className="h-5 w-5" />
+                                                            <span>Proceed to Pay</span>
                                                         </>
                                                     )}
-                                                </div>
+                                                </button>
+
                                             </div>
-
-                                            {/* Price Breakdown */}
-                                            <div className="border-t border-gray-200 pt-3">
-                                                <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Price Breakdown</p>
-                                                <div className="space-y-1.5 text-sm">
-                                                    {searchDetails.tripType === 'return' ? (
-                                                        <>
-                                                            <div className="flex justify-between">
-                                                                <span className="text-gray-600">Pickup Trip ({distance.toFixed(1)} miles)</span>
-                                                                <span className="font-semibold text-gray-900">
-                                                                    GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
-                                                                </span>
-                                                            </div>
-                                                            <div className="flex justify-between">
-                                                                <span className="text-gray-600">Return Trip ({distance.toFixed(1)} miles)</span>
-                                                                <span className="font-semibold text-gray-900">
-                                                                    GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
-                                                                </span>
-                                                            </div>
-                                                            {!isAirportTrip && (
-                                                                <div className="bg-orange-50 border border-orange-200 rounded-lg p-2 mt-2">
-                                                                    <p className="text-xs text-orange-700 font-medium">
-                                                                        Parking fees (if applicable) will be added to the final amount
-                                                                    </p>
-                                                                </div>
-                                                            )}
-                                                            <div className="flex justify-between pt-2 border-t border-gray-200">
-                                                                <span className="font-bold text-gray-900">Total Amount</span>
-                                                                <span className="text-xl font-bold text-orange-600">
-                                                                    GBP {calculatePrice(selectedTaxiData, distance, 'return')}
-                                                                </span>
-                                                            </div>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <div className="flex justify-between">
-                                                                <span className="font-bold text-gray-900">Total Amount</span>
-                                                                <span className="text-xl font-bold text-orange-600">
-                                                                    GBP {calculatePrice(selectedTaxiData, distance, 'one-way')}
-                                                                </span>
-                                                            </div>
-                                                            {!isAirportTrip && (
-                                                                <div className="bg-orange-50 border border-orange-200 rounded-lg p-2 mt-2">
-                                                                    <p className="text-xs text-orange-700 font-medium">
-                                                                        Parking fees (if applicable) will be added to the final amount
-                                                                    </p>
-                                                                </div>
-                                                            )}
-                                                        </>
-                                                    )}
-                                                </div>
-                                            </div>
-
-                                            {/* Proceed to Pay Button */}
-                                            <button
-                                                onClick={handleProceedToPay}
-                                                disabled={isProceedDisabled()}
-                                                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3.5 px-6 rounded-xl hover:shadow-2xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 group mt-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                                            >
-                                                {checkoutLoading ? (
-                                                    <>
-                                                        <RefreshCw className="h-5 w-5 animate-spin" />
-                                                        <span>Processing...</span>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <Lock className="h-5 w-5" />
-                                                        <span>Proceed to Pay</span>
-                                                    </>
-                                                )}
-                                            </button>
-
                                         </div>
-                                    </div>
-                                )}
+                                    )}
 
-                                {/* Map - Show below booking summary or first if no taxi selected */}
-                                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                                    <div className="p-4 border-b border-gray-200">
-                                        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                                            <Navigation className="h-5 w-5 text-orange-600" />
-                                            Route Map
-                                        </h2>
-                                        <p className="text-gray-600 text-xs mt-1 truncate">
-                                            {searchDetails.from} → {searchDetails.to}
-                                        </p>
-                                    </div>
+                                    {/* Map - Show below booking summary or first if no taxi selected */}
+                                    <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                                        <div className="p-4 border-b border-gray-200">
+                                            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                                                <Navigation className="h-5 w-5 text-orange-600" />
+                                                Route Map
+                                            </h2>
+                                            <p className="text-gray-600 text-xs mt-1 truncate">
+                                                {searchDetails.from} → {searchDetails.to}
+                                            </p>
+                                        </div>
 
-                                    <div className="h-[350px] p-3">
-                                        <MapView
-                                            from={searchDetails.from}
-                                            to={searchDetails.to}
-                                            fromCoords={searchDetails.fromCoords || { lat: 25.2532, lng: 55.3657 }}
-                                            toCoords={searchDetails.toCoords || { lat: 25.1972, lng: 55.2744 }}
-                                            distance={distance}
-                                            duration={duration}
-                                            selectedTaxiId={selectedTaxi}
-                                        />
+                                        <div className="h-[350px] p-3">
+                                            <MapView
+                                                from={searchDetails.from}
+                                                to={searchDetails.to}
+                                                fromCoords={searchDetails.fromCoords || { lat: 25.2532, lng: 55.3657 }}
+                                                toCoords={searchDetails.toCoords || { lat: 25.1972, lng: 55.2744 }}
+                                                distance={distance}
+                                                duration={duration}
+                                                selectedTaxiId={selectedTaxi}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    )}
+                </div>
+
+                {/* Mobile Booking Bar - Updated with Proceed to Pay */}
+                {isMobile && selectedTaxiData && (
+                    <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50 animate-slideUp">
+                        <div className="container mx-auto px-4 py-3">
+                            {/* Checkout Error */}
+                            {checkoutError && (
+                                <div className="bg-red-50 border border-red-200 rounded-lg p-2 flex items-start gap-2 mb-3">
+                                    <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
+                                    <p className="text-red-700 text-xs">{checkoutError}</p>
+                                </div>
+                            )}
+
+                            <div className="flex items-center justify-between gap-3 mb-2">
+                                <div className="flex-1">
+                                    <p className="text-xs text-gray-500 mb-1">Selected Vehicle</p>
+                                    <p className="font-bold text-gray-900 truncate text-sm">{selectedTaxiData.name}</p>
+                                    <p className="text-sm text-gray-600">
+                                        <span className="font-bold text-orange-600">
+                                            GBP {calculatePrice(selectedTaxiData, distance, searchDetails.tripType)}
+                                        </span>
+                                    </p>
+                                </div>
+                                <button
+                                    onClick={handleProceedToPay}
+                                    disabled={isProceedDisabled()}
+                                    className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                >
+                                    {checkoutLoading ? (
+                                        <>
+                                            <RefreshCw className="h-4 w-4 animate-spin" />
+                                            <span>Processing...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Lock className="h-4 w-4" />
+                                            <span>Proceed to Pay</span>
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+
+                            {/* Parking Fee Notice - Only show for non-airport trips */}
+                            {!isAirportTrip && (
+                                <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
+                                    <p className="text-[10px] text-orange-700 font-medium text-center">
+                                        Parking fees (if applicable) will be added
+                                    </p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 )}
-            </div>
 
-            {/* Mobile Booking Bar - Updated with Proceed to Pay */}
-            {isMobile && selectedTaxiData && (
-                <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50 animate-slideUp">
-                    <div className="container mx-auto px-4 py-3">
-                        {/* Checkout Error */}
-                        {checkoutError && (
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-2 flex items-start gap-2 mb-3">
-                                <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
-                                <p className="text-red-700 text-xs">{checkoutError}</p>
-                            </div>
-                        )}
-
-                        <div className="flex items-center justify-between gap-3 mb-2">
-                            <div className="flex-1">
-                                <p className="text-xs text-gray-500 mb-1">Selected Vehicle</p>
-                                <p className="font-bold text-gray-900 truncate text-sm">{selectedTaxiData.name}</p>
-                                <p className="text-sm text-gray-600">
-                                    <span className="font-bold text-orange-600">
-                                        GBP {calculatePrice(selectedTaxiData, distance, searchDetails.tripType)}
-                                    </span>
-                                </p>
-                            </div>
-                            <button
-                                onClick={handleProceedToPay}
-                                disabled={isProceedDisabled()}
-                                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed text-sm"
-                            >
-                                {checkoutLoading ? (
-                                    <>
-                                        <RefreshCw className="h-4 w-4 animate-spin" />
-                                        <span>Processing...</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Lock className="h-4 w-4" />
-                                        <span>Proceed to Pay</span>
-                                    </>
-                                )}
-                            </button>
-                        </div>
-
-                        {/* Parking Fee Notice - Only show for non-airport trips */}
-                        {!isAirportTrip && (
-                            <div className="bg-orange-50 border border-orange-200 rounded-lg p-2">
-                                <p className="text-[10px] text-orange-700 font-medium text-center">
-                                    Parking fees (if applicable) will be added
-                                </p>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
-
-            <style>{`
+                <style>{`
                 @keyframes slideIn {
                     from {
                         opacity: 0;
@@ -786,7 +789,8 @@ const TaxiOptions: React.FC = () => {
                     animation: slideUp 0.3s ease-out;
                 }
             `}</style>
-        </div>
+            </div>
+        </>
     );
 };
 

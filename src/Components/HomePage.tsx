@@ -487,7 +487,7 @@ const HomePage: React.FC = () => {
         const enquiryData = {
             name: contactName,
             email: contactEmail,
-            phone: contactPhone,
+            phone: `${selectedDialCode} ${contactPhone}`,
             serviceType: serviceType,
             pickupLocation: pickupLocation,
             dropoffLocation: serviceType === 'transfers' ? dropoffLocation : null,

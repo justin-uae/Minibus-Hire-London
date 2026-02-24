@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileText, CheckCircle, CreditCard, Ban, Clock, AlertCircle, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEOHead from '../Components/SEOHead';
 
 interface PolicySection {
     id: string;
@@ -133,86 +134,95 @@ const TermsAndConditions: React.FC = () => {
     ];
 
     return (
-        <section className="py-16 lg:py-24 bg-white">
-            <div className="container mx-auto px-4 lg:px-8">
-                {/* Section Header */}
-                <div className="text-center mb-12 lg:mb-16">
-                    <div className="inline-block bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                        Legal Information
-                    </div>
-                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                        Booking Terms & Conditions
-                    </h2>
-                    <p className="text-gray-600 text-base lg:text-lg max-w-2xl mx-auto">
-                        All bookings are made subject to UK Minibus Hire terms below and the specific booking conditions of your relevant Travel Supplier.
-                        It is your responsibility to ensure that you have read, understood and agree both prior to booking.
-                    </p>
-                </div>
-
-                {/* Policy Sections Grid */}
-                <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
-                    {termsData.map((section) => (
-                        <div
-                            key={section.id}
-                            className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 lg:p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1"
-                        >
-                            {/* Section Header */}
-                            <div className="flex items-start gap-4 mb-6">
-                                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform">
-                                    {section.icon}
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">
-                                        {section.title}
-                                    </h3>
-                                </div>
-                            </div>
-
-                            {/* Section Content */}
-                            <ul className="space-y-3">
-                                {section.content.map((item, idx) => (
-                                    <li key={idx} className="flex items-start gap-3">
-                                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                                        <span className="text-gray-700 text-sm lg:text-base leading-relaxed">
-                                            {item}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
+        <>
+            <SEOHead
+                title="Terms & Conditions - Minibus Hire London"
+                description="Read the terms and conditions for booking minibus and coach hire services with Minibus Hire London. Understand our booking policy, cancellations and passenger guidelines."
+                keywords="minibus hire terms and conditions, booking policy, coach hire cancellation policy"
+                canonicalUrl="/terms"
+                noIndex={false}
+            />
+            <section className="py-16 lg:py-24 bg-white">
+                <div className="container mx-auto px-4 lg:px-8">
+                    {/* Section Header */}
+                    <div className="text-center mb-12 lg:mb-16">
+                        <div className="inline-block bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            Legal Information
                         </div>
-                    ))}
-                </div>
-
-                {/* Contact Section */}
-                <div className="mt-16 lg:mt-20 text-center">
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 lg:p-12 max-w-3xl mx-auto border-2 border-orange-200">
-                        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mb-6">
-                            <Phone className="h-8 w-8 text-white" />
-                        </div>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-                            Questions About Our Terms?
-                        </h3>
-                        <p className="text-gray-700 text-base lg:text-lg mb-6">
-                            If you have any questions about our Terms & Conditions, please don't hesitate to contact us.
-                            We're here to help and ensure you have a clear understanding of our policies.
+                        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                            Booking Terms & Conditions
+                        </h2>
+                        <p className="text-gray-600 text-base lg:text-lg max-w-2xl mx-auto">
+                            All bookings are made subject to UK Minibus Hire terms below and the specific booking conditions of your relevant Travel Supplier.
+                            It is your responsibility to ensure that you have read, understood and agree both prior to booking.
                         </p>
-                        <Link
-                            to="/contact"
-                            className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-                        >
-                            Contact Us Today
-                        </Link>
+                    </div>
+
+                    {/* Policy Sections Grid */}
+                    <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
+                        {termsData.map((section) => (
+                            <div
+                                key={section.id}
+                                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 lg:p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1"
+                            >
+                                {/* Section Header */}
+                                <div className="flex items-start gap-4 mb-6">
+                                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform">
+                                        {section.icon}
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">
+                                            {section.title}
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                {/* Section Content */}
+                                <ul className="space-y-3">
+                                    {section.content.map((item, idx) => (
+                                        <li key={idx} className="flex items-start gap-3">
+                                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                                            <span className="text-gray-700 text-sm lg:text-base leading-relaxed">
+                                                {item}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Contact Section */}
+                    <div className="mt-16 lg:mt-20 text-center">
+                        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 lg:p-12 max-w-3xl mx-auto border-2 border-orange-200">
+                            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mb-6">
+                                <Phone className="h-8 w-8 text-white" />
+                            </div>
+                            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                                Questions About Our Terms?
+                            </h3>
+                            <p className="text-gray-700 text-base lg:text-lg mb-6">
+                                If you have any questions about our Terms & Conditions, please don't hesitate to contact us.
+                                We're here to help and ensure you have a clear understanding of our policies.
+                            </p>
+                            <Link
+                                to="/contact"
+                                className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                            >
+                                Contact Us Today
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Last Updated */}
+                    <div className="mt-12 text-center">
+                        <p className="text-sm text-gray-500">
+                            Last Updated: January 2025
+                        </p>
                     </div>
                 </div>
-
-                {/* Last Updated */}
-                <div className="mt-12 text-center">
-                    <p className="text-sm text-gray-500">
-                        Last Updated: January 2025
-                    </p>
-                </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 };
 

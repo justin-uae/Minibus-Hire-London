@@ -5,10 +5,16 @@ import HowItWorks from '../Components/HowItWorks';
 import Testimonials from '../Components/Testimonials';
 import Homepage from '../Components/HomePage';
 import AboutService from '../Components/AboutService';
+import SEOHead from '../Components/SEOHead';
 
 const CompletePage: React.FC = () => {
     return (
         <div className="min-h-screen">
+            <SEOHead
+                description="Professional minibus and coach hire across the UK. CRB checked drivers, vehicles from 8-72 passengers. Airport transfers, weddings, school trips & more."
+                keywords="minibus hire London, coach hire UK, minibus rental, airport transfers"
+                canonicalUrl="/"
+            />
             {/* Hero Section with Booking Form */}
             <Homepage />
 
