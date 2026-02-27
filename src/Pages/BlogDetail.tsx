@@ -96,6 +96,7 @@ export default function BlogDetail() {
                 ogImage={blog.image}
                 ogType="article"
                 schema={blogSchema}
+                appendSiteName={false}
             />
             <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
                 {/* Breadcrumb */}

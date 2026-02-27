@@ -59,6 +59,7 @@ export default function BlogListing() {
                 description="Read our latest articles on group travel, minibus hire tips, UK destinations, event transport guides and advice to help you plan your perfect journey."
                 keywords="minibus hire blog, group travel tips, coach hire advice, UK travel guide, minibus booking tips"
                 canonicalUrl="/blogs"
+                appendSiteName={false}
             />
             <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
                 {/* Hero Section */}

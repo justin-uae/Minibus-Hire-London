@@ -949,7 +949,7 @@ const HomePage: React.FC = () => {
 
                                     {/* STEP 2: Date & Time + Passengers */}
                                     {currentStep === 2 && (
-                                        <div className="space-y-3 sm:space-y-4 animate-fadeIn max-h-[500px] overflow-y-auto pr-2">
+                                        <div className="space-y-3 sm:space-y-4 animate-fadeIn max-h-[500px] pr-2">
                                             {/* Pickup Date and Time Row */}
                                             <div className="grid grid-cols-2 gap-2 sm:gap-4">
                                                 {/* Pickup Date Selection */}
@@ -970,7 +970,7 @@ const HomePage: React.FC = () => {
                                                         <button
                                                             type="button"
                                                             onClick={() => setShowDatePicker(!showDatePicker)}
-                                                            className="relative w-full py-3 sm:py-4 px-3 sm:px-4 bg-white border-2 border-gray-200 rounded-lg sm:rounded-xl hover:border-purple-500 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-200 cursor-pointer text-left"
+                                                            className="relative w-full h-[46px] sm:h-auto py-3 sm:py-4 px-3 sm:px-4 bg-white border-2 border-gray-200 rounded-lg sm:rounded-xl hover:border-purple-500 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-200 cursor-pointer text-left flex items-center"
                                                         >
                                                             <div className="text-gray-700 font-medium text-xs sm:text-sm">
                                                                 {formatDateWithOrdinal(selectedDate)}
@@ -1037,7 +1037,7 @@ const HomePage: React.FC = () => {
                                                         </label>
                                                     </div>
                                                     <div className="relative transform transition-all duration-200 group-hover:scale-[1.01]">
-                                                        <select value={selectedTime} onChange={(e) => handlePickupTimeChange(e.target.value)} className="relative w-full py-3 sm:py-4 px-3 sm:px-4 bg-white border-2 border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 text-gray-700 text-xs sm:text-sm transition-all duration-200 appearance-none cursor-pointer font-medium">
+                                                        <select value={selectedTime} onChange={(e) => handlePickupTimeChange(e.target.value)} className="relative w-full h-[46px] sm:h-auto py-3 sm:py-4 px-3 sm:px-4 bg-white border-2 border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 text-gray-700 text-xs sm:text-sm transition-all duration-200 appearance-none cursor-pointer font-medium">
                                                             {pickupTimeSlots.length > 0 ? pickupTimeSlots.map((time) => (<option key={time} value={time}>{formatTime12Hour(time)}</option>)) : (<option value="">No available times</option>)}
                                                         </select>
                                                         <div className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -1196,9 +1196,9 @@ const HomePage: React.FC = () => {
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setShowReturnDatePicker(!showReturnDatePicker)}
-                                                                className="relative w-full py-4 px-4 bg-white border-2 border-gray-200 rounded-xl hover:border-purple-500 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-200 cursor-pointer text-left"
+                                                                className="relative w-full h-[46px] sm:h-auto py-3 sm:py-4 px-3 sm:px-4 bg-white border-2 border-gray-200 rounded-lg sm:rounded-xl hover:border-purple-500 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-200 cursor-pointer text-left flex items-center"
                                                             >
-                                                                <div className="text-gray-700 font-medium text-sm">
+                                                                <div className="text-gray-700 font-medium text-xs sm:text-sm">
                                                                     {formatDateWithOrdinal(returnDate)}
                                                                 </div>
                                                             </button>
@@ -1263,7 +1263,7 @@ const HomePage: React.FC = () => {
                                                             </label>
                                                         </div>
                                                         <div className="relative transform transition-all duration-200 group-hover:scale-[1.01]">
-                                                            <select value={returnTime} onChange={(e) => handleReturnTimeChange(e.target.value)} className="relative w-full py-4 px-4 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 text-gray-700 transition-all duration-200 appearance-none cursor-pointer font-medium text-sm">
+                                                            <select value={returnTime} onChange={(e) => handleReturnTimeChange(e.target.value)} className="relative w-full h-[46px] sm:h-auto py-3 sm:py-4 px-3 sm:px-4 bg-white border-2 border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 text-gray-700 text-xs sm:text-sm transition-all duration-200 appearance-none cursor-pointer font-medium">
                                                                 {returnTimeSlots.length > 0 ? returnTimeSlots.map((time) => (<option key={time} value={time}>{formatTime12Hour(time)}</option>)) : (<option value="">No available times</option>)}
                                                             </select>
                                                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">

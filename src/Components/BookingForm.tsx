@@ -968,7 +968,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
 
                     {/* STEP 2: Date & Time + Passengers */}
                     {currentStep === 2 && (
-                        <div className="space-y-3 sm:space-y-4 animate-fadeIn max-h-[500px] overflow-y-auto pr-2">
+                        <div className="space-y-3 sm:space-y-4 animate-fadeIn max-h-[500px] pr-2">
                             {/* Pickup Date and Time Row */}
                             <div className="grid grid-cols-2 gap-2 sm:gap-4">
                                 {/* Pickup Date Selection */}

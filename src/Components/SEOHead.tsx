@@ -9,6 +9,7 @@ interface SEOHeadProps {
     ogType?: string;
     noIndex?: boolean;
     schema?: object | object[];
+    appendSiteName?: boolean;
 }
 
 const SITE_NAME = 'Minibus Hire London';
@@ -24,8 +25,15 @@ export default function SEOHead({
     ogType = 'website',
     noIndex = false,
     schema,
+    appendSiteName = true,
 }: SEOHeadProps) {
-    const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - Professional minibus and coach hire across the UK. CRB checked drivers, vehicles from 8-72 passengers. Airport transfers, weddings, school trips & more | 8-72 Passengers`;
+
+    const fullTitle = title
+        ? appendSiteName
+            ? `${title} | ${SITE_NAME}`
+            : title
+        : `${SITE_NAME} - Professional minibus and coach hire across the UK. CRB checked drivers, vehicles from 8-72 passengers. Airport transfers, weddings, school trips & more | 8-72 Passengers`;
+
     const fullCanonical = canonicalUrl ? `${BASE_URL}${canonicalUrl}` : BASE_URL;
 
     return (
