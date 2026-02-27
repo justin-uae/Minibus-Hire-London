@@ -19,11 +19,13 @@ export const selectVariantByDistance = (
 
     if (!distance || distance <= 0) {
         console.warn('Invalid distance:', distance);
-        return variants[0]; // Return first (lowest) variant as fallback
+        return sortVariantsByRange(variants)[0];
     }
 
-    // Find variant where distance falls within range
-    const matchingVariant = variants.find(
+    const sorted = sortVariantsByRange(variants);
+
+    // Find exact range match
+    const matchingVariant = sorted.find(
         v => distance >= v.kmRangeMin && distance <= v.kmRangeMax
     );
 
@@ -31,17 +33,21 @@ export const selectVariantByDistance = (
         return matchingVariant;
     }
 
-    // If distance exceeds all ranges, return highest variant
-    const sortedByRange = [...variants].sort((a, b) => b.kmRangeMax - a.kmRangeMax);
-    const highestVariant = sortedByRange[0];
+    // Distance falls in a gap (e.g. 50.5 between 0-50 and 51-100)
+    // → return the variant whose max is closest to the distance from below
+    const lowerVariant = [...sorted]
+        .reverse()
+        .find(v => distance > v.kmRangeMax);
 
-    console.warn('Distance exceeds all variants:', {
-        distance: `${distance} km`,
-        highestRange: `${highestVariant.kmRangeMax} miles`,
-        usingVariant: highestVariant.title
-    });
+    if (lowerVariant) {
+        console.warn(`Distance ${distance} km falls in gap, using closest lower variant:`, lowerVariant.title);
+        return lowerVariant;
+    }
 
-    return highestVariant;
+    // Distance exceeds all ranges → return highest
+    const highest = sorted[sorted.length - 1];
+    console.warn(`Distance ${distance} km exceeds all ranges, using highest:`, highest.title);
+    return highest;
 };
 
 /**

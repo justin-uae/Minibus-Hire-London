@@ -733,7 +733,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
                     {showTitle && (
                         <>
                             <h2 className="text-lg sm:text-xl font-bold text-orange-600 mb-2">
-                                {serviceType === 'transfers' ? 'Reserve Your Transport Now' : 'Reserve a Car for the Day'}
+                                {serviceType === 'transfers' ? 'Reserve Your Transport Now' : 'Reserve a Vehicle for the Day'}
                             </h2>
                             <p className="text-sm sm:text-base text-gray-600">
                                 {serviceType === 'transfers'

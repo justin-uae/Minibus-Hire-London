@@ -13,7 +13,7 @@ const HowItWorks: React.FC = () => {
         {
             number: "02",
             icon: <Search className="h-8 w-8" />,
-            title: "Choose Your Car",
+            title: "Choose Your Vehicle",
             description: "Browse our extensive fleet and select the perfect vehicle for your needs",
             color: "from-orange-400 to-orange-500"
         },
