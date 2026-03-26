@@ -52,7 +52,7 @@ vite.config.ts.timestamp-*
 
 # Optional stylelint cache
 .stylelintcache
-
+generate-blogs.mjs
 # Temporary files
 *.tmp
 *.temp
