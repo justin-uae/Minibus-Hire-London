@@ -86,18 +86,22 @@ export default function BlogDetail() {
         "keywords": blog.tags.join(', ')
     };
 
+    const seoHead = (
+        <SEOHead
+            title={blog.title}
+            description={blog.excerpt}
+            keywords={blog.tags.join(', ')}
+            canonicalUrl={`/viewBlog/${blog.slug}`}
+            ogImage={blog.image}
+            ogType="article"
+            schema={blogSchema}
+            appendSiteName={false}
+        />
+    )
+
     return (
         <>
-            <SEOHead
-                title={blog.title}
-                description={blog.excerpt}
-                keywords={blog.tags.join(', ')}
-                canonicalUrl={`/viewBlog/${blog.slug}`}
-                ogImage={blog.image}
-                ogType="article"
-                schema={blogSchema}
-                appendSiteName={false}
-            />
+            {seoHead}
             <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
                 {/* Breadcrumb */}
                 <div className="border-b border-gray-200 bg-white shadow-sm">

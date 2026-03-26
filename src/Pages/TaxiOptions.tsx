@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, Suspense, lazy } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Navigation, Lock, RefreshCw, AlertCircle, Plane } from 'lucide-react';
 import type { SearchDetails, TaxiOption } from '../types';
 import { useMobile } from '../hooks/useMobile';
 import TaxiHeader from '../Components/TaxiOptions/TaxiHeader';
-import MapView from '../Components/TaxiOptions/MapView';
+const MapView = lazy(() => import('../Components/TaxiOptions/MapView'));
 import Filters from '../Components/TaxiOptions/Filters';
 import TaxiCard from '../Components/TaxiOptions/TaxiCard';
 
@@ -229,44 +229,59 @@ const TaxiOptions: React.FC = () => {
     // Selected taxi data for booking bar
     const selectedTaxiData = taxiOptionsWithVariants.find(t => t.id === selectedTaxi) || null;
 
+    const seoHead = (
+        <SEOHead
+            title="Transport Options - UK Group Travel Solutions"
+            description="Discover all transport options available with Minibus Hire London. Airport transfers, day trips, events, school runs and more - tailored solutions for every journey."
+            keywords="group transport options UK, minibus transport solutions, coach hire options, group travel UK"
+            canonicalUrl="/transport-options"
+        />
+    )
+
     // Loading state
     if (loading && !initialized) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                <div className="text-center">
-                    <RefreshCw className="h-12 w-12 text-orange-600 animate-spin mx-auto mb-4" />
-                    <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Available Transport</h2>
-                    <p className="text-gray-600">Please wait while we fetch the latest options...</p>
+            <>
+                {seoHead}
+                <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                    <div className="text-center">
+                        <RefreshCw className="h-12 w-12 text-orange-600 animate-spin mx-auto mb-4" />
+                        <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Available Transport</h2>
+                        <p className="text-gray-600">Please wait while we fetch the latest options...</p>
+                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     // Error state
     if (error && !loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
-                <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-                    <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>
-                    <p className="text-gray-600 mb-6">{error}</p>
-                    <div className="space-y-3">
-                        <button
-                            onClick={handleRetry}
-                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
-                        >
-                            <RefreshCw className="h-5 w-5" />
-                            Try Again
-                        </button>
-                        <button
-                            onClick={() => navigate('/')}
-                            className="w-full bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-xl hover:bg-gray-300 transition-all"
-                        >
-                            Back to Home
-                        </button>
+            <>
+                {seoHead}
+                <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
+                    <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+                        <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>
+                        <p className="text-gray-600 mb-6">{error}</p>
+                        <div className="space-y-3">
+                            <button
+                                onClick={handleRetry}
+                                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                            >
+                                <RefreshCw className="h-5 w-5" />
+                                Try Again
+                            </button>
+                            <button
+                                onClick={() => navigate('/')}
+                                className="w-full bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-xl hover:bg-gray-300 transition-all"
+                            >
+                                Back to Home
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 
@@ -303,12 +318,7 @@ const TaxiOptions: React.FC = () => {
 
     return (
         <>
-            <SEOHead
-                title="Transport Options - UK Group Travel Solutions"
-                description="Discover all transport options available with Minibus Hire London. Airport transfers, day trips, events, school runs and more - tailored solutions for every journey."
-                keywords="group transport options UK, minibus transport solutions, coach hire options, group travel UK"
-                canonicalUrl="/transport-options"
-            />
+            {seoHead}
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-16 pb-24">
                 {/* Fixed Header */}
                 <div className="bg-white shadow-lg sticky top-16 z-40 border-b border-gray-200">
@@ -335,15 +345,17 @@ const TaxiOptions: React.FC = () => {
                                     </h2>
                                 </div>
                                 <div className="h-64 sm:h-80 p-2">
-                                    <MapView
-                                        from={searchDetails.from}
-                                        to={searchDetails.to}
-                                        fromCoords={searchDetails.fromCoords || { lat: 25.2532, lng: 55.3657 }}
-                                        toCoords={searchDetails.toCoords || { lat: 25.1972, lng: 55.2744 }}
-                                        distance={distance}
-                                        duration={duration}
-                                        selectedTaxiId={selectedTaxi}
-                                    />
+                                    <Suspense fallback={<div>Loading map...</div>}>
+                                        <MapView
+                                            from={searchDetails.from}
+                                            to={searchDetails.to}
+                                            fromCoords={searchDetails.fromCoords || { lat: 25.2532, lng: 55.3657 }}
+                                            toCoords={searchDetails.toCoords || { lat: 25.1972, lng: 55.2744 }}
+                                            distance={distance}
+                                            duration={duration}
+                                            selectedTaxiId={selectedTaxi}
+                                        />
+                                    </Suspense>
                                 </div>
                             </div>
 

@@ -199,38 +199,53 @@ const CarRentalOptions: React.FC = () => {
 
     const selectedCarData = filteredAndSortedCars.find(c => c.id === selectedCar) || null;
 
+    const seoHead = (
+        <SEOHead
+            title="Car Rental Options - Executive & Group Vehicle Hire"
+            description="Explore our car rental options for individuals and groups across the UK. From executive saloons to MPVs, find the right vehicle for your journey."
+            keywords="car rental UK, executive car hire London, MPV hire UK, group car rental, vehicle hire options"
+            canonicalUrl="/car-rental-options"
+        />
+    )
+
     // Loading state
     if (loading && !initialized) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                <div className="text-center">
-                    <RefreshCw className="h-12 w-12 text-orange-600 animate-spin mx-auto mb-4" />
-                    <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Available Cars</h2>
-                    <p className="text-gray-600">Please wait while we fetch the latest options...</p>
+            <>
+                {seoHead}
+                <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                    <div className="text-center">
+                        <RefreshCw className="h-12 w-12 text-orange-600 animate-spin mx-auto mb-4" />
+                        <h2 className="text-xl font-bold text-gray-900 mb-2">Loading Available Cars</h2>
+                        <p className="text-gray-600">Please wait while we fetch the latest options...</p>
+                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     // Error state
     if (error && !loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
-                <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-                    <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>
-                    <p className="text-gray-600 mb-6">{error}</p>
-                    <div className="space-y-3">
-                        <button onClick={handleRetry} className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                            <RefreshCw className="h-5 w-5" />
-                            Try Again
-                        </button>
-                        <button onClick={() => navigate('/')} className="w-full bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-xl hover:bg-gray-300 transition-all">
-                            Back to Home
-                        </button>
+            <>
+                {seoHead}
+                <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
+                    <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+                        <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>
+                        <p className="text-gray-600 mb-6">{error}</p>
+                        <div className="space-y-3">
+                            <button onClick={handleRetry} className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                                <RefreshCw className="h-5 w-5" />
+                                Try Again
+                            </button>
+                            <button onClick={() => navigate('/')} className="w-full bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-xl hover:bg-gray-300 transition-all">
+                                Back to Home
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 
@@ -254,12 +269,7 @@ const CarRentalOptions: React.FC = () => {
 
     return (
         <>
-            <SEOHead
-                title="Car Rental Options - Executive & Group Vehicle Hire"
-                description="Explore our car rental options for individuals and groups across the UK. From executive saloons to MPVs, find the right vehicle for your journey."
-                keywords="car rental UK, executive car hire London, MPV hire UK, group car rental, vehicle hire options"
-                canonicalUrl="/car-rental-options"
-            />
+            {seoHead}
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-16 pb-24">
                 {/* Fixed Header */}
                 <div className="bg-white shadow-lg sticky top-16 z-40 border-b border-gray-200">

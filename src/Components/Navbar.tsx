@@ -40,9 +40,9 @@ const Navbar: React.FC = () => {
                                     className="h-10 sm:h-14 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105 relative z-10"
                                 />
                             </div>
-                            <h1 className="text-lg sm:text-xl font-bold text-white">
+                            <span className="text-lg sm:text-xl font-bold text-white">
                                 Minibus Hire<span className="text-orange-400"> London</span>
-                            </h1>
+                            </span>
                         </Link>
 
                         {/* Desktop Navigation */}

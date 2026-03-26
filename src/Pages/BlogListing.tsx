@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Clock, User, Bus, Search, X, Loader } from 'lucide-react';
 import { fetchBlogPosts, type BlogPost } from '../services/shopifyClient';
 import SEOHead from '../Components/SEOHead';
 
 export default function BlogListing() {
-    const navigate = useNavigate();
     const [blogs, setBlogs] = useState<BlogPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -45,8 +43,18 @@ export default function BlogListing() {
     });
 
     const goToBlogDetail = (blogSlug: string) => {
-        navigate(`/viewBlog/${blogSlug}`);
+        window.location.href = `/viewBlog/${blogSlug}`;
     };
+
+    const seoHead = (
+        <SEOHead
+            title="Minibus Hire Blog - Tips, Guides & Travel Advice"
+            description="Read our latest articles on group travel, minibus hire tips, UK destinations"
+            canonicalUrl="/blogs"
+            ogType="article"
+            appendSiteName={false}
+        />
+    )
 
     if (loading) {
         return <LoadingSkeleton />;
@@ -54,13 +62,7 @@ export default function BlogListing() {
 
     return (
         <>
-            <SEOHead
-                title="Minibus Hire Blog - Tips, Guides & Travel Advice"
-                description="Read our latest articles on group travel, minibus hire tips, UK destinations, event transport guides and advice to help you plan your perfect journey."
-                keywords="minibus hire blog, group travel tips, coach hire advice, UK travel guide, minibus booking tips"
-                canonicalUrl="/blogs"
-                appendSiteName={false}
-            />
+            {seoHead}
             <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
                 {/* Hero Section */}
                 <div className="relative bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-28 overflow-hidden">

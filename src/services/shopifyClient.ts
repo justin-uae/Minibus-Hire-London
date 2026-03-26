@@ -499,6 +499,7 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   contentHtml: string;
+  description?: string;
   image: string;
   author: string;
   authorBio?: string;

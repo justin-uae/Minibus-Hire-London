@@ -6,9 +6,43 @@
   "scripts": {
     "dev": "vite --host",
     "generate-sitemap": "node scripts/generate-sitemap.js",
-    "build": "tsc -b && vite build && npm run generate-sitemap",
+    "build": "vite build",
+    "generate-blogs": "node generate-blogs.mjs",
+    "build:full": "vite build && node generate-blogs.mjs",
+    "postbuild": "react-snap",
     "lint": "eslint .",
     "preview": "vite preview"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "destination": "dist",
+    "fallback": "200.html",
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "puppeteerExecutablePath": "",
+    "crawl": true,
+    "inlineCss": false,
+    "skipThirdPartyRequests": true,
+    "include": [
+      "/",
+      "/about",
+      "/contact",
+      "/vehicles",
+      "/transport-options",
+      "/car-rental-options",
+      "/coachhire",
+      "/minibus",
+      "/blogs",
+      "/terms",
+      "/privacy"
+    ],
+    "exclude": [
+      "/payment",
+      "/car-rental/:carId",
+      "/viewBlog/:slug"
+    ]
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
@@ -18,7 +52,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-google-recaptcha": "^3.1.0",
-    "react-helmet-async": "^2.0.5",
+    "react-helmet-async": "^3.0.0",
     "react-icons": "^5.5.0",
     "react-leaflet": "^5.0.0",
     "react-redux": "^9.2.0",
@@ -38,6 +72,7 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^3.4.19",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",

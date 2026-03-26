@@ -57,50 +57,60 @@ const MinibusHireServices: React.FC = () => {
         }
     ];
 
+    const seoHead = (
+        <SEOHead
+            title="Minibus Hire UK - 8 to 24 Passenger Minibuses"
+            description="Affordable minibus hire across the UK for groups of 8 to 24 passengers. CRB checked drivers, modern vehicles, competitive rates. Book your minibus today."
+            keywords="minibus hire UK, 8 seater minibus hire, 16 seater minibus, minibus rental London, small group transport UK"
+            canonicalUrl="/minibus"
+        />
+    )
+
     // Loading state
     if (loading && !initialized) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
-                <div className="container mx-auto px-4 py-20">
-                    <div className="flex flex-col items-center justify-center py-20">
-                        <Loader className="h-16 w-16 text-orange-600 animate-spin mb-4" />
-                        <p className="text-gray-600 font-medium text-lg">Loading our minibus fleet...</p>
+            <>
+                {seoHead}
+                <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
+                    <div className="container mx-auto px-4 py-20">
+                        <div className="flex flex-col items-center justify-center py-20">
+                            <Loader className="h-16 w-16 text-orange-600 animate-spin mb-4" />
+                            <p className="text-gray-600 font-medium text-lg">Loading our minibus fleet...</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     // Error state
     if (error && !loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
-                <div className="container mx-auto px-4 py-20">
-                    <div className="flex flex-col items-center justify-center py-20">
-                        <AlertCircle className="h-16 w-16 text-red-500 mb-4" />
-                        <p className="text-gray-900 font-semibold text-xl mb-2">Failed to load minibuses</p>
-                        <p className="text-gray-600 text-sm mb-6">{error}</p>
-                        <button
-                            onClick={() => dispatch(fetchTaxiProducts())}
-                            className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl"
-                        >
-                            <RefreshCw className="h-5 w-5" />
-                            Try Again
-                        </button>
+            <>
+                {seoHead}
+                <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
+                    <div className="container mx-auto px-4 py-20">
+                        <div className="flex flex-col items-center justify-center py-20">
+                            <AlertCircle className="h-16 w-16 text-red-500 mb-4" />
+                            <p className="text-gray-900 font-semibold text-xl mb-2">Failed to load minibuses</p>
+                            <p className="text-gray-600 text-sm mb-6">{error}</p>
+                            <button
+                                onClick={() => dispatch(fetchTaxiProducts())}
+                                className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl"
+                            >
+                                <RefreshCw className="h-5 w-5" />
+                                Try Again
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     return (
         <>
-            <SEOHead
-                title="Minibus Hire UK - 8 to 24 Passenger Minibuses"
-                description="Affordable minibus hire across the UK for groups of 8 to 24 passengers. CRB checked drivers, modern vehicles, competitive rates. Book your minibus today."
-                keywords="minibus hire UK, 8 seater minibus hire, 16 seater minibus, minibus rental London, small group transport UK"
-                canonicalUrl="/minibus"
-            />
+            {seoHead}
             <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pt-16">
                 {/* Hero Section */}
                 <div className="relative bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-28 overflow-hidden">

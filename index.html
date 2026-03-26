@@ -3,89 +3,99 @@
 
 <head>
   <meta charset="UTF-8" />
-
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-TPSW84LR');</script>
-  <!-- End Google Tag Manager -->
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QV13L5CKQ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-7QV13L5CKQ');
-  </script>
-
-  <!-- Viewport & Verification (static - never changes) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="google6cd2dffa6488784c.html" />
 
-  <!-- Static author & geo tags -->
-  <meta name="author" content="Minibus Hire London">
+  <!-- Fallback title — react-helmet-async overrides this on every page -->
+  <title>Minibus Hire London</title>
+
+  <!-- Static site-wide tags that never change — keep these -->
+  <meta name="msvalidate.01" content="C6FF61A04DDAF22FD424DCD81B9CD79F" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="Minibus Hire London" />
   <meta name="geo.region" content="GB-LND" />
   <meta name="geo.placename" content="London, United Kingdom" />
   <meta name="geo.position" content="51.5074;-0.1278" />
   <meta name="ICBM" content="51.5074, -0.1278" />
+  <meta name="google-site-verification" content="google6cd2dffa6488784c.html" />
+  <meta name="theme-color" content="#f97316" />
+  <meta name="msapplication-TileColor" content="#f97316" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-  <!-- Sitemap Reference -->
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en-gb" href="https://www.minibushirelondon.org/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.minibushirelondon.org/" />
+
+  <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="./src/assets/Logo.png" />
-  <link rel="apple-touch-icon" href="./src/assets/Logo.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="./src/assets/Logo.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./src/assets/Logo.png">
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Preconnect for Performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://maps.googleapis.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://maps.googleapis.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-  <!-- Alternate Languages (site-wide, static) -->
-  <link rel="alternate" hreflang="en-gb" href="https://minibushirelondon.org" />
-  <link rel="alternate" hreflang="x-default" href="https://minibushirelondon.org" />
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-  <!-- Theme Color for Mobile Browsers -->
-  <meta name="theme-color" content="#f97316">
-  <meta name="msapplication-TileColor" content="#f97316">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- GTM -->
+  <script>(function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-TPSW84LR');</script>
 
-  <!-- Security Headers -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="referrer" content="origin-when-cross-origin">
-
+  <!-- LocalBusiness schema — static, site-wide, never changes -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Minibus Hire London",
+    "url": "https://www.minibushirelondon.org",
+    "logo": "https://www.minibushirelondon.org/logo.png",
+    "image": "https://www.minibushirelondon.org/og-image.jpg",
+    "description": "Minibus and coach hire in London. 8 to 72-seater vehicles with professional drivers for airport transfers, weddings, corporate events and day trips.",
+    "telephone": "+442038705195",
+    "email": "info@minibushirelondon.org",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Cameron House",
+      "addressLocality": "West Drayton",
+      "postalCode": "UB7 7QG",
+      "addressCountry": "GB"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 51.5074, "longitude": -0.1278 },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "priceRange": "££",
+    "currenciesAccepted": "GBP",
+    "paymentAccepted": "Cash, Credit Card",
+    "areaServed": { "@type": "City", "name": "London" },
+    "serviceType": ["Minibus Hire", "Coach Hire", "Airport Transfers", "Wedding Transport"]
+  }
+  </script>
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPSW84LR" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <div id="root"></div>
-  <link rel="stylesheet" href="../src/index.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script type="module" src="/src/main.tsx"></script>
-
-  <!-- No JavaScript Fallback -->
   <noscript>
-    <div style="text-align: center; padding: 40px; font-family: Arial, sans-serif;">
-      <h1>JavaScript Required</h1>
-      <p>Please enable JavaScript in your browser to use Minibus Hire London booking system.</p>
-      <p>For assistance, call us at <strong>+44 203 870 5195</strong></p>
+    <div style="text-align:center;padding:40px;font-family:Arial,sans-serif;">
+      <h1>Minibus Hire London</h1>
+      <p>Please enable JavaScript to use our booking system.</p>
+      <p>Call: <strong><a href="tel:+442038705195">+44 203 870 5195</a></strong></p>
     </div>
   </noscript>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>

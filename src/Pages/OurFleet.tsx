@@ -43,51 +43,60 @@ const OurFleet: React.FC = () => {
             }
         });
 
+    const seoHead = (
+        <SEOHead
+            title="Our Fleet - Minibus & Coach Vehicles 8 to 72 Passengers"
+            description="Browse our full fleet of minibuses and coaches for hire across the UK. Vehicles from 8 to 72 passengers, professionally maintained and ready to book."
+            keywords="minibus fleet UK, coach hire vehicles, 8 seater minibus, 16 seater minibus, 72 seater coach, minibus sizes UK"
+            canonicalUrl="/vehicles"
+        />
+    )
 
     // Loading state
     if (loading && !initialized) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 pt-16">
-                <div className="container mx-auto px-4 py-20">
-                    <div className="flex flex-col items-center justify-center py-20">
-                        <Loader className="h-16 w-16 text-orange-600 animate-spin mb-4" />
-                        <p className="text-gray-600 font-medium text-lg">Loading our fleet...</p>
+            <>
+                {seoHead}
+                <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 pt-16">
+                    <div className="container mx-auto px-4 py-20">
+                        <div className="flex flex-col items-center justify-center py-20">
+                            <Loader className="h-16 w-16 text-orange-600 animate-spin mb-4" />
+                            <p className="text-gray-600 font-medium text-lg">Loading our fleet...</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     // Error state
     if (error && !loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 pt-16">
-                <div className="container mx-auto px-4 py-20">
-                    <div className="flex flex-col items-center justify-center py-20">
-                        <AlertCircle className="h-16 w-16 text-red-500 mb-4" />
-                        <p className="text-gray-900 font-semibold text-xl mb-2">Failed to load vehicles</p>
-                        <p className="text-gray-600 text-sm mb-6">{error}</p>
-                        <button
-                            onClick={() => dispatch(fetchTaxiProducts())}
-                            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl"
-                        >
-                            <RefreshCw className="h-5 w-5" />
-                            Try Again
-                        </button>
+            <>
+                {seoHead}
+                <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 pt-16">
+                    <div className="container mx-auto px-4 py-20">
+                        <div className="flex flex-col items-center justify-center py-20">
+                            <AlertCircle className="h-16 w-16 text-red-500 mb-4" />
+                            <p className="text-gray-900 font-semibold text-xl mb-2">Failed to load vehicles</p>
+                            <p className="text-gray-600 text-sm mb-6">{error}</p>
+                            <button
+                                onClick={() => dispatch(fetchTaxiProducts())}
+                                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl"
+                            >
+                                <RefreshCw className="h-5 w-5" />
+                                Try Again
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     return (
         <>
-            <SEOHead
-                title="Our Fleet - Minibus & Coach Vehicles 8 to 72 Passengers"
-                description="Browse our full fleet of minibuses and coaches available for hire across the UK. Vehicles ranging from 8 to 72 passengers, all maintained to the highest standards."
-                keywords="minibus fleet UK, coach hire vehicles, 8 seater minibus, 16 seater minibus, 72 seater coach, minibus sizes UK"
-                canonicalUrl="/vehicles"
-            />
+            {seoHead}
             <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 pt-16">
                 {/* Hero Section */}
                 <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-16 md:py-20">

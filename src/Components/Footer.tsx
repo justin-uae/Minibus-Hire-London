@@ -50,9 +50,9 @@ const Footer: React.FC = () => {
                                 alt="UK Transfers Logo"
                                 className="h-16 sm:h-16 md:h-16 w-auto transition-transform duration-300 group-hover:scale-105"
                             />
-                            <h1 className="text-lg sm:text-xl font-bold text-white">
+                            <span className="text-lg sm:text-xl font-bold text-white">
                                 Minibus Hire<span className="text-orange-400"> London</span>
-                            </h1>
+                            </span>
                         </Link>
 
                         {/* Contact Info */}
