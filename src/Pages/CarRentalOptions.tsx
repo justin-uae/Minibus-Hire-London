@@ -498,14 +498,14 @@ const CarRentalOptions: React.FC = () => {
                                                         : `Total for ${car.quantity} Day${car.quantity > 1 ? 's' : ''}`}
                                             </p>
                                             <span className="text-[14px] text-red-500 line-through">
-                                                GBP {Math.round(car.displayPrice * 1.2)}
+                                                £{Math.round(car.displayPrice * 1.2)}
                                             </span>
                                             <p className="text-2xl font-bold text-gray-900">
-                                                GBP {Math.round(car.displayPrice)}
+                                                £{Math.round(car.displayPrice)}
                                             </p>
                                             {rentalDetails.rentalDays > 1 && car.quantity > 1 && (
                                                 <p className="text-xs text-gray-500">
-                                                    GBP {Math.round(car.pricePerDay || 0)} × {car.quantity} day{car.quantity > 1 ? 's' : ''}
+                                                    £{Math.round(car.pricePerDay || 0)} × {car.quantity} day{car.quantity > 1 ? 's' : ''}
                                                 </p>
                                             )}
                                         </div>
@@ -544,7 +544,7 @@ const CarRentalOptions: React.FC = () => {
                                     <p className="font-bold text-gray-900 truncate text-sm">{selectedCarData.name}</p>
                                     <div className="flex items-center gap-2">
                                         <p className="text-sm text-gray-600">
-                                            <span className="font-bold text-orange-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
+                                            <span className="font-bold text-orange-600">£{Math.round(selectedCarData.displayPrice)}</span>
                                         </p>
                                         <span className="text-xs text-gray-400">•</span>
                                         <p className="text-xs text-gray-500">{selectedCarData.rentalType}</p>
@@ -655,19 +655,19 @@ const CarRentalOptions: React.FC = () => {
                                 <div className="space-y-2">
                                     <div className="flex justify-between text-sm">
                                         <span className="text-gray-600">{selectedCarData.rentalType}</span>
-                                        <span className="font-semibold text-gray-900">GBP {Math.round(selectedCarData.displayPrice)}</span>
+                                        <span className="font-semibold text-gray-900">£{Math.round(selectedCarData.displayPrice)}</span>
                                     </div>
                                     {rentalDetails.rentalDays > 1 && selectedCarData.quantity > 1 && (
                                         <div className="flex justify-between text-xs text-gray-500">
                                             <span>Price calculation</span>
-                                            <span>GBP {Math.round(selectedCarData.pricePerDay || 0)} × {selectedCarData.quantity} days</span>
+                                            <span>£{Math.round(selectedCarData.pricePerDay || 0)} × {selectedCarData.quantity} days</span>
                                         </div>
                                     )}
                                 </div>
                                 <div className="mt-4 pt-4 border-t border-gray-200">
                                     <div className="flex items-center justify-between">
                                         <span className="text-base font-bold text-gray-900">Total Amount</span>
-                                        <span className="text-2xl font-bold text-orange-600">GBP {Math.round(selectedCarData.displayPrice)}</span>
+                                        <span className="text-2xl font-bold text-orange-600">£{Math.round(selectedCarData.displayPrice)}</span>
                                     </div>
                                 </div>
                             </div>

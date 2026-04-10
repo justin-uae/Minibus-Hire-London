@@ -85,8 +85,10 @@ function parseVariants(variantEdges: any[]): TaxiVariant[] {
   return variantEdges.map((edge: any) => {
     const variant = edge.node;
 
-    // Try to parse KM range from variant title
-    const kmRange = parseKmRangeFromTitle(variant.title) || { min: 0, max: 50 };
+    // Try to parse KM range from variant title.
+    // Use -1 sentinel for unparseable titles (e.g. "Default Title") so they
+    // don't shadow real range-based variants during selection.
+    const kmRange = parseKmRangeFromTitle(variant.title) || { min: -1, max: -1 };
 
     return {
       id: variant.id,

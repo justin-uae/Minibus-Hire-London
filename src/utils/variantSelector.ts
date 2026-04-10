@@ -22,7 +22,9 @@ export const selectVariantByDistance = (
         return sortVariantsByRange(variants)[0];
     }
 
-    const sorted = sortVariantsByRange(variants);
+    // Exclude variants that have no parseable range (sentinel kmRangeMin = -1)
+    const rangeVariants = variants.filter(v => v.kmRangeMin >= 0);
+    const sorted = sortVariantsByRange(rangeVariants.length > 0 ? rangeVariants : variants);
 
     // Find exact range match
     const matchingVariant = sorted.find(

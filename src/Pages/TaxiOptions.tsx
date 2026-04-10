@@ -621,13 +621,13 @@ const TaxiOptions: React.FC = () => {
                                                                 <div className="flex justify-between">
                                                                     <span className="text-gray-600">Pickup Trip ({distance.toFixed(1)} miles)</span>
                                                                     <span className="font-semibold text-gray-900">
-                                                                        GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
+                                                                        £{(calculatePrice(selectedTaxiData, distance, 'one-way'))}
                                                                     </span>
                                                                 </div>
                                                                 <div className="flex justify-between">
                                                                     <span className="text-gray-600">Return Trip ({distance.toFixed(1)} miles)</span>
                                                                     <span className="font-semibold text-gray-900">
-                                                                        GBP {(calculatePrice(selectedTaxiData, distance, 'one-way'))}
+                                                                        £{(calculatePrice(selectedTaxiData, distance, 'one-way'))}
                                                                     </span>
                                                                 </div>
                                                                 {!isAirportTrip && (
@@ -640,7 +640,7 @@ const TaxiOptions: React.FC = () => {
                                                                 <div className="flex justify-between pt-2 border-t border-gray-200">
                                                                     <span className="font-bold text-gray-900">Total Amount</span>
                                                                     <span className="text-xl font-bold text-orange-600">
-                                                                        GBP {calculatePrice(selectedTaxiData, distance, 'return')}
+                                                                        £{calculatePrice(selectedTaxiData, distance, 'return')}
                                                                     </span>
                                                                 </div>
                                                             </>
@@ -649,7 +649,7 @@ const TaxiOptions: React.FC = () => {
                                                                 <div className="flex justify-between">
                                                                     <span className="font-bold text-gray-900">Total Amount</span>
                                                                     <span className="text-xl font-bold text-orange-600">
-                                                                        GBP {calculatePrice(selectedTaxiData, distance, 'one-way')}
+                                                                        £{calculatePrice(selectedTaxiData, distance, 'one-way')}
                                                                     </span>
                                                                 </div>
                                                                 {!isAirportTrip && (
@@ -735,7 +735,7 @@ const TaxiOptions: React.FC = () => {
                                     <p className="font-bold text-gray-900 truncate text-sm">{selectedTaxiData.name}</p>
                                     <p className="text-sm text-gray-600">
                                         <span className="font-bold text-orange-600">
-                                            GBP {calculatePrice(selectedTaxiData, distance, searchDetails.tripType)}
+                                            £{calculatePrice(selectedTaxiData, distance, searchDetails.tripType)}
                                         </span>
                                     </p>
                                 </div>
